@@ -24,13 +24,29 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" else "../scripts/analysis-prep.R")
 ```
 
-```{=html}
-<!-- ===================== TABLES & FIGURES ======================
-     Reference these in your prose with @tbl-... / @fig-... e.g.
-     "as shown in @tbl-behaviors", "see @fig-cns and @fig-nep".
-     Move the chunks wherever you want them to appear in the body.
-     ============================================================= -->
-```
+# Introduction
+
+# Belief Systems and Pro-Environmental Behavior 
+
+
+## Cultural Cognition
+
+
+## New Ecological Paradigm
+
+
+## Connectedness to Nature 
+
+
+## Pro-Environmental Behaviors 
+
+
+# Hypotheses
+
+
+# Data and Methods 
+
+## Measures 
 
 <!-- Table 1 -->
 
@@ -39,6 +55,18 @@ source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" els
 #| tbl-cap: "Self-reported pro-environmental behaviors (means and standard deviations)"
 knitr::kable(tbl1, booktabs = TRUE, align = c("l", "r", "r"))
 ```
+
+
+# Results 
+
+```{=html}
+<!-- ===================== TABLES & FIGURES ======================
+     Reference these in your prose with @tbl-... / @fig-... e.g.
+     "as shown in @tbl-behaviors", "see @fig-cns and @fig-nep".
+     Move the chunks wherever you want them to appear in the body.
+     ============================================================= -->
+```
+
 
 <!-- Table 2 -->
 
@@ -83,6 +111,11 @@ knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
 #| tbl-cap: "Mediation analysis: standardized direct, indirect, and total effects of cultural cognition on pro-environmental behavior († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
 knitr::kable(tbl4, booktabs = TRUE, align = c("l", "r", "r", "r"))
 ```
+
+# Discussion 
+
+
+# Conclusion 
 
 \newpage
 
