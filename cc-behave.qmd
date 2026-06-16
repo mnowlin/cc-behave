@@ -1,0 +1,104 @@
+---
+title: "Cultural Cognition, Environmental Orientation, and Pro-Environmental Behavior"
+bibliography: references.bib
+csl: american-political-science-association.csl
+fig-cap-location: top
+fontfamily: ebgaramond
+link-bibliography: false
+format: 
+  pdf:
+    include-in-header: 
+      text: |
+        \usepackage{setspace}
+        \usepackage{dcolumn}
+        \usepackage{float}
+        \usepackage{amsmath}
+        \addtokomafont{disposition}{\rmfamily}
+  docx:
+    reference-doc: sustainability-template.dot
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+# Clean, fit, and build all tables/figures (no side effects). Robust to cwd.
+source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" else "../scripts/analysis-prep.R")
+```
+
+```{=html}
+<!-- ===================== TABLES & FIGURES ======================
+     Reference these in your prose with @tbl-... / @fig-... e.g.
+     "as shown in @tbl-behaviors", "see @fig-cns and @fig-nep".
+     Move the chunks wherever you want them to appear in the body.
+     ============================================================= -->
+```
+
+<!-- Table 1 -->
+
+```{r}
+#| label: tbl-behaviors
+#| tbl-cap: "Self-reported pro-environmental behaviors (means and standard deviations)"
+knitr::kable(tbl1, booktabs = TRUE, align = c("l", "r", "r"))
+```
+
+<!-- Table 2 -->
+
+```{r}
+#| label: tbl-measurement
+#| tbl-cap: "Measurement items and construct reliability (Cronbach's α, composite reliability, average variance extracted)"
+knitr::kable(tbl2, booktabs = TRUE, align = c("l", "l", "r", "r", "r", "r", "r"))
+```
+
+<!-- Figure 2 -->
+
+```{r}
+#| label: fig-cns
+#| fig-cap: "Measurement and structural model of cultural cognition, the Connectedness to Nature Scale, and pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| fig-width: 9
+#| fig-height: 6
+draw_sem(fitCNS)
+```
+
+<!-- Figure 3 -->
+
+```{r}
+#| label: fig-nep
+#| fig-cap: "Measurement and structural model of cultural cognition, the New Ecological Paradigm, and pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| fig-width: 9
+#| fig-height: 6
+draw_sem(fitNEP)
+```
+
+<!-- Table 3 -->
+
+```{r}
+#| label: tbl-fit
+#| tbl-cap: "Model fit statistics for the CNS and NEP structural equation models"
+knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
+```
+
+<!-- Table 4 -->
+
+```{r}
+#| label: tbl-mediation
+#| tbl-cap: "Mediation analysis: standardized direct, indirect, and total effects of cultural cognition on pro-environmental behavior († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
+knitr::kable(tbl4, booktabs = TRUE, align = c("l", "r", "r", "r"))
+```
+
+\newpage
+
+# Appendix
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+
+\newpage
+
+# References
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\singlespace
+
+\noindent

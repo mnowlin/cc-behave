@@ -1,0 +1,28 @@
+# --- macOS ---
+.DS_Store
+
+# --- OneDrive sync artifacts ---
+*conflicted copy*
+
+# --- R ---
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# --- Quarto build artifacts / caches ---
+/.quarto/
+/_freeze/
+/_output/
+*_files/
+
+# --- Pre-render generated (rebuilt from master sources by scripts/export-cited-refs.R) ---
+/references.bib
+/american-political-science-association.csl
+
+# --- Not version-controlled for this project ---
+/data/
+/archive/
+/lit-review/
