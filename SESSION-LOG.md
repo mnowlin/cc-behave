@@ -6,6 +6,80 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-06-16 (session 2) — Combined serial model, public/private split, supplement
+
+**Goal:** Extend the analysis with a combined model chaining cultural cognition
+→ NEP → CNS → behavior, split the behavior outcome into public vs. private, and
+separate the paper into a main document and a supplement.
+
+### What we did
+
+1. **Built a combined serial model** (CC → NEP → CNS → behavior) and a **full
+   model** that adds all direct paths; compared them.
+2. **Split the behavior outcome** into observed PUBLIC (0–7) and PRIVATE (0–5)
+   sum scores across every model.
+3. **Separated the paper**: kept only the combined model in the main paper; moved
+   the single-orientation (CNS-only, NEP-only) models and the mediation analysis
+   into a new supplemental document.
+4. Committed in two commits and pushed.
+
+### Files created / changed
+
+- `scripts/analysis-prep.R` *(changed)* — added the serial (`fitSerial`) and full
+  (`fitFull`) models, fit-comparison table (`tbl5`), nested χ² test (`lrt_text`),
+  and standardized effect decomposition (`tbl6`). Added `PUBLIC`/`PRIVATE`
+  outcomes; updated the CNS/NEP/mediation/combined models and Tables 1, 4, 6 to
+  the two-outcome structure. Full-model `:=` decomposition generated
+  programmatically per worldview × outcome.
+- `scripts/sem-serial.R` *(new)* — standalone runner for the combined model;
+  prints summaries + comparison and writes CSVs + a path diagram.
+- `cc-behave.qmd` *(changed)* — reduced Results to the combined model
+  (`@fig-serial`, `@tbl-serial-fit`, `@tbl-serial-effects`); kept Tables 1–2 in
+  Measures. Added `html` to output formats.
+- `cc-behave-supplemental.qmd` *(new)* — CNS model, NEP model, their fit table,
+  and the mediation table.
+- `_quarto.yaml` *(changed)* — render both documents.
+- `scripts/export-cited-refs.R` *(changed)* — scan the supplement for citations.
+
+### Decisions
+
+- **Public/private = observed sum scores** (not latent factors), consistent with
+  the methods text; both outcomes estimated jointly with a correlated residual.
+- **Main paper = combined model only**; everything else → supplement. Each
+  document numbers figures/tables independently; cross-file `@refs` do not
+  resolve (use plain text like "Supplemental Figure 1").
+- **Commit split is by file/layer** (analysis vs. document), because the serial
+  and public/private work are entangled in the same files and cannot be split by
+  `git` without hunk surgery.
+
+### Verification
+
+- Combined model: full beats serial chain (Δχ²(14) = 78.66, p < .001); full-model
+  CFI .921, RMSEA .062.
+- Public/private split reveals divergent effects: egalitarianism direct on public
+  (.21*) but fully mediated for private; communitarianism negative direct on
+  private (−.16*); hierarchy negative total on private (−.24*).
+- All six outputs (2 docs × HTML/PDF/DOCX) render from a single `quarto render`.
+
+### Notable findings / flags
+
+- **HTML was never being rendered by default** — both frontmatters listed only
+  `pdf`/`docx`, overriding the project-level `html`. Fixed by adding `html` to
+  both. (CLAUDE.md requires all three formats.)
+- The public/private divergence (esp. the communitarianism suppression pattern on
+  private behavior) may warrant its own short interpretive subsection.
+
+### Open items / next steps
+
+- `scripts/reproduce-analysis.R` still reflects the original single-outcome (total
+  PEB) analysis — left as the faithful reproduction of the published paper.
+- Optional: drop the duplicate RMSEA CI column from the fit-comparison table (it
+  is identical across the two models).
+- Manuscript prose (Introduction → Conclusion outline) still to be written by the
+  author.
+
+---
+
 ## 2026-06-16 — Reproduce analysis, wire into manuscript, set up repo
 
 **Goal:** Reproduce the analysis from `Cultural Cognition revised clean.docx`
