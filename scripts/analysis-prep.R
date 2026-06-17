@@ -87,8 +87,12 @@ envatt$public  <- rowSums(envatt[c("act.org","cand","money.org","cont.off",
                                    "cont.bus","petition","meeting")], na.rm = TRUE)
 envatt$private <- rowSums(envatt[c("product","water","buycott","recycle","energy")],
                           na.rm = TRUE)
-envatt$PEB    <- rowSums(envatt[c("public","private","stocks")])   # observed DV, 0-13
+envatt$PEB    <- rowSums(envatt[c("public","private","stocks")])   # total, 0-13
 envatt$BEHAVE <- envatt$PEB
+# Split observed outcomes used in the SEMs: PUBLIC (0-7), PRIVATE (0-5).
+# `stocks` is in neither index (dropped from PRIVATE in a prior review).
+envatt$PUBLIC  <- envatt$public
+envatt$PRIVATE <- envatt$private
 
 ## =====================================================================
 ## 2. REVERSE-CODE THE ITEMS USED IN THE SEMs  (from "SEManalysis.R")
@@ -107,8 +111,9 @@ for (v in c("nep5","nep15"))                 envatt[[v]] <- 6 - envatt[[v]]
   INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12
   COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16
   CNS   =~ cns2 + cns6 + cns7
-  CNS    ~ HIER + EGAL + INDIV + COMM
-  BEHAVE ~ CNS + HIER + EGAL + INDIV + COMM
+  CNS     ~ HIER + EGAL + INDIV + COMM
+  PUBLIC  ~ CNS + HIER + EGAL + INDIV + COMM
+  PRIVATE ~ CNS + HIER + EGAL + INDIV + COMM
 '
 .semModelNEP <- '
   HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7
@@ -116,8 +121,9 @@ for (v in c("nep5","nep15"))                 envatt[[v]] <- 6 - envatt[[v]]
   INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12
   COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16
   NEP   =~ nep5 + nep10 + nep15
-  NEP    ~ HIER + EGAL + INDIV + COMM
-  BEHAVE ~ NEP + HIER + EGAL + INDIV + COMM
+  NEP     ~ HIER + EGAL + INDIV + COMM
+  PUBLIC  ~ NEP + HIER + EGAL + INDIV + COMM
+  PRIVATE ~ NEP + HIER + EGAL + INDIV + COMM
 '
 fitCNS <- sem(.semModelCNS, data = envatt)
 fitNEP <- sem(.semModelNEP, data = envatt)
@@ -144,14 +150,32 @@ peb_sd   <- round(sd(envatt$PEB,   na.rm = TRUE), 2)
   energy    = "Reduced your household's use of energy",
   stocks    = "Bought or sold stocks based on companies' environmental records")
 
-.bvars <- names(.behave_src)
-tbl1 <- data.frame(
-  Behavior = .behave_label[.bvars],
-  Mean = round(sapply(.bvars, function(v) mean(envatt[[v]], na.rm = TRUE)), 2),
-  SD   = round(sapply(.bvars, function(v) sd(envatt[[v]],   na.rm = TRUE)), 2),
+# behavior items grouped by type (public = 7, private = 5, stocks = neither)
+.public_vars  <- c("act.org","cand","money.org","cont.off","cont.bus","petition","meeting")
+.private_vars <- c("product","water","buycott","recycle","energy")
+.btype <- setNames(rep("Public", length(.public_vars)), .public_vars)
+.btype[.private_vars] <- "Private"
+.btype["stocks"] <- "—"
+.bvars <- c(.public_vars, .private_vars, "stocks")   # display order: public, private, stocks
+
+.item_row <- function(v) data.frame(
+  Behavior = .behave_label[[v]], Type = .btype[[v]],
+  Mean = round(mean(envatt[[v]], na.rm = TRUE), 2),
+  SD   = round(sd(envatt[[v]],   na.rm = TRUE), 2),
   row.names = NULL, check.names = FALSE)
-tbl1 <- rbind(tbl1, data.frame(Behavior = "Total pro-environmental behaviors (0-13)",
-                               Mean = peb_mean, SD = peb_sd))
+.sum_row <- function(label, score) data.frame(
+  Behavior = label, Type = "",
+  Mean = round(mean(envatt[[score]], na.rm = TRUE), 2),
+  SD   = round(sd(envatt[[score]],   na.rm = TRUE), 2),
+  row.names = NULL, check.names = FALSE)
+
+tbl1 <- rbind(
+  do.call(rbind, lapply(.public_vars,  .item_row)),
+  .sum_row("Public behaviors (0-7)",  "PUBLIC"),
+  do.call(rbind, lapply(.private_vars, .item_row)),
+  .sum_row("Private behaviors (0-5)", "PRIVATE"),
+  .item_row("stocks"),
+  .sum_row("Total behaviors (0-13)",  "PEB"))
 
 ## =====================================================================
 ## 5. TABLE 2 -- measurement items + reliability (alpha, CR, AVE)
@@ -229,17 +253,20 @@ tbl3 <- rbind(.fit_row(fitCNS, "CNS"), .fit_row(fitNEP, "NEP"))
                   ifelse(p < .05, "*",  ifelse(p < .10, "†", "")))))
 .fmt <- function(est, p) paste0(formatC(est, format = "f", digits = 3), .stars(p))
 
+# mediation with two observed outcomes (PUBLIC, PRIVATE) estimated jointly
 .med_model <- function(focal, others, orient, items) paste0(
   "HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7\n",
   "EGAL  =~ cc_eh_11 + cc_eh_13 + cc_eh_14\n",
   "INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12\n",
   "COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16\n",
   orient, " =~ ", items, "\n",
-  "BEHAVE ~ c*", focal, " + ", paste(others, collapse = " + "), "\n",
   orient, " ~ a*", focal, " + ", paste(others, collapse = " + "), "\n",
-  "BEHAVE ~ b*", orient, "\n",
-  "ab := a*b\n",
-  "total := c + (a*b)\n")
+  "PUBLIC  ~ cu*", focal, " + ", paste(others, collapse = " + "), "\n",
+  "PRIVATE ~ cv*", focal, " + ", paste(others, collapse = " + "), "\n",
+  "PUBLIC  ~ bu*", orient, "\n",
+  "PRIVATE ~ bv*", orient, "\n",
+  "ab_pub  := a*bu\n  ab_prv  := a*bv\n",
+  "tot_pub := cu + a*bu\n  tot_prv := cv + a*bv\n")
 
 .med_specs <- list(
   list(label = "Egalitarianism → CNS",    focal = "EGAL", others = c("HIER","INDIV","COMM"), orient = "CNS", items = "cns2 + cns6 + cns7"),
@@ -254,12 +281,20 @@ tbl4 <- do.call(rbind, lapply(.med_specs, function(s) {
     r <- ss[ss$lhs == lhs & ss$op == op & ss$rhs == rhs, ]
     c(est = r$est.std[1], p = r$pvalue[1])
   }
-  dir <- pick("BEHAVE", "~", s$focal); ind <- pick("ab", ":=", "a*b"); tot <- pick("total", ":=", "c+(a*b)")
-  data.frame(Path = s$label,
-             Direct   = .fmt(dir["est"], dir["p"]),
-             Indirect = .fmt(ind["est"], ind["p"]),
-             Total    = .fmt(tot["est"], tot["p"]),
-             row.names = NULL)
+  pickdef <- function(lhs) {
+    r <- ss[ss$lhs == lhs & ss$op == ":=", ]
+    c(est = r$est.std[1], p = r$pvalue[1])
+  }
+  row <- function(outcome, dv, indlab, totlab) {
+    dir <- pick(dv, "~", s$focal); ind <- pickdef(indlab); tot <- pickdef(totlab)
+    data.frame(Path = s$label, Outcome = outcome,
+               Direct = .fmt(dir["est"], dir["p"]),
+               Indirect = .fmt(ind["est"], ind["p"]),
+               Total = .fmt(tot["est"], tot["p"]),
+               row.names = NULL)
+  }
+  rbind(row("Public",  "PUBLIC",  "ab_pub", "tot_pub"),
+        row("Private", "PRIVATE", "ab_prv", "tot_prv"))
 }))
 
 ## =====================================================================
@@ -271,3 +306,91 @@ draw_sem <- function(fit) {
                 mar = c(5, 5, 5, 5), DoNotPlot = TRUE)
   plot(mark_sig(p, fit))
 }
+
+## =====================================================================
+## 9. COMBINED SERIAL MODEL: CC -> NEP -> CNS -> BEHAVE
+##    fitSerial = strict chain (no direct paths)
+##    fitFull   = chain + all direct paths (CC->CNS, CC->BEHAVE, NEP->BEHAVE)
+##    tbl5 = fit comparison; tbl6 = standardized effect decomposition
+## =====================================================================
+.measSerial <- '
+  HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7
+  EGAL  =~ cc_eh_11 + cc_eh_13 + cc_eh_14
+  INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12
+  COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16
+  NEP   =~ nep5 + nep10 + nep15
+  CNS   =~ cns2 + cns6 + cns7
+'
+.serialModel <- paste(.measSerial, '
+  NEP     ~ HIER + EGAL + INDIV + COMM
+  CNS     ~ NEP
+  PUBLIC  ~ CNS
+  PRIVATE ~ CNS
+')
+
+## Full model with direct paths to both observed outcomes. Worldview codes:
+## H=HIER, E=EGAL, I=INDIV, K=COMM. Outcome prefixes: u=PUBLIC, v=PRIVATE.
+## a*=CC->NEP, d=NEP->CNS, m*=CC->CNS. Decomposition := generated per
+## worldview x outcome below.
+.wv_full <- c(H = "HIER", E = "EGAL", I = "INDIV", K = "COMM")
+.reg_full <- c(
+  "NEP     ~ aH*HIER + aE*EGAL + aI*INDIV + aK*COMM",
+  "CNS     ~ d*NEP + mH*HIER + mE*EGAL + mI*INDIV + mK*COMM",
+  "PUBLIC  ~ uCNS*CNS + uNEP*NEP + uH*HIER + uE*EGAL + uI*INDIV + uK*COMM",
+  "PRIVATE ~ vCNS*CNS + vNEP*NEP + vH*HIER + vE*EGAL + vI*INDIV + vK*COMM")
+.defs_full <- unlist(lapply(names(.wv_full), function(x) c(
+  sprintf("dirP_%s := u%s",                          x, x),                # direct, public
+  sprintf("serP_%s := a%s*d*uCNS",                   x, x),                # serial NEP->CNS, public
+  sprintf("indP_%s := a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x),      # total indirect, public
+  sprintf("totP_%s := u%s + a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x, x),
+  sprintf("dirR_%s := v%s",                          x, x),                # direct, private
+  sprintf("serR_%s := a%s*d*vCNS",                   x, x),
+  sprintf("indR_%s := a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x),
+  sprintf("totR_%s := v%s + a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x, x))))
+.fullModel <- paste(c(.measSerial, .reg_full, .defs_full), collapse = "\n")
+
+fitSerial <- sem(.serialModel, data = envatt)
+fitFull   <- sem(.fullModel,   data = envatt)
+
+## ---- Table 5: fit comparison ----
+.cmp_row <- function(fit, label) {
+  fm <- fitMeasures(fit, c("chisq","df","cfi","tli","rmsea",
+                           "rmsea.ci.lower","rmsea.ci.upper","srmr","aic","bic"))
+  data.frame(Model = label,
+             "Chi-sq" = round(fm[["chisq"]], 2), df = as.integer(fm[["df"]]),
+             CFI = round(fm[["cfi"]], 3), TLI = round(fm[["tli"]], 3),
+             RMSEA = round(fm[["rmsea"]], 3),
+             "RMSEA 90% CI" = sprintf("[%.3f, %.3f]",
+                                      fm[["rmsea.ci.lower"]], fm[["rmsea.ci.upper"]]),
+             SRMR = round(fm[["srmr"]], 3),
+             AIC = round(fm[["aic"]], 1), BIC = round(fm[["bic"]], 1),
+             check.names = FALSE)
+}
+tbl5 <- rbind(.cmp_row(fitSerial, "Serial chain"),
+              .cmp_row(fitFull,   "Full (+ direct paths)"))
+
+## nested chi-square difference test (serial chain is nested in full)
+.lrt <- lavTestLRT(fitSerial, fitFull)
+.i   <- which(!is.na(.lrt[["Chisq diff"]]))[1]
+lrt_text <- sprintf(
+  "Nested $\\chi^2$ difference test (serial chain nested in full model): $\\Delta\\chi^2(%d) = %.2f$, $p = %.4f$. The direct paths jointly improve fit.",
+  .lrt[["Df diff"]][.i], .lrt[["Chisq diff"]][.i], .lrt[["Pr(>Chisq)"]][.i])
+
+## ---- Table 6: standardized effect decomposition (from the full model) ----
+.ssFull <- standardizedSolution(fitFull)
+.getdef <- function(name) {
+  r <- .ssFull[.ssFull$op == ":=" & .ssFull$lhs == name, ]
+  .fmt(r$est.std[1], r$pvalue[1])
+}
+.wv <- c(Egalitarianism = "E", Communitarianism = "K",
+         Hierarchy = "H", Individualism = "I")
+.decomp_row <- function(nm, x, outcome, pfx) data.frame(
+  Predictor = nm, Outcome = outcome,
+  Direct             = .getdef(paste0("dir", pfx, "_", x)),
+  "Serial (NEP→CNS)" = .getdef(paste0("ser", pfx, "_", x)),
+  "Total indirect"   = .getdef(paste0("ind", pfx, "_", x)),
+  Total              = .getdef(paste0("tot", pfx, "_", x)),
+  row.names = NULL, check.names = FALSE)
+tbl6 <- do.call(rbind, lapply(names(.wv), function(nm) rbind(
+  .decomp_row(nm, .wv[[nm]], "Public",  "P"),
+  .decomp_row(nm, .wv[[nm]], "Private", "R"))))
