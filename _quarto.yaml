@@ -5,6 +5,7 @@ project:
   output-dir: _output
   render:
     - cc-behave.qmd
+    - cc-behave-supplemental.qmd
 
 bibliography: references.bib
 csl: american-political-science-association.csl

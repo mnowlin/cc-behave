@@ -26,3 +26,5 @@
 /data/
 /archive/
 /lit-review/
+
+**/*.quarto_ipynb

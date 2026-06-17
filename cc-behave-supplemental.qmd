@@ -1,0 +1,84 @@
+---
+title: "Supplemental Materials: Cultural Cognition, Environmental Orientation, and Pro-Environmental Behavior"
+bibliography: references.bib
+csl: american-political-science-association.csl
+fig-cap-location: top
+fontfamily: ebgaramond
+link-bibliography: false
+format:
+  html: default
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage{setspace}
+        \usepackage{dcolumn}
+        \usepackage{float}
+        \usepackage{amsmath}
+        \addtokomafont{disposition}{\rmfamily}
+  docx:
+    reference-doc: sustainability-template.dot
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+# Shares the same analysis engine as the main paper (no side effects). Robust to cwd.
+source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" else "../scripts/analysis-prep.R")
+```
+
+These supplemental materials report the single-orientation structural
+equation models — cultural cognition predicting the Connectedness to
+Nature Scale (CNS) and the New Ecological Paradigm (NEP) separately — and
+the associated mediation analysis. The combined model that integrates both
+orientations is reported in the main text.
+
+# Single-orientation structural models
+
+<!-- Figure S1: CNS model -->
+
+```{r}
+#| label: fig-cns
+#| fig-cap: "Measurement and structural model of cultural cognition, the Connectedness to Nature Scale, and public and private pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| fig-width: 9
+#| fig-height: 6
+draw_sem(fitCNS)
+```
+
+<!-- Figure S2: NEP model -->
+
+```{r}
+#| label: fig-nep
+#| fig-cap: "Measurement and structural model of cultural cognition, the New Ecological Paradigm, and public and private pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| fig-width: 9
+#| fig-height: 6
+draw_sem(fitNEP)
+```
+
+<!-- Table S1: CNS/NEP model fit -->
+
+```{r}
+#| label: tbl-fit
+#| tbl-cap: "Model fit statistics for the CNS and NEP single-orientation structural equation models"
+knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
+```
+
+# Mediation analysis
+
+<!-- Table S2: mediation -->
+
+```{r}
+#| label: tbl-mediation
+#| tbl-cap: "Mediation analysis: standardized direct, indirect, and total effects of cultural cognition on public and private pro-environmental behavior († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
+knitr::kable(tbl4, booktabs = TRUE, align = c("l", "l", "r", "r", "r"))
+```
+
+\newpage
+
+# References
+
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\singlespace
+
+\noindent

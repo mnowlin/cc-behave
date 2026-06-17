@@ -5,9 +5,10 @@ csl: american-political-science-association.csl
 fig-cap-location: top
 fontfamily: ebgaramond
 link-bibliography: false
-format: 
+format:
+  html: default
   pdf:
-    include-in-header: 
+    include-in-header:
       text: |
         \usepackage{setspace}
         \usepackage{dcolumn}
@@ -52,19 +53,8 @@ source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" els
 
 ```{r}
 #| label: tbl-behaviors
-#| tbl-cap: "Self-reported pro-environmental behaviors (means and standard deviations)"
-knitr::kable(tbl1, booktabs = TRUE, align = c("l", "r", "r"))
-```
-
-
-# Results 
-
-```{=html}
-<!-- ===================== TABLES & FIGURES ======================
-     Reference these in your prose with @tbl-... / @fig-... e.g.
-     "as shown in @tbl-behaviors", "see @fig-cns and @fig-nep".
-     Move the chunks wherever you want them to appear in the body.
-     ============================================================= -->
+#| tbl-cap: "Self-reported pro-environmental behaviors by type (public/private), with means and standard deviations"
+knitr::kable(tbl1, booktabs = TRUE, align = c("l", "l", "r", "r"))
 ```
 
 
@@ -76,43 +66,44 @@ knitr::kable(tbl1, booktabs = TRUE, align = c("l", "r", "r"))
 knitr::kable(tbl2, booktabs = TRUE, align = c("l", "l", "r", "r", "r", "r", "r"))
 ```
 
-<!-- Figure 2 -->
+
+# Results
+
+<!-- Combined serial model: cultural cognition -> NEP -> CNS -> behavior.
+     The CNS-only model, NEP-only model, their fit table, and the separate
+     mediation analysis now live in cc-behave-supplemental.qmd.
+     Reference these in your prose with @fig-serial / @tbl-serial-fit /
+     @tbl-serial-effects. -->
+
+<!-- Figure: full combined model path diagram -->
 
 ```{r}
-#| label: fig-cns
-#| fig-cap: "Measurement and structural model of cultural cognition, the Connectedness to Nature Scale, and pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| label: fig-serial
+#| fig-cap: "Full combined structural model: cultural cognition → New Ecological Paradigm → Connectedness to Nature → pro-environmental behavior, with direct paths. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
 #| fig-width: 9
-#| fig-height: 6
-draw_sem(fitCNS)
+#| fig-height: 6.5
+draw_sem(fitFull)
 ```
 
-<!-- Figure 3 -->
+<!-- Table 5: serial vs full fit comparison -->
 
 ```{r}
-#| label: fig-nep
-#| fig-cap: "Measurement and structural model of cultural cognition, the New Ecological Paradigm, and pro-environmental behaviors. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
-#| fig-width: 9
-#| fig-height: 6
-draw_sem(fitNEP)
+#| label: tbl-serial-fit
+#| tbl-cap: "Fit comparison of the strict serial chain versus the full combined model with direct paths added"
+knitr::kable(tbl5, booktabs = TRUE, align = c("l", rep("r", 9)))
 ```
 
-<!-- Table 3 -->
+`r lrt_text`
+
+<!-- Table 6: effect decomposition in the full model -->
 
 ```{r}
-#| label: tbl-fit
-#| tbl-cap: "Model fit statistics for the CNS and NEP structural equation models"
-knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
+#| label: tbl-serial-effects
+#| tbl-cap: "Standardized decomposition of cultural cognition effects on public and private behavior in the full combined model († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
+knitr::kable(tbl6, booktabs = TRUE, align = c("l", "l", rep("r", 4)))
 ```
 
-<!-- Table 4 -->
-
-```{r}
-#| label: tbl-mediation
-#| tbl-cap: "Mediation analysis: standardized direct, indirect, and total effects of cultural cognition on pro-environmental behavior († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
-knitr::kable(tbl4, booktabs = TRUE, align = c("l", "r", "r", "r"))
-```
-
-# Discussion 
+# Discussion
 
 
 # Conclusion 
