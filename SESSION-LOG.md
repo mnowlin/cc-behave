@@ -6,6 +6,99 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-06-17 — Citation keys, conceptual-model figure, structural-only SEM
+
+**Goal:** Convert the manuscript's parenthetical citations to BibTeX cite keys
+backed by the master bibliography, add a conceptual-model figure (Figure 1), and
+split the combined SEM figure so the main text shows only the structural model.
+
+### What we did
+
+1. **Replaced every parenthetical citation** in `cc-behave.qmd` with Quarto `@`
+   cite keys (33 cited works), cross-checked against the reference page of
+   `Cultural Cognition revised clean.docx`.
+2. **Discovered the bib pipeline:** the project-root `refs.bib` was a *copy* of
+   the master; the pre-render step (`export-cited-refs.R`) regenerates
+   `references.bib` from the master at `…/Manuscript-Files/refs.bib`, so every
+   cite key must exist in the master. 29 of the 34 reference-page works were
+   already there; the author added the missing 5 (Brick & Lewis 2016, Grendstad
+   1999, Kaiser 2021, Kollmuss & Agyeman 2002, Kovacs 2024), plus Dunlap & Van
+   Liere 1978 and Lou et al. 2022, to the Zotero master. Aligned one key mismatch
+   (`kollmussMindGap2002` → `kollmussMindGapWhy2002`, the Zotero-generated key).
+   Deleted the project-root `refs.bib` copy.
+3. **Added the conceptual-model figure (Figure 1)** — cultural cognition → NEP →
+   CNS → public/private behavior, pure black and white. Tried Mermaid, then
+   Graphviz `dot`; both require a headless browser to rasterize for PDF/DOCX and
+   hung (see Flags). Final implementation is a base-R graphics helper.
+4. **Split the combined SEM figure:** the main text now shows a **structural-only**
+   diagram (`fig-structural`); the **full** measurement + structure diagram moved
+   to the supplement (`fig-serial`).
+
+### Files created / changed
+
+- `cc-behave.qmd` *(changed)* — parenthetical citations → `@`/`[-@…]` cite keys;
+  added `fig-model` (base-R conceptual model); replaced the full SEM figure with
+  the structural-only `fig-structural`.
+- `cc-behave-supplemental.qmd` *(changed)* — added the full combined-model figure
+  (`fig-serial`, measurement + structure) under a new section.
+- `scripts/analysis-prep.R` *(changed)* — added `draw_sem_struct()` (structural-only
+  SEM; keeps the observed PUBLIC/PRIVATE outcomes by dropping only indicator nodes
+  via `semptools::drop_nodes` with an explicit layout, residual loops off) and
+  `draw_concept_model()` (base-R Figure 1).
+- `references.bib` *(regenerated)* — now populated by the pre-render step from the
+  master (33 cited entries); not hand-maintained.
+- `refs.bib` *(deleted)* — the project-root master copy, removed after the
+  citation pass.
+- Master bib `…/Manuscript-Files/refs.bib` *(author-edited via Zotero)* — 7
+  references added (the 5 above + Dunlap & Van Liere 1978 + Lou et al. 2022).
+
+### Decisions
+
+- **Cite keys are validated against the master bib**, because
+  `export-cited-refs.R` regenerates `references.bib` from it on every render. A
+  hand-built `references.bib` is overwritten, so created entries had to land in
+  the Zotero master, not just the local file.
+- **Narrative citations** use author-in-prose + `[-@key]` (year only) to preserve
+  wording; parenthetical citations use `[@key]`.
+- **Figures are drawn in base-R graphics, not Mermaid/Graphviz** — diagram
+  rasterization for PDF/DOCX needs a headless browser that does not work here (see
+  Flags). R graphics render natively to all three formats (like the `semPaths`
+  figures).
+- **Main text = structural model only** (measurement omitted for clarity); the
+  full measurement + structure diagram lives in the supplement.
+
+### Verification
+
+- `export-cited-refs.R` reports **33/33 cited keys matched** in the master; no
+  unresolved `@key` literals in the rendered output.
+- Both documents render to HTML/PDF/DOCX from a single `quarto render`;
+  `cc-behave.qmd` alone renders in **~23 s** with no browser and no hang.
+- Figures confirmed visually: conceptual model is B/W and correctly proportioned;
+  the structural SEM includes PUBLIC and PRIVATE with significance stars.
+
+### Notable findings / flags
+
+- **Mermaid and Graphviz `dot` are unusable for PDF/DOCX in this environment.**
+  No native Graphviz or `rsvg-convert` is installed, so Quarto falls back to a
+  headless browser to rasterize diagrams — and that hangs: the bundled Chromium
+  (v91) won't launch on this macOS, and the system Google Chrome (v149) stalls
+  indefinitely (caused multi-hour render hangs). Use base-R/R graphics for any
+  future diagram, or install native `graphviz` + `librsvg`.
+- Three reference-page works (Kahan "Why We Are Poles Apart" 2012, Kline 2023,
+  Schreiber et al. 2006) are in the master but **not cited** in the current qmd, so
+  they won't appear in the rendered bibliography until cited.
+
+### Open items / next steps
+
+- Today's changes are **uncommitted** (`cc-behave.qmd`,
+  `cc-behave-supplemental.qmd`, `scripts/analysis-prep.R`).
+- Ensure the 7 author-added references **persist in the Zotero master** so a future
+  re-export doesn't drop them (the pipeline depends on them being there).
+- Manuscript prose (including the new VBN / ACF section scaffolding) continues to
+  be authored by the user.
+
+---
+
 ## 2026-06-16 (session 2) — Combined serial model, public/private split, supplement
 
 **Goal:** Extend the analysis with a combined model chaining cultural cognition

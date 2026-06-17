@@ -61,6 +61,23 @@ draw_sem(fitNEP)
 knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
 ```
 
+# Full combined model with measurement detail
+
+The main text reports the structural portion of the full combined model
+(cultural cognition → NEP → CNS → behavior, with direct paths). Figure S3
+shows the same model with the full measurement model — the latent constructs
+and their indicators — included.
+
+<!-- Figure S3: full combined model, measurement + structure -->
+
+```{r}
+#| label: fig-serial
+#| fig-cap: "Full combined model including the measurement model (latent constructs and their indicators) and the structural paths: cultural cognition → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. Standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001."
+#| fig-width: 9
+#| fig-height: 6.5
+draw_sem(fitFull)
+```
+
 # Mediation analysis
 
 <!-- Table S2: mediation -->

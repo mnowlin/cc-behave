@@ -307,6 +307,58 @@ draw_sem <- function(fit) {
   plot(mark_sig(p, fit))
 }
 
+## Structural-only variant: drop the measurement indicators but keep the
+## observed behavior outcomes (PUBLIC, PRIVATE) alongside the latent
+## constructs, so the diagram shows the full structural chain
+## (worldviews -> NEP -> CNS -> public/private behavior). Used in the main
+## text; the full version with the measurement model lives in the supplement.
+draw_sem_struct <- function(fit) {
+  spm  <- semPlot::semPlotModel(fit)
+  drop <- setdiff(spm@Vars$name[spm@Vars$manifest], c("PUBLIC", "PRIVATE"))
+  spm  <- semptools::drop_nodes(spm, drop)
+  ## node order follows spm@Vars: PUBLIC PRIVATE HIER EGAL INDIV COMM NEP CNS
+  lay <- matrix(c(
+     2.0,  0.8,   # PUBLIC
+     2.0, -0.8,   # PRIVATE
+    -2.0,  1.5,   # HIER
+    -2.0,  0.5,   # EGAL
+    -2.0, -0.5,   # INDIV
+    -2.0, -1.5,   # COMM
+    -0.7,  0.0,   # NEP
+     0.7,  0.0),  # CNS
+    ncol = 2, byrow = TRUE)
+  p <- semPaths(spm, whatLabels = "std", style = "ram", layout = lay,
+                residuals = FALSE, sizeMan = 9, sizeMan2 = 6, nCharNodes = 0,
+                edge.label.cex = .8, mar = c(4, 6, 4, 6), DoNotPlot = TRUE)
+  plot(mark_sig(p, fit))
+}
+
+## Conceptual model diagram (Figure 1), drawn with base graphics so it
+## renders natively to HTML/PDF/DOCX without a headless browser. Pure black
+## and white: cultural cognition -> NEP -> CNS -> public/private behavior.
+draw_concept_model <- function() {
+  op <- par(mar = c(0, 0, 0, 0), family = "serif"); on.exit(par(op))
+  plot.new(); plot.window(xlim = c(0, 11.2), ylim = c(0, 3), asp = 1)
+  hw <- 1.18; hh <- 0.55
+  box <- function(cx, cy, lab) {
+    rect(cx - hw, cy - hh, cx + hw, cy + hh, col = "white", border = "black", lwd = 1.3)
+    text(cx, cy, lab, col = "black", cex = 0.85)
+  }
+  arr <- function(x0, y0, x1, y1)
+    arrows(x0, y0, x1, y1, length = 0.10, angle = 20, lwd = 1.4, col = "black")
+  cc <- c(1.30, 1.5); nep <- c(4.00, 1.5); cns <- c(6.70, 1.5)
+  pub <- c(9.9, 2.35); priv <- c(9.9, 0.65)
+  arr(cc[1] + hw, cc[2], nep[1] - hw, nep[2])
+  arr(nep[1] + hw, nep[2], cns[1] - hw, cns[2])
+  arr(cns[1] + hw, cns[2] + 0.18, pub[1] - hw, pub[2] - 0.12)
+  arr(cns[1] + hw, cns[2] - 0.18, priv[1] - hw, priv[2] + 0.12)
+  box(cc[1], cc[2], "Cultural\nCognition")
+  box(nep[1], nep[2], "New Ecological\nParadigm (NEP)")
+  box(cns[1], cns[2], "Connectedness\nto Nature (CNS)")
+  box(pub[1], pub[2], "Public\nBehavior")
+  box(priv[1], priv[2], "Private\nBehavior")
+}
+
 ## =====================================================================
 ## 9. COMBINED SERIAL MODEL: CC -> NEP -> CNS -> BEHAVE
 ##    fitSerial = strict chain (no direct paths)
