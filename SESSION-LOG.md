@@ -6,6 +6,86 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-06-26 — Manuscript prose expansion: VBN/ACF framing, CSL URL suppression
+
+**Goal:** Expand the Introduction with a new theoretical framing around environmental
+cognition, the Value-Belief-Norm (VBN) framework, and the ACF belief systems concept;
+clean up whitespace and formatting throughout the manuscript; suppress URLs in
+journal-article references.
+
+### What we did
+
+1. **Expanded and restructured the Introduction** with new in-progress prose:
+   - Added a paragraph introducing environmental cognition as a bridging concept
+     (Henry 2012 definition).
+   - Added scaffolding paragraphs for the VBN framework (Stern et al. 1999) and
+     the ACF belief-systems literature.
+   - Added an in-progress "environmental cognition connects ACF to VBN" paragraph
+     (placeholder prose; not yet fully drafted).
+   - Condensed the original opening paragraph, removing the Sparks et al. (2021)
+     percentage statistics and folding the Kaiser et al. point into the new framing.
+2. **Renamed the section header** from "Worldviews and Pro-Environmental Behavior"
+   → "Beliefs and Pro-Environmental Behavior" to reflect the broadened theoretical
+   scope.
+3. **Formatting cleanup throughout** — removed trailing whitespace on section
+   headings and paragraph breaks, removed extra blank lines, added a newline at
+   end of file, and fixed LaTeX special-character escaping (`>0.70` → `\>0.70`;
+   `[redacted...]` → `\[redacted...\]`) so PDF renders cleanly.
+4. **Modified `export-cited-refs.R`** to suppress URLs in journal-article
+   references: patched the CSL after copying it by adding `article-journal` to
+   the existing `type="legal_case" match="none"` suppression rule.
+5. **Removed the `as.character()` guard** in `export-cited-refs.R` (the NULL-safety
+   wrapper around `unlist()`).
+
+### Files created / changed
+
+- `cc-behave.qmd` *(changed)* — Introduction expansion (VBN, ACF, environmental
+  cognition framing); section rename; formatting/whitespace cleanup; LaTeX escaping
+  fixes.
+- `scripts/export-cited-refs.R` *(changed)* — CSL post-processing to suppress
+  journal-article URLs; removed `as.character()` guard; source-file list changed
+  (see Flags).
+
+### Decisions
+
+- **In-progress prose left as scaffolding** — several new paragraphs contain
+  placeholder sentences and incomplete arguments. These are drafts by the author
+  to be filled in; they do not block rendering.
+- **URL suppression via CSL patch** — rather than editing the master CSL, the
+  script patches the local copy on each pre-render, so the master remains
+  unmodified.
+
+### Verification
+
+- Not verified this session (no `quarto render` run). The manuscript prose changes
+  are structural and should not break rendering; the CSL patch is additive.
+
+### Notable findings / flags
+
+- **POTENTIAL BUG in `export-cited-refs.R`:** The source-file list was changed
+  from `c("cc-behave.qmd", "cc-behave-supplemental.qmd", ...)` to
+  `c("cue-energy.qmd", ...)`. `cue-energy.qmd` does not exist in this project
+  (it appears to be from a different project). As a result, the pre-render step
+  will **not scan the cc-behave manuscript for citation keys**, and `references.bib`
+  will be empty on the next render. **This should be corrected before rendering.**
+- The `as.character()` guard removal means a zero-match case (no cited keys found)
+  will now cause `writeLines()` to fail on `NULL` — the original guard was added
+  deliberately for this reason (see 2026-06-16 session log). If the source-file bug
+  is active, this will trigger.
+
+### Open items / next steps
+
+- **Fix `export-cited-refs.R`:** restore `cc-behave.qmd` and
+  `cc-behave-supplemental.qmd` as the source files (revert the `cue-energy.qmd`
+  change). Consider also restoring `as.character()` around `unlist()`.
+- Complete the in-progress prose sections: VBN paragraph, ACF paragraph, and the
+  "environmental cognition connects ACF to VBN" bridge paragraph.
+- Add ACF citations (the `[]` placeholders in the new prose need cite keys).
+- Manuscript prose continues to be authored by the user; no R-code or analysis
+  changes this session.
+
+---
+
 ## 2026-06-17 — Citation keys, conceptual-model figure, structural-only SEM
 
 **Goal:** Convert the manuscript's parenthetical citations to BibTeX cite keys

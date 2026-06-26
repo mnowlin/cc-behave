@@ -15,8 +15,7 @@ out_csl <- "american-political-science-association.csl"
 
 # --- 1. Collect citation keys from every manuscript source -----------------
 src <- c(
-  "cc-behave.qmd",
-  "cc-behave-supplemental.qmd",
+  "cue-energy.qmd",
   list.files("manuscript", pattern = "\\.qmd$", full.names = TRUE),
   list.files("notebooks",  pattern = "\\.qmd$", full.names = TRUE)
 )
@@ -40,13 +39,18 @@ entry_keys <- trimws(sub("^[[:space:]]*@[^{(]+[{(]([^,]+),?.*$", "\\1", bib[star
 
 # --- 3. Select cited entries and write the local bib -----------------------
 sel <- which(entry_keys %in% keys)
-# as.character() guards the zero-match case: unlist() of an empty list is
-# NULL, which writeLines() rejects. character(0) writes an empty bib instead.
-out_lines <- as.character(unlist(lapply(sel, function(i) c(bib[starts[i]:ends[i]], ""))))
+out_lines <- unlist(lapply(sel, function(i) c(bib[starts[i]:ends[i]], "")))
 writeLines(out_lines, out_bib, useBytes = TRUE)
 
-# --- 4. Copy the CSL locally -----------------------------------------------
+# --- 4. Copy the CSL locally and suppress URLs for journal articles ----------
 invisible(file.copy(master_csl, out_csl, overwrite = TRUE))
+csl_txt <- readLines(out_csl, warn = FALSE, encoding = "UTF-8")
+csl_txt <- gsub(
+  'type="legal_case" match="none"',
+  'type="legal_case article-journal" match="none"',
+  csl_txt, fixed = TRUE
+)
+writeLines(csl_txt, out_csl, useBytes = TRUE)
 
 # --- 5. Report -------------------------------------------------------------
 missing <- setdiff(keys[grepl("[0-9]", keys)], entry_keys)  # likely-real keys
