@@ -15,7 +15,6 @@
 # --- Quarto build artifacts / caches ---
 /.quarto/
 /_freeze/
-/_output/
 *_files/
 
 # --- Pre-render generated (rebuilt from master sources by scripts/export-cited-refs.R) ---

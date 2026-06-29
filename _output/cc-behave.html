@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Cultural Cognition, Environmental Orientation, and Pro-Environmental Behavior</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="cc-behave_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cc-behave_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="cc-behave_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="cc-behave_files/libs/quarto-html/popper.min.js"></script>
+<script src="cc-behave_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cc-behave_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cc-behave_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cc-behave_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cc-behave_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cc-behave_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cc-behave_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="cc-behave.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="cc-behave.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cultural Cognition, Environmental Orientation, and Pro-Environmental Behavior</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is crucial for designing effective interventions. Scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior <span class="citation" data-cites="sternNewEnvironmentalTheories2000 kollmussMindGapWhy2002 giffordPersonalSocialFactors2014">(<a href="#ref-giffordPersonalSocialFactors2014" role="doc-biblioref">Gifford and Nilsson 2014</a>; <a href="#ref-kollmussMindGapWhy2002" role="doc-biblioref">Kollmuss and Agyeman 2002</a>; <a href="#ref-sternNewEnvironmentalTheories2000" role="doc-biblioref">Stern 2000</a>)</span>. If people care strongly about the environment, why don’t they act in a more sustainable way? For example, Sparks et al <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">2021</a>)</span> found the New Ecological Paradigm (NEP) scale plus controls accounted for 12% of variation in self-reported behavior and the Connectedness to Nature Scale (CNS) plus controls accounted for 35%. Moreover, Kaiser et al <span class="citation" data-cites="kaiserOffsettingBehavioralCosts2021">(<a href="#ref-kaiserOffsettingBehavioralCosts2021" role="doc-biblioref">2021</a>)</span> suggest that the gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model. To further elaborate the attitude-behavior model we examine the relationship between cultural cognition, environmental orientation (attitude and emotional connection), and behavior. The cultural worldviews measured by cultural cognition have been shown to shape views about climate change <span class="citation" data-cites="kahanPolarizingImpactScience2012">(<a href="#ref-kahanPolarizingImpactScience2012" role="doc-biblioref">Kahan et al. 2012</a>)</span> as well as environmental orientation, as measured by the New Ecological Paradigm <span class="citation" data-cites="nowlinEnvironmentalPolicymakingEra2019">(<a href="#ref-nowlinEnvironmentalPolicymakingEra2019" role="doc-biblioref">Nowlin 2019</a>)</span>; however, cultural cognition does not have a strong association with pro-environmental behaviors <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>. In this paper, we examine whether environmental orientations mediate the relationship between cultural cognition and behavior such that cultural cognition shapes environmental orientations, which in turn influences pro-environmental behavior. In doing so, we argue that when cultural cognition aligns with environmental orientation, there is a stronger relationship with pro-environmental behaviors than when considering attitude or affect alone, thus reducing the attitude-behavior gap.</p>
+<p>Cultural cognition was developed by Kahan and others <span class="citation" data-cites="kahanCultureIdentityProtectiveCognition2007">(<a href="#ref-kahanCultureIdentityProtectiveCognition2007" role="doc-biblioref">Kahan et al. 2007</a>)</span> as a tool to measure how cultural values shape beliefs about risk. It is based on cultural theory and its conceptualization of worldviews. Cultural theory addresses how cultural values influence how people perceive and respond to risk. By measuring the cultural values of an individual, we may be able to predict how they will perceive and respond to risks associated with certain activities or products. We are interested in how cultural cognition shapes views toward environmental issues and how those views shape behavior.</p>
+<p>The cultural worldviews associated with cultural cognition are measured in two dimensions, a grid dimension (egalitarianism-hierarchy) and a group dimension (communitarianism-individualism). In general, those that are more egalitarian and communitarian are more concerned about environmental risks than those that are more hierarchical and individualist. Therefore, individuals high in egalitarianism and communitarianism should engage in pro-environmental behaviors to mitigate risks to the natural environment. However, previous research shows only a weak correlation between egalitarianism and communitarianism and pro-environmental behavior <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>.</p>
+<p>Taking the step from cultural worldviews to environmental orientation , we test the relationship between cultural cognition and environmental attitude – as measured by the New Ecological Paradigm [NEP; <span class="citation" data-cites="dunlapNewTrendsMeasuring2000">Dunlap et al. (<a href="#ref-dunlapNewTrendsMeasuring2000" role="doc-biblioref">2000</a>)</span>] – and emotional connection to nature – as measured by the Connectedness to Nature Scale [CNS; <span class="citation" data-cites="mayerConnectednessNatureScale2004">Mayer and Frantz (<a href="#ref-mayerConnectednessNatureScale2004" role="doc-biblioref">2004</a>)</span>]. Altogether, combining cultural cognition and environmental orientation should improve our understanding of the drivers of environmentally protective behaviors. Specifically, in this paper, we suggest that environmental orientation mediates the relationship between cultural cognition and environmental behavior. Essentially, environmental orientation helps connect cultural worldviews and risk perceptions to action to reduce that risk. Moreover, cultural cognition helps to bridge the attitude-behavior gap by providing a basis through environmental orientations derive and subsequently influence behavior.</p>
+</section>
+<section id="value-belief-norm-and-pro-environmental-behavior" class="level1">
+<h1>Value-Belief-Norm and Pro-Environmental Behavior</h1>
+<section id="cultural-cognition" class="level2">
+<h2 class="anchored" data-anchor-id="cultural-cognition">Cultural Cognition</h2>
+<p>Cultural cognition is derived from the cultural theory of risk developed by Mary Douglas and Aaron Wildavsky <span class="citation" data-cites="douglasRiskCultureEssay1982 thompsonCulturalTheory1990">(<a href="#ref-douglasRiskCultureEssay1982" role="doc-biblioref">Douglas and Wildavsky 1982</a>; <a href="#ref-thompsonCulturalTheory1990" role="doc-biblioref">Thompson, Ellis, and Wildavsky 1990</a>)</span>. In brief, cultural cognition posits that worldviews are based on views about ideal social structures and relationships, and perceptions of risk are based on the degree to which they undermine or threaten the preferred social order within each worldview. The social structures and relationships are represented by two dimensions including a grid dimension and a group dimension. Four competing cultural worldviews arise based on their position on the grid and group dimensions. The grid dimension represents preferred social structures regarding the roles that one plays in society and the rules by which one must abide. The worldview high on the grid dimension prefers a hierarchy in society with well-defined roles and clear lines of authority. Egalitarianism is the worldview low on the grid dimension and values a social order based on an equal sharing of power and resources. The group dimension represents the importance of cohesive social units and the well-being of the broader community. Communitarianism is the worldview that is high on the group dimension, and it represents a preference for a collectivist society. Finally, individualism is low on the group dimension preferring increased individual autonomy and responsibility <span class="citation" data-cites="kahanCulturalCognitionConception2012 kahanCulturalCognitionPublic2006">(<a href="#ref-kahanCulturalCognitionConception2012" role="doc-biblioref">Kahan 2012</a>; <a href="#ref-kahanCulturalCognitionPublic2006" role="doc-biblioref">Kahan and Braman 2006</a>)</span>.</p>
+<p>Cultural worldviews provide a foundational, or core belief that inform beliefs about specific policy issues, societal controversies, and risks, among other beliefs <span class="citation" data-cites="nowlinEnvironmentalPolicymakingEra2019 ripbergerCulturalTheoryMeasurement2014">(<a href="#ref-nowlinEnvironmentalPolicymakingEra2019" role="doc-biblioref">Nowlin 2019</a>; <a href="#ref-ripbergerCulturalTheoryMeasurement2014" role="doc-biblioref">Ripberger et al. 2014</a>)</span>. Several studies have shown a connection between cultural worldviews and risk perceptions associated with a host of environmental issues <span class="citation" data-cites="xueCulturalWorldviewsEnvironmental2014">(see <a href="#ref-xueCulturalWorldviewsEnvironmental2014" role="doc-biblioref">Xue et al. 2014</a>)</span> including fracking <span class="citation" data-cites="boudetFrackingControversyCommunication2014">(<a href="#ref-boudetFrackingControversyCommunication2014" role="doc-biblioref">Boudet et al. 2014</a>)</span>, nuclear waste <span class="citation" data-cites="jenkins-smithIdeologyCultureRisk1994">(<a href="#ref-jenkins-smithIdeologyCultureRisk1994" role="doc-biblioref">Jenkins-Smith and Smith 1994</a>)</span>, renewable energy <span class="citation" data-cites="tumlisonWhatExplainsLocal2018">(<a href="#ref-tumlisonWhatExplainsLocal2018" role="doc-biblioref">Tumlison et al. 2018</a>)</span>, geoengineering <span class="citation" data-cites="kahanGeoengineeringClimateChange2015">(<a href="#ref-kahanGeoengineeringClimateChange2015" role="doc-biblioref">Kahan et al. 2015</a>)</span>, high-voltage power lines <span class="citation" data-cites="moyerUnderstandingLocalPolicy2016 moyerCulturalPredispositionsSpecific2019">(<a href="#ref-moyerUnderstandingLocalPolicy2016" role="doc-biblioref">Moyer and Song 2016</a>, <a href="#ref-moyerCulturalPredispositionsSpecific2019" role="doc-biblioref">2019</a>)</span>, and climate change <span class="citation" data-cites="jonesLeadingWayCompromise2011 kahanPolarizingImpactScience2012 nowlinCulturalTheoryPartisanship2020 priceMeasuringCulturalValues2014">(<a href="#ref-jonesLeadingWayCompromise2011" role="doc-biblioref">Jones 2011</a>; <a href="#ref-kahanPolarizingImpactScience2012" role="doc-biblioref">Kahan et al. 2012</a>; <a href="#ref-nowlinCulturalTheoryPartisanship2020" role="doc-biblioref">Nowlin and Rabovsky 2020</a>; <a href="#ref-priceMeasuringCulturalValues2014" role="doc-biblioref">Price, Walker, and Boschetti 2014</a>)</span>, among others.</p>
+<p>In general, communitarianism, with its concern about collective well-being and egalitarianism, with its concern about the negative impacts of concentrated power tend to see threats to the natural world as a large risk. Hierarchs believe that natural resources can be well managed by experts and individualism supports the use of natural resources in private enterprise, and therefore hierarchy and individualism tend not to be concerned about environment harm. As noted, cultural worldviews have been found to be associated with attitudes about environmental issues, yet not associated with pro-environmental behaviors <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>. However, cultural cognition is associated with pro-environmental orientation, specifically the New Ecological Paradigm (NEP) <span class="citation" data-cites="nowlinEnvironmentalPolicymakingEra2019">(<a href="#ref-nowlinEnvironmentalPolicymakingEra2019" role="doc-biblioref">Nowlin 2019</a>)</span>.</p>
+</section>
+<section id="new-ecological-paradigm" class="level2">
+<h2 class="anchored" data-anchor-id="new-ecological-paradigm">New Ecological Paradigm</h2>
+<p>To understand environmental behavior, scholars often turn to mental attributes related to environmental orientation. A very common measure of environmental orientation is the New Ecological Paradigm (NEP) <span class="citation" data-cites="dunlapNewTrendsMeasuring2000">(<a href="#ref-dunlapNewTrendsMeasuring2000" role="doc-biblioref">Dunlap et al. 2000</a>)</span>. This instrument was initially developed by Dunlap and Van Liere in 1978 and has been widely adopted to explain environmental behavior <span class="citation" data-cites="sternNewEnvironmentalTheories2000">(e.g., <a href="#ref-sternNewEnvironmentalTheories2000" role="doc-biblioref">Stern 2000</a>)</span>. In 2000, Dunlap et al revised the NEP.</p>
+<p>The 1978 conceptualization focused on what they considered an emergent environmental paradigm that challenged the dominant social paradigm <span class="citation" data-cites="dunlapNewEnvironmentalParadigm1978">(<a href="#ref-dunlapNewEnvironmentalParadigm1978" role="doc-biblioref">Dunlap and Van Liere 1978</a>)</span>. Dunlap and co-authors <span class="citation" data-cites="dunlapNewTrendsMeasuring2000">(<a href="#ref-dunlapNewTrendsMeasuring2000" role="doc-biblioref">2000</a>)</span> re-imagined the NEP in 2000, shifting focus to an ecological worldview and toward more modern language to describe the ecological crises. The new measure comprises five aspects of this ecological paradigm which are “the reality of the limits to growth, anti-anthropocentrism, the fragility of earth’s balance, rejection of exemptionalism, and the possibility of an ecocrisis” (p.&nbsp;432). To assess this construct, they designed 15 Likert items that contain a mix of attitude and belief measures which are balanced between a pro-environmental orientation and a negative environmental orientation <span class="citation" data-cites="dunlapNewTrendsMeasuring2000">(<a href="#ref-dunlapNewTrendsMeasuring2000" role="doc-biblioref">Dunlap et al. 2000</a>)</span>.</p>
+<p>The NEP is not without skeptics. One study applying scale analysis of the NEP based on a random sample of Norwegians found that the scale is not unidimensional as is often claimed <span class="citation" data-cites="grendstadNewEcologicalParadigm1999">(<a href="#ref-grendstadNewEcologicalParadigm1999" role="doc-biblioref">Grendstad 1999</a>)</span>. A recent study found the NEP to be the weakest predictor of environmental behavior when compared in the same sample to the Connectedness to Nature scale and environmentalist identity <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>. This may be because endorsement of the NEP has decreased over time <span class="citation" data-cites="louMetaanalysisTemporalShifts2022">(<a href="#ref-louMetaanalysisTemporalShifts2022" role="doc-biblioref">Lou et al. 2022</a>)</span>. In another study, Sparks and his colleagues <span class="citation" data-cites="sparksMeasuringProenvironmentalOrientation2022">(<a href="#ref-sparksMeasuringProenvironmentalOrientation2022" role="doc-biblioref">2022</a>)</span> criticize the NEP (and the CNS) for failing to adequately identify political conservatives who also hold a pro-environment orientation.</p>
+</section>
+<section id="connectedness-to-nature" class="level2">
+<h2 class="anchored" data-anchor-id="connectedness-to-nature">Connectedness to Nature</h2>
+<p>A second common instrument measuring environmental orientation is the Connectedness to Nature Scale (CNS) <span class="citation" data-cites="mayerConnectednessNatureScale2004">(<a href="#ref-mayerConnectednessNatureScale2004" role="doc-biblioref">Mayer and Frantz 2004</a>)</span>. As implied by its name, the CNS seeks to measure an individual’s emotional connection to nature, rather than environmental attitude. Mayer and Franz draw inspiration from Leopold’s insistence that to address environmental problems, people must feel emotionally connected to the non-human community on which we are dependent upon. The idea is that current ecological crises are a direct result of humanity losing touch with the broader community in which we live. The hypothesis can be tested by measuring an individual’s affective connection to nature and determining if someone with more emotional connection correlates to more environmentally protective behaviors. They demonstrate this in their study and show that the CNS better predicts behavior <span class="citation" data-cites="mayerConnectednessNatureScale2004">(<a href="#ref-mayerConnectednessNatureScale2004" role="doc-biblioref">Mayer and Frantz 2004</a>)</span>. The full instrument is composed of 14 Likert items designed to directly assess an individual’s affective connection to nature.</p>
+<p>Going from scale development, to specific applications, one study assessed the role of personality traits on environmental behavior <span class="citation" data-cites="brickUnearthingGreenPersonality2016">(<a href="#ref-brickUnearthingGreenPersonality2016" role="doc-biblioref">Brick and Lewis 2016</a>)</span>. The study also provided a comparison of the mediation effect of both the NEP and the CNS on environmental behaviors. The personality traits Openness and Conscientiousness were both shown to be positive predictors of environmental behavior. In both cases, the CNS had a stronger mediation effect than NEP. In other words, the CNS better predicts pro-environmental outcomes. However, these authors also note that the CNS contains language that is more consistent with liberal environmentalism, and so may fail to adequately capture the full dimensionality of environmental support across the political spectrum <span class="citation" data-cites="brickUnearthingGreenPersonality2016">(<a href="#ref-brickUnearthingGreenPersonality2016" role="doc-biblioref">Brick and Lewis 2016</a>)</span>.</p>
+<p>Like the NEP, the CNS is composed mostly of items that tap into politically progressive environmentalism and thus may miss conservative pro-environmental orientation <span class="citation" data-cites="sparksMeasuringProenvironmentalOrientation2022">(<a href="#ref-sparksMeasuringProenvironmentalOrientation2022" role="doc-biblioref">Sparks, Ehret, and Brick 2022</a>)</span>. However, the CNS is a much stronger predictor of environmental behavior – a smaller attitude-behavior gap – than the NEP <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>.</p>
+</section>
+<section id="pro-environmental-behaviors" class="level2">
+<h2 class="anchored" data-anchor-id="pro-environmental-behaviors">Pro-Environmental Behaviors</h2>
+<p>Cultural cognition can be thought of as a determinant or antecedent of environmental orientation. Cultural views of risk and social-psychological tendencies likely precede the development of environment-specific attitudes and orientations. And given the weak correlation between cultural cognition and environmental behavior it is reasonable to view this as an indirect relationship.</p>
+<p>Worldview and risk perception are likely strong drivers of environmental orientation because of the nature of environmental problems typically involves environmental risk. In addition, environmental orientation is likely associated with the myths of nature connected to the various cultural worldviews. As a result, environmental orientation, as measured by NEP and/or CNS, likely mediates the relationship between cultural cognition and environmental behavior. Figure 1 illustrates the conceptual model connecting cultural cognition, environmental orientation, and pro-environmental behavior.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Conceptual model tested with the structural equation model: cultural cognition shapes environmental orientation—first the New Ecological Paradigm (NEP) and then the Connectedness to Nature Scale (CNS)—which in turn shapes public and private pro-environmental behavior.
+</figcaption>
+<div aria-describedby="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cc-behave_files/figure-html/fig-model-1.png" class="img-fluid figure-img" width="672">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hypotheses" class="level1">
+<h1>Hypotheses</h1>
+<p>Based on the model shown in Figure 1, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior.</p>
+<p>As noted, egalitarianism and communitarianism has been shown to be predictive of concern regarding several environmental issues and environmental orientations. Therefore, we expect that:</p>
+<p>H1a: Egalitarianism positively correlates with environmental behavior H1b: Egalitarianism positively correlates with environmental orientation (NEP and CNS)</p>
+<p>H2a: Communitarianism positively correlates with environmental behavior H2b: Communitarianism positively correlates with environmental orientation (NEP and CNS)</p>
+<p>Previous research indicates that cultural cognition predicates environmental orientation and environmental orientation predicts pro-environmental behavior. Therefore, we posit that:</p>
+<p>H3: Environmental orientation positively mediates the relationship between egalitarianism and environmental behavior</p>
+<p>H4: Environmental orientation positively mediates the relationship between communitarianism and environmental behavior</p>
+<p>Additionally, through meditation analysis, we can examine the direct, indirect, and total effects of cultural cognition and the mediating effects of environmental orientation on environmental behavior.</p>
+</section>
+<section id="data-and-methods" class="level1">
+<h1>Data and Methods</h1>
+<p>To examine the relationship between cultural cognition, environmental orientations, and behavior we draw on a sample of 501 adults living in the US purchased through Survey Sampling Inc.&nbsp;The survey was administered online in July 2017. The sample size was determined by cost considerations. IRB approval for the survey was approved by [redacted for blind review] Human Subjects Committee on April 3, 2017, protocol number 37-17-0256. Our analysis was not pre-registered.</p>
+<section id="measures" class="level2">
+<h2 class="anchored" data-anchor-id="measures">Measures</h2>
+<p>Our dependent variable is a 13-item scale of self-reported pro-environmental behaviors with the questions taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “Which of these, if any, have you, yourself, done in the past year?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measure as observed, and we add the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 13 (all of the behaviors). The mean number of self-reported behaviors was 5.52, with a standard deviation of 2.98. <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a> shows the wording for each behavior as well as the mean and sd for each self-reported behavior.</p>
+<div class="cell">
+<div id="tbl-behaviors" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-behaviors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Self-reported pro-environmental behaviors by type (public/private), with means and standard deviations
+</figcaption>
+<div aria-describedby="tbl-behaviors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 81%">
+<col style="width: 8%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Behavior</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Been active in a group/organization that works to protect the environment</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.39</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Voted for or worked for candidates because of their environmental positions</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contributed money to an environmental, conservation, or wildlife group</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Contacted a public official about an environmental issue</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Contacted a business to complain about environmentally harmful products/policies</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Signed a petition supporting environmental protection</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Attended a meeting concerning the environment</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Public behaviors (0-7)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">1.80</td>
+<td style="text-align: right;">1.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Avoided using products that harm the environment</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tried to use less water in your household</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bought a product because it was better for the environment</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Voluntarily recycled newspapers, glass, aluminum, motor oil, etc.</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reduced your household’s use of energy</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Private behaviors (0-5)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">3.60</td>
+<td style="text-align: right;">1.58</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bought or sold stocks based on companies’ environmental records</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total behaviors (0-13)</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">5.52</td>
+<td style="text-align: right;">2.98</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>As shown in <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a>, recycling had the highest mean among the self-reported behaviors at 0.79, which indicates that 79% of the respondents reported that they recycle. Recycling was followed closely by reducing household energy use at 0.78 and using less water at home at 0.75. The behaviors with the lowest means included buying/selling stocks at 0.12, contacting a business at 0.16, and attending a meeting at 0.17.</p>
+<section id="cultural-cognition-1" class="level3">
+<h3 class="anchored" data-anchor-id="cultural-cognition-1">Cultural Cognition</h3>
+<p>To measure cultural cognition, we rely on the short form of the cultural cognition survey questions which includes three questions for each of the four cultural worldviews <span class="citation" data-cites="kahanCulturalCognitionConception2012">(see <a href="#ref-kahanCulturalCognitionConception2012" role="doc-biblioref">Kahan 2012</a>)</span>. Respondents were asked their agreement on a 1 (strongly disagree) to 4 (strongly agree) scale with each of the following statements. The hierarchy statements included, 1) We have gone too far in pushing equal rights in this country, 2) It seems like blacks, women, homosexuals and other groups don’t want equal rights, they want special rights just for them, and 3) The women’s rights movement has gone too far. The egalitarianism statements are, 1) We need to dramatically reduce inequalities between the rich and poor, whites and people of color, and men and women, 2) Our society would be better off if the distribution of wealth was more equal, and 3) We live in a sexist society that is fundamentally set up to discriminate against women. The individualism statements included, 1) If the government spent less time trying to fix everyone’s problems, we’d all be a lot better off, 2) Government regulations are almost always a waste of everyone’s time and money, and 3) Our government tries to do too many things for too many people. We should just let people take care of themselves. Finally, the communitarianism statements are, 1) Sometimes government needs to make laws that keep people from hurting themselves, 2) Government should put limits on the choices individuals can make so they don’t get in the way of what’s good for society, and 3) The government should do more to advance society’s goals, even if that means limiting the freedom and choices of individuals.</p>
+</section>
+<section id="new-ecological-paradigm-1" class="level3">
+<h3 class="anchored" data-anchor-id="new-ecological-paradigm-1">New Ecological Paradigm</h3>
+<p>To measure the New Ecological Paradigm (NEP) we used agreement with the following three statements on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree). The statements are, 1) Humans are severely abusing the environment, 2) The so-called “ecological crisis” facing humankind has been greatly exaggerated (reverse-coded), and 3) If things continue on their present course, we will soon experience a major ecological catastrophe.</p>
+</section>
+<section id="connectedness-to-nature-1" class="level3">
+<h3 class="anchored" data-anchor-id="connectedness-to-nature-1">Connectedness to Nature</h3>
+<p>We measured the Connectedness to Nature Scale (CNS) using respondent agreement on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree) with three statements. The statements included, 1) I think of the natural world as a community to which I belong, 2) I often feel a kinship with animals and plants, and 3) I feel as though I belong to the Earth as equally as it belongs to me.</p>
+<p><a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a> shows the measurement variables used for the latent constructs including the mean and standard deviation (sd) of each statement. In addition, Table 2 show the fit statistics for each of the latent constructs including Cronbach’s α, Composite Reliability (CR), and the Average Variance Extracted (AVE).</p>
+<div class="cell">
+<div id="tbl-measurement" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-measurement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Measurement items and construct reliability (Cronbach’s α, composite reliability, average variance extracted)
+</figcaption>
+<div aria-describedby="tbl-measurement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Construct</th>
+<th style="text-align: left;">Item</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: right;">α</th>
+<th style="text-align: right;">CR</th>
+<th style="text-align: right;">AVE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Hierarchy</td>
+<td style="text-align: left;">cc_eh_2</td>
+<td style="text-align: right;">2.33</td>
+<td style="text-align: right;">1.01</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">0.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_eh_5</td>
+<td style="text-align: right;">2.43</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_eh_7</td>
+<td style="text-align: right;">2.16</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Egalitarianism</td>
+<td style="text-align: left;">cc_eh_11</td>
+<td style="text-align: right;">3.13</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_eh_13</td>
+<td style="text-align: right;">2.94</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_eh_14</td>
+<td style="text-align: right;">2.60</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Individualism</td>
+<td style="text-align: left;">cc_ci_2</td>
+<td style="text-align: right;">2.69</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_ci_3</td>
+<td style="text-align: right;">2.53</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_ci_12</td>
+<td style="text-align: right;">2.58</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communitarianism</td>
+<td style="text-align: left;">cc_ci_13</td>
+<td style="text-align: right;">3.01</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: right;">0.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_ci_14</td>
+<td style="text-align: right;">2.44</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cc_ci_16</td>
+<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CNS</td>
+<td style="text-align: left;">cns2</td>
+<td style="text-align: right;">3.78</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cns6</td>
+<td style="text-align: right;">3.69</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">cns7</td>
+<td style="text-align: right;">3.71</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NEP</td>
+<td style="text-align: left;">nep5</td>
+<td style="text-align: right;">3.99</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">nep10</td>
+<td style="text-align: right;">3.25</td>
+<td style="text-align: right;">1.38</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">nep15</td>
+<td style="text-align: right;">3.80</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>As shown in <a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a>, each of the constructs show sufficient reliability (α and CR &gt;0.70) except for the communitarianism scale. However, CR values between 0.60 and 0.70 are acceptable for exploratory analysis <span class="citation" data-cites="hairPrimerPartialLeast2015">(<a href="#ref-hairPrimerPartialLeast2015" role="doc-biblioref">Hair et al. 2015</a>)</span>.</p>
+<p>To test our hypothesis, we estimated a Structural Equation Modeling (SEM) using the lavaan package in R <span class="citation" data-cites="rosseelLavaanPackageStructural2012">(<a href="#ref-rosseelLavaanPackageStructural2012" role="doc-biblioref">Rosseel 2012</a>)</span>. The dependent variable, self-reported pro-environmental behaviors, is an observed variable and the cultural cognition worldviews, the CNS, and the NEP scale are latent constructs. We run separate analyses for the two measures of environmental orientation, CNS and NEP, and for both models we show the standardized regression coefficients for the measurement and structural models. In addition, we assess the fit of both models using the Root Mean Square Error of Approximation (RMSEA), the Comparative Fit Index (CFI), and the Standardized Root Mean Square Residual (SRMR). Finally, we examine the mediation effects of environmental orientation by examining the direct, indirect, and total effects of cultural cognition measures on pro-environmental behavior.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<!-- Combined serial model: cultural cognition -> NEP -> CNS -> behavior.
+     The main text shows the STRUCTURAL portion only (measurement model omitted
+     for clarity). The full path diagram with the measurement model, the
+     CNS-only model, NEP-only model, their fit table, and the separate
+     mediation analysis live in cc-behave-supplemental.qmd.
+     Reference these in your prose with @fig-structural / @tbl-serial-fit /
+     @tbl-serial-effects. -->
+<!-- Figure: structural model only (measurement model omitted) -->
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-structural" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-structural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Structural model of the full combined SEM: cultural cognition → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. The measurement (indicator) portion is omitted for clarity; standardized coefficients shown; * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001. The full path diagram including the measurement model is in the supplemental materials.
+</figcaption>
+<div aria-describedby="fig-structural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="cc-behave_files/figure-html/fig-structural-1.png" class="img-fluid figure-img" width="864">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<!-- Table 5: serial vs full fit comparison -->
+<div class="cell">
+<div id="tbl-serial-fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-serial-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Fit comparison of the strict serial chain versus the full combined model with direct paths added
+</figcaption>
+<div aria-describedby="tbl-serial-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 17%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: right;">Chi-sq</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">CFI</th>
+<th style="text-align: right;">TLI</th>
+<th style="text-align: right;">RMSEA</th>
+<th style="text-align: right;">RMSEA 90% CI</th>
+<th style="text-align: right;">SRMR</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;">BIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Serial chain</td>
+<td style="text-align: right;">499.29</td>
+<td style="text-align: right;">158</td>
+<td style="text-align: right;">0.902</td>
+<td style="text-align: right;">0.882</td>
+<td style="text-align: right;">0.066</td>
+<td style="text-align: right;">[0.059, 0.072]</td>
+<td style="text-align: right;">0.071</td>
+<td style="text-align: right;">25570.1</td>
+<td style="text-align: right;">25789.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Full (+ direct paths)</td>
+<td style="text-align: right;">420.63</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">0.921</td>
+<td style="text-align: right;">0.895</td>
+<td style="text-align: right;">0.062</td>
+<td style="text-align: right;">[0.055, 0.069]</td>
+<td style="text-align: right;">0.061</td>
+<td style="text-align: right;">25519.4</td>
+<td style="text-align: right;">25797.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Nested <span class="math inline">\(\chi^2\)</span> difference test (serial chain nested in full model): <span class="math inline">\(\Delta\chi^2(14) = 78.66\)</span>, <span class="math inline">\(p = 0.0000\)</span>. The direct paths jointly improve fit.</p>
+<!-- Table 6: effect decomposition in the full model -->
+<div class="cell">
+<div id="tbl-serial-effects" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-serial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Standardized decomposition of cultural cognition effects on public and private behavior in the full combined model († p&lt;0.10, * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001)
+</figcaption>
+<div aria-describedby="tbl-serial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Predictor</th>
+<th style="text-align: left;">Outcome</th>
+<th style="text-align: right;">Direct</th>
+<th style="text-align: right;">Serial (NEP→CNS)</th>
+<th style="text-align: right;">Total indirect</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Egalitarianism</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.205*</td>
+<td style="text-align: right;">0.057*</td>
+<td style="text-align: right;">0.155**</td>
+<td style="text-align: right;">0.360***</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Egalitarianism</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">-0.084</td>
+<td style="text-align: right;">0.079**</td>
+<td style="text-align: right;">0.222***</td>
+<td style="text-align: right;">0.138†</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communitarianism</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.123†</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">0.057*</td>
+<td style="text-align: right;">0.181**</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communitarianism</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">-0.163*</td>
+<td style="text-align: right;">0.009</td>
+<td style="text-align: right;">0.081*</td>
+<td style="text-align: right;">-0.082</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hierarchy</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.121</td>
+<td style="text-align: right;">-0.014</td>
+<td style="text-align: right;">-0.075†</td>
+<td style="text-align: right;">0.046</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hierarchy</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">-0.130</td>
+<td style="text-align: right;">-0.020</td>
+<td style="text-align: right;">-0.106*</td>
+<td style="text-align: right;">-0.236*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Individualism</td>
+<td style="text-align: left;">Public</td>
+<td style="text-align: right;">0.080</td>
+<td style="text-align: right;">-0.009</td>
+<td style="text-align: right;">0.026</td>
+<td style="text-align: right;">0.107</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Individualism</td>
+<td style="text-align: left;">Private</td>
+<td style="text-align: right;">0.016</td>
+<td style="text-align: right;">-0.013</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.052</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>Scholars have noted a gap between attitudes and beliefs about the environment and pro-environmental behavior. Additionally, cultural worldviews derived from cultural cognition, specifically egalitarianism and communitarianism, have been shown to inform views about several environment issues as well as overall attitude toward the environment. But previous research has not found a connection between cultural worldviews and environmental behavior. In this paper, we developed and tested a conceptual model, based on previous research, where cultural worldviews influence environmental orientations and behaviors, and environmental orientations influence behaviors. Additionally, we examined the mediation effects of environmental orientations on the relationship between cultural cognition and pro-environmental behaviors. Environmental orientations were measured in terms of attitudes, using the NEP, and the emotional connection to nature, using the CNS. We used SEM to test each of our hypotheses.</p>
+<p>We posited that egalitarianism and communitarianism would be positively associated with environmental orientations and environmental behavior (H1 a and b, H2 a and b). We found mixed results for our hypotheses. As expected, egalitarianism is associated with both the CNS and NEP; however, egalitarianism was only associated with behavior in the CNS model. However, communitarianism was associated with environmental orientation only in the CNS model and not associated with behaviors in either model.</p>
+<p>Additionally, we posited that environmental orientations mediate the relationships between egalitarianism (H3) and communitarianism (H4) and pro-environmental behaviors. As expected, both the NEP and the CNS significantly mediate the relationship between both egalitarianism and communitarianism, and environmentally protective behavior. As far as we know, this is a novel finding. While previous studies have shown a relationship between cultural cognition and environmental orientation <span class="citation" data-cites="nowlinEnvironmentalPolicymakingEra2019">(<a href="#ref-nowlinEnvironmentalPolicymakingEra2019" role="doc-biblioref">Nowlin 2019</a>)</span> none have included a mediation analysis. Along with the results of the structural equation modeling, this helps us understand cultural cognition as an antecedent of environmental orientation and fill some of the attitude-behavior gap.</p>
+<p>We also found that the Connectedness to Nature Scale likely had more predictive power regarding environmental behaviors than the NEP based on the model fit statistics in Table 3. This finding is in line with work showing that the CNS is a stronger predictor than the NEP <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>.</p>
+<p>There are at least two potential reasons for the CNS displaying more power than the NEP to influence behavior, which we are only able to speculate about in the present study. First, prior work has demonstrated a slow decline in environmental concern as measured by the NEP <span class="citation" data-cites="louMetaanalysisTemporalShifts2022">(<a href="#ref-louMetaanalysisTemporalShifts2022" role="doc-biblioref">Lou et al. 2022</a>)</span>. Lou and colleagues do not provide evidence for why this may be happening, only show through meta-analysis this downward trend. We are not aware of a similar study tracking CNS over time, but that may prove a fruitful avenue for further study. If it is only the NEP that is declining over time, that may indicate that the measurement instrument is becoming outdated, potentially because of shifts over time making the distinction between the dominant social paradigm and the new ecological paradigm less apt. For example, many see technological innovation as the key to unlocking a new green economy, rather than destroying the earth. Relatedly, perhaps the language used in the NEP has just become outmoded and out of line with how environmentalists currently would express environmental attitude <span class="citation" data-cites="sparksMeasuringProenvironmentalOrientation2022">(see <a href="#ref-sparksMeasuringProenvironmentalOrientation2022" role="doc-biblioref">Sparks, Ehret, and Brick 2022</a> for a discussion of this)</span>.</p>
+<p>Second, this may be a result of the CNS and NEP measuring two distinct concepts that can be grouped under the umbrella of environmental orientation. The NEP is explicitly a measure of environmental-attitude while CNS is a measure of emotional connection to nature. For example, a recent study found that harnessing the right mix of emotions is a powerful motivator of climate action <span class="citation" data-cites="kovacsActingWeFeel2024">(<a href="#ref-kovacsActingWeFeel2024" role="doc-biblioref">Kovács et al. 2024</a>)</span>.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>In this paper, we examined the relationship between cultural cognition, environmental orientation, and pro-environmental behavior. We presented evidence that cultural cognition, egalitarianism not communitarianism, is best thought of as an indirect predictor of pro-environmental behavior. The relationship was mediated by pro-environmental orientation as measured by both the NEP and the CNS.</p>
+<p>Because cultural cognition shapes how an individual responds to risk <span class="citation" data-cites="kahanPolarizingImpactScience2012">(e.g., <a href="#ref-kahanPolarizingImpactScience2012" role="doc-biblioref">Kahan et al. 2012</a>)</span>, it was something of a puzzle as to why it only weakly correlates to behavior that protects the environment – an action that can be seen as a way to reduce environmental risk to the individual. The evidence we presented in this paper suggests that environmental orientation – whether attitude (NEP) or emotional connection (CNS) – is a missing link in this relationship.</p>
+<p>Further, by explaining behavior with a mediation model we could close some of the so-called attitude-behavior gap. When cultural cognition and environmental orientation are aligned, people are more likely to engage in environmentally protective behavior.</p>
+<p>Another implication of this study is further evidence that CNS is a stronger predictor of behavior than NEP. This may be useful for researchers trying to decide which measure of pro-environmental orientation to include in their questionnaire. We would like to see further testing of this finding in studies in other contexts and through meta-analytic techniques.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="references" class="level1 unnumbered">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-boudetFrackingControversyCommunication2014" class="csl-entry" role="listitem">
+Boudet, Hilary, Christopher Clarke, Dylan Bugden, Edward Maibach, Connie Roser-Renouf, and Anthony Leiserowitz. 2014. <span>“<span>‘<span>Fracking</span>’</span> <span>Controversy</span> and <span>Communication</span>: <span>Using National Survey Data</span> to <span>Understand Public Perceptions</span> of <span>Hydraulic Fracturing</span>.”</span> <em>Energy Policy</em> 65: 57–67.
+</div>
+<div id="ref-brickUnearthingGreenPersonality2016" class="csl-entry" role="listitem">
+Brick, Cameron, and Gary J. Lewis. 2016. <span>“Unearthing the <span>‘<span>Green</span>’</span> <span>Personality</span>: <span>Core Traits Predict Environmentally Friendly Behavior</span>.”</span> <em>Environment and Behavior</em> 48(5): 635–58. https://doi.org/10.1177/0013916514554695 (June 17, 2026).
+</div>
+<div id="ref-douglasRiskCultureEssay1982" class="csl-entry" role="listitem">
+Douglas, Mary, and Aaron Wildavsky. 1982. <em>Risk and <span>Culture</span>: <span>An Essay</span> on the <span>Selection</span> of <span>Technological</span> and <span>Environmental Dangers</span></em>. Berkeley, CA: University of California Press.
+</div>
+<div id="ref-dunlapNewEnvironmentalParadigm1978" class="csl-entry" role="listitem">
+Dunlap, Riley E., and Kent D. Van Liere. 1978. <span>“The <span>‘<span>New Environmental Paradigm</span>’</span>.”</span> <em>The Journal of Environmental Education</em> 9(4): 10–19. http://www.tandfonline.com/doi/abs/10.1080/00958964.1978.10801875 (June 17, 2026).
+</div>
+<div id="ref-dunlapNewTrendsMeasuring2000" class="csl-entry" role="listitem">
+Dunlap, Riley E., Kent D. Van Liere, Angela G. Mertig, and Robert Emmet Jones. 2000. <span>“New <span>Trends</span> in <span>Measuring Environmental Attitudes</span>: <span>Measuring Endorsement</span> of the <span>New Ecological Paradigm</span>: <span>A Revised NEP Scale</span>.”</span> <em>Journal of Social Issues</em> 56(3): 425–42.
+</div>
+<div id="ref-giffordPersonalSocialFactors2014" class="csl-entry" role="listitem">
+Gifford, Robert, and Andreas Nilsson. 2014. <span>“Personal and <span>Social Factors That Influence Pro-Environmental Concern</span> and <span>Behaviour</span>: <span>A Review</span>.”</span> <em>International Journal of Psychology</em>: n/a–. http://onlinelibrary.wiley.com/doi/10.1002/ijop.12034/abstract (January 15, 2014).
+</div>
+<div id="ref-grendstadNewEcologicalParadigm1999" class="csl-entry" role="listitem">
+Grendstad, Gunnar. 1999. <span>“The <span>New Ecological Paradigm Scale</span>: <span>Examination</span> and <span>Scale Analysis</span>.”</span> <em>Environmental Politics</em> 8(4): 194–205. http://www.tandfonline.com/doi/abs/10.1080/09644019908414503 (June 17, 2026).
+</div>
+<div id="ref-hairPrimerPartialLeast2015" class="csl-entry" role="listitem">
+Hair, Joseph Franklin, G. Tomas M. Hult, Christian M. Ringle, and Marko Sarstedt. 2015. 38 <em>A <span>Primer</span> on <span>Partial Least Squares Structural Equation Modeling</span> (<span>PLS-SEM</span>)</em>. Los Angeles, CA: SAGE Publications.
+</div>
+<div id="ref-jenkins-smithIdeologyCultureRisk1994" class="csl-entry" role="listitem">
+Jenkins-Smith, Hank C., and Walter K. Smith. 1994. <span>“Ideology, <span>Culture</span>, and <span>Risk Perception</span>.”</span> In <em>Politics, <span>Policy</span>, and <span>Culture</span></em>, Political <span>Culture Series</span>, eds. Dennis J. Coyle and Richard J. Ellis. Boulder, CO: Westview Press, 17–32.
+</div>
+<div id="ref-jonesLeadingWayCompromise2011" class="csl-entry" role="listitem">
+Jones, Michael D. 2011. <span>“Leading the <span>Way</span> to <span>Compromise</span>? <span>Cultural Theory</span> and <span>Climate Change Opinion</span>.”</span> <em>PS: Political Science &amp; Politics</em> 44(04): 720–25.
+</div>
+<div id="ref-kahanCulturalCognitionConception2012" class="csl-entry" role="listitem">
+Kahan, Dan M. 2012. <span>“Cultural <span>Cognition</span> as a <span>Conception</span> of the <span>Cultural Theory</span> of <span>Risk</span>.”</span> In <em>Handbook of <span>Risk Theory</span>: <span>Epistemology</span>, <span>Decision Theory</span>, <span>Ethics</span>, and <span>Social Implications</span> of <span>Risk</span></em>, eds. Sabine Roeser, Rafaela Hillerbrand, Per Sandin, and Martin Peterson. Springer, 725–59.
+</div>
+<div id="ref-kahanCulturalCognitionPublic2006" class="csl-entry" role="listitem">
+Kahan, Dan M., and Donald Braman. 2006. <span>“Cultural <span>Cognition</span> and <span>Public Policy</span>.”</span> <em>Yale Law and Policy Review</em> 24(1): 147–70.
+</div>
+<div id="ref-kahanCultureIdentityProtectiveCognition2007" class="csl-entry" role="listitem">
+Kahan, Dan M., Donald Braman, John Gastil, Paul Slovic, and C. K. Mertz. 2007. <span>“Culture and <span>Identity-Protective Cognition</span>: <span>Explaining</span> the <span>White-Male Effect</span> in <span>Risk Perception</span>.”</span> <em>Journal of Empirical Legal Studies</em> 4(3): 465–505.
+</div>
+<div id="ref-kahanGeoengineeringClimateChange2015" class="csl-entry" role="listitem">
+Kahan, Dan M., Hank Jenkins-Smith, Tor Tarantola, Carol L. Silva, and Donald Braman. 2015. <span>“Geoengineering and <span>Climate Change Polarization Testing</span> a <span>Two-Channel Model</span> of <span>Science Communication</span>.”</span> <em>The ANNALS of the American Academy of Political and Social Science</em> 658(1): 192–222.
+</div>
+<div id="ref-kahanPolarizingImpactScience2012" class="csl-entry" role="listitem">
+Kahan, Dan M., Ellen Peters, Maggie Wittlin, Paul Slovic, Lisa Larrimore Ouellette, Donald Braman, and Gregory Mandel. 2012. <span>“The <span>Polarizing Impact</span> of <span>Science Literacy</span> and <span>Numeracy</span> on <span>Perceived Climate Change Risks</span>.”</span> <em>Nature Climate Change</em> 2(10): 732–35.
+</div>
+<div id="ref-kaiserOffsettingBehavioralCosts2021" class="csl-entry" role="listitem">
+Kaiser, Florian G., Alexandra Kibbe, and Liane Hentschke. 2021. <span>“Offsetting <span>Behavioral Costs</span> with <span>Personal Attitudes</span>: <span>A Slightly More Complex View</span> of the <span>Attitude-Behavior Relation</span>.”</span> <em>Personality and Individual Differences</em> 183: 111158. https://www.sciencedirect.com/science/article/pii/S0191886921005377 (June 17, 2026).
+</div>
+<div id="ref-kollmussMindGapWhy2002" class="csl-entry" role="listitem">
+Kollmuss, Anja, and Julian Agyeman. 2002. <span>“Mind the <span>Gap</span>: <span>Why Do People Act Environmentally</span> and <span>What Are</span> the <span>Barriers</span> to <span>Pro-Environmental Behavior</span>?”</span> <em>Environmental Education Research</em> 8(3): 239–60. https://www.tandfonline.com/doi/full/10.1080/13504620220145401 (June 17, 2026).
+</div>
+<div id="ref-kovacsActingWeFeel2024" class="csl-entry" role="listitem">
+Kovács, Lilla Nóra, Gesine Jordan, Frida Berglund, Benedict Holden, Elena Niehoff, Felicia Pohl, Mariem Younssi, Inés Zevallos, Csilla Ágoston, Attila Varga, and Gyöngyi Kökönyei. 2024. <span>“Acting as <span>We Feel</span>: <span>Which Emotional Responses</span> to the <span>Climate Crisis Motivate Climate Action</span>.”</span> <em>Journal of Environmental Psychology</em> 96: 102327. https://linkinghub.elsevier.com/retrieve/pii/S0272494424001002 (June 17, 2026).
+</div>
+<div id="ref-louMetaanalysisTemporalShifts2022" class="csl-entry" role="listitem">
+Lou, Xiaobin, Liman Man Wai Li, Weiwei Xia, and Qishan Zhu. 2022. <span>“A <span>Meta-Analysis</span> of <span>Temporal Shifts</span> in <span>Environmental Concern Between</span> 1994 and 2017: <span>An Examination</span> of the <span>New Environmental Paradigm</span>.”</span> <em>Anthropocene</em> 38: 100335. https://linkinghub.elsevier.com/retrieve/pii/S2213305422000169 (June 17, 2026).
+</div>
+<div id="ref-mayerConnectednessNatureScale2004" class="csl-entry" role="listitem">
+Mayer, F. Stephan, and Cynthia McPherson Frantz. 2004. <span>“The <span>Connectedness</span> to <span>Nature Scale</span>: <span>A Measure</span> of <span>Individuals</span>’ <span>Feeling</span> in <span>Community</span> with <span>Nature</span>.”</span> <em>Journal of Environmental Psychology</em> 24(4): 503–15. https://www.sciencedirect.com/science/article/pii/S0272494404000696 (June 4, 2024).
+</div>
+<div id="ref-moyerUnderstandingLocalPolicy2016" class="csl-entry" role="listitem">
+Moyer, Rachael M., and Geoboo Song. 2016. <span>“Understanding <span>Local Policy Elites</span>’ <span>Perceptions</span> on the <span>Benefits</span> and <span>Risks Associated</span> with <span>High-Voltage Power Line Installations</span> in the <span>State</span> of <span>Arkansas</span>.”</span> <em>Risk Analysis</em> 36(10): 1983–99.
+</div>
+<div id="ref-moyerCulturalPredispositionsSpecific2019" class="csl-entry" role="listitem">
+———. 2019. <span>“Cultural <span>Predispositions</span>, <span>Specific Affective Feelings</span>, and <span>Benefit</span>–<span>Risk Perceptions</span>: <span>Explicating Local Policy Elites</span>’ <span>Perceived Utility</span> of <span>High Voltage Power Line Installations</span>.”</span> <em>Journal of Risk Research</em> 22(4): 416–31.
+</div>
+<div id="ref-nowlinEnvironmentalPolicymakingEra2019" class="csl-entry" role="listitem">
+Nowlin, Matthew C. 2019. <em>Environmental <span>Policymaking</span> in an <span>Era</span> of <span>Climate Change</span></em>. New York, NY: Routledge.
+</div>
+<div id="ref-nowlinCulturalTheoryPartisanship2020" class="csl-entry" role="listitem">
+Nowlin, Matthew C., and Thomas M. Rabovsky. 2020. <span>“A <span>Cultural Theory</span> of <span>Partisanship</span> and <span>Policy Attitudes</span>.”</span> <em>Social Science Quarterly</em> 101(2): 878–92.
+</div>
+<div id="ref-priceMeasuringCulturalValues2014" class="csl-entry" role="listitem">
+Price, Jennifer C., Iain A. Walker, and Fabio Boschetti. 2014. <span>“Measuring <span>Cultural Values</span> and <span>Beliefs About Environment</span> to <span>Identify Their Role</span> in <span>Climate Change Responses</span>.”</span> <em>Journal of Environmental Psychology</em> 37: 8–20.
+</div>
+<div id="ref-ripbergerCulturalTheoryMeasurement2014" class="csl-entry" role="listitem">
+Ripberger, Joseph T., Kuhika Gupta, Carol L. Silva, and Hank C. Jenkins-Smith. 2014. <span>“Cultural <span>Theory</span> and the <span>Measurement</span> of <span>Deep Core Beliefs Within</span> the <span>Advocacy Coalition Framework</span>.”</span> <em>Policy Studies Journal</em> 42(4): 509–27.
+</div>
+<div id="ref-rosseelLavaanPackageStructural2012" class="csl-entry" role="listitem">
+Rosseel, Yves. 2012. <span>“Lavaan: <span>An R</span> Package for <span>Structural Equation Modeling</span>.”</span> <em>Journal of Statistical Software</em> 48(2): 1–36. http://www.lce.esalq.usp.br/arquivos/aulas/2013/encontro_ppg/Lucia/paper.pdf.
+</div>
+<div id="ref-sparksMeasuringProenvironmentalOrientation2022" class="csl-entry" role="listitem">
+Sparks, Aaron C., Phillip J. Ehret, and Cameron Brick. 2022. <span>“Measuring <span>Pro-Environmental Orientation</span>: <span>Testing</span> and <span>Building Scales</span>.”</span> <em>Journal of Environmental Psychology</em> 81: 101780. https://www.sciencedirect.com/science/article/pii/S0272494422000251 (March 26, 2022).
+</div>
+<div id="ref-sparksMeasuringEnvironmentalValues2021" class="csl-entry" role="listitem">
+Sparks, Aaron C., Geoffrey L. Henderson, Shyam K. Sriram, and Eric R. A. N Smith. 2021. <span>“Measuring <span>Environmental Values</span> and <span>Identity</span>.”</span> <em>Society &amp; Natural Resources</em> 34(3): 291–310. https://www.tandfonline.com/doi/full/10.1080/08941920.2020.1817644 (September 28, 2022).
+</div>
+<div id="ref-sternNewEnvironmentalTheories2000" class="csl-entry" role="listitem">
+Stern, Paul C. 2000. <span>“New <span>Environmental Theories</span>: <span>Toward</span> a <span>Coherent Theory</span> of <span>Environmentally Significant Behavior</span>.”</span> <em>Journal of Social Issues</em> 56(3): 407–24.
+</div>
+<div id="ref-thompsonCulturalTheory1990" class="csl-entry" role="listitem">
+Thompson, Michael, Richard Ellis, and Aaron Wildavsky. 1990. <em>Cultural <span>Theory</span></em>. Boulder, CO: Westview Press.
+</div>
+<div id="ref-tumlisonWhatExplainsLocal2018" class="csl-entry" role="listitem">
+Tumlison, Creed, Eric D. Button, Geoboo Song, and John Kester. 2018. <span>“What <span>Explains Local Policy Elites</span>’ <span>Preferences Toward Renewable Energy</span>/<span>Energy Efficiency Policy</span>?”</span> <em>Energy Policy</em> 117: 377–86.
+</div>
+<div id="ref-xueCulturalWorldviewsEnvironmental2014" class="csl-entry" role="listitem">
+Xue, Wen, Donald W. Hine, Natasha M. Loi, Einar B. Thorsteinsson, and Wendy J. Phillips. 2014. <span>“Cultural <span>Worldviews</span> and <span>Environmental Risk Perceptions</span>: <span>A Meta-Analysis</span>.”</span> <em>Journal of Environmental Psychology</em> 40.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
