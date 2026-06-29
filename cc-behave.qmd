@@ -29,9 +29,69 @@ source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" els
 
 Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is important for enhancing sustainability. Scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior [@sternNewEnvironmentalTheories2000; @kollmussMindGapWhy2002; @giffordPersonalSocialFactors2014]. If people care strongly about the environment, why don’t they act in a more sustainable way? The attitude-behavior gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model [@kaiserOffsettingBehavioralCosts2021]. 
 
+In this paper, we develop a theoretical framework that accounts for both the cognitive and emotion influences on pro-environmental behavior. Specifically, we posit that that higher-order beliefs, drawn from cultural cognition [@kahanCulturalCognitionConception2012; @kahanCulturalCognitionPublic2006; @kahanPolarizingImpactScience2012], inform environmental cognition and environmental orientations [@henryUnderstandingEnvironmentalCognition2012], which in turn influence behavior, both public and private. Previous work failed to find that cultural cognition influence environmental behavior; however, it has been found to influence environmental orientations [@nowlinEnvironmentalPolicymakingEra2019]. Therefore, we hypothesize that environmental orientations mediate the relationship between cultural cognition and behavior.    
+
+
+
+Attitudes about the environment, such as views about the relationship of humans to the natural world, form an environmental orientation. The most common way of understanding how environmental orientations inform behaviors is through a set of beliefs that lead from environmental attitudes to behaviors. However, develop a complete attitude-behavior model, it is important to understand all of the various links in the chain, including the higher-order values and beliefs that inform environmental orientations. Of note, the cultural worldviews measured by cultural cognition have been shown to shape environmental orientations [@nowlinEnvironmentalPolicymakingEra2019]. 
+ 
+Cultural cognition was developed by Kahan and others [@kahanCultureIdentityProtectiveCognition2007] as a tool to measure how cultural values shape beliefs about risk. It is based on cultural theory and its conceptualization of worldviews. Cultural theory addresses how cultural values influence how people perceive and respond to risk. By measuring the cultural values of an individual, we may be able to predict how they will perceive and respond to risks associated with certain activities or products. We are interested in how cultural cognition shapes views toward environmental issues and how those views shape behavior.
+
+The cultural worldviews associated with cultural cognition are measured in two dimensions, a grid dimension (egalitarianism-hierarchy) and a group dimension (communitarianism-individualism). In general, those that are more egalitarian and communitarian are more concerned about environmental risks than those that are more hierarchical and individualist. Therefore, individuals high in egalitarianism and communitarianism should engage in pro-environmental behaviors to mitigate risks to the natural environment. However, previous research shows only a weak correlation between egalitarianism and communitarianism and pro-environmental behavior [@sparksMeasuringEnvironmentalValues2021]. Therefore, cultural cognition shapes how individuals think and process information about issues, but may not directly influence behaviors. 
+
+
+
+
+
+
+To further elaborate the attitude-behavior model we examine the relationship between cultural cognition, environmental orientation (attitude and emotional connection), and behavior. 
+
+
+
+; however, cultural cognition does not have a strong association with pro-environmental behaviors [@sparksMeasuringEnvironmentalValues2021]. 
+
+In this paper, we examine whether environmental orientations mediate the relationship between cultural cognition and behavior such that cultural cognition shapes environmental orientations, which in turn influences pro-environmental behavior. In doing so, we argue that when cultural cognition aligns with environmental orientation, there is a stronger relationship with pro-environmental behaviors than when considering attitude or affect alone, thus reducing the attitude-behavior gap.
+
+
+Taking the step from cultural worldviews to environmental orientation , we test the relationship between cultural cognition and environmental attitude – as measured by the New Ecological Paradigm [NEP; @dunlapNewTrendsMeasuring2000] – and emotional connection to nature – as measured by the Connectedness to Nature Scale [CNS; @mayerConnectednessNatureScale2004]. Altogether, combining cultural cognition and environmental orientation should improve our understanding of the drivers of environmentally protective behaviors. Specifically, in this paper, we suggest that environmental orientation mediates the relationship between cultural cognition and environmental behavior. Essentially, environmental orientation helps connect cultural worldviews and risk perceptions to action to reduce that risk. Moreover, cultural cognition helps to bridge the attitude-behavior gap by providing a basis through environmental orientations derive and subsequently influence behavior.
+
+
+In the next section we develop our approach 
+
+# Values, Beliefs, and Pro-Environmental Behavior
+
+The process though values and beliefs impact behavior is often understood as a process where higher-order beliefs influence second-order beliefs, which in turn influence behavior. One of the leading frameworks that adopts this approach is the Value-Belief-Norm (VBN) framework [@sternValueBeliefNormTheorySupport1999]. In brief, the VBN posits that underlining values inform broad environmental orientations that activate norms that in turn support pro-environmental behavior. VBN involves a sequential chain that goes from values to beliefs to behavior. Therefore, values inform attitudes, which in turn inform behaviors.  
+
+
+
+Value-Belief-Norm (VBN) framework
+
+belief system framework of the ACF
+
+cultural and environmental cognition
+
+Policy scholars have developed a sophisticated understanding of belief systems that can inform how beliefs influence attitudes []. With this approach, beliefs systems are made up of three different types of beliefs, including deep core, policy core, and secondary beliefs. 
+
+While not much work has connected belief systems to behavior  
+
+belief systems 
+
+ 
+
+ 
+
+
+Environmental orientations are part of broader belief systems, and policy scholars using the Advocacy Coalition Framework have developed a three-tiered hierarchical model of belief systems [@nohrstedtAdvocacyCoalitionFramework2023; @sabatierPolicyChangeLearning1993]. At the foundation of belief systems are deep core beliefs, which are the broadest in scope and are fundamental beliefs that inform attitudes about multiple issues. Political ideology is an example of a deep core belief. Next, are policy core beliefs, which are beliefs about particular issues. Environmental orientations would be akin to policy core beliefs. Finally, secondary aspects are the narrowest in scope and include beliefs about how best to achieve the goals outlined in policy core beliefs.    
+
+Cultural theory, developed by Mary Douglas and Aaron Wildavsky 
+
+Deep core beliefs 
+
 In seeking to this question, we draw on the concept of environmental cognition. Environmental cognition is "the way individuals structure their thinking about environmental issues and associated political actions" [@henryUnderstandingEnvironmentalCognition2012, 238]. Work using environmental cognition  
 
-One of the leading approaches to understand the attitude-behavior gap is the Value-Belief-Norm (VBN) framework [@sternValueBeliefNormTheorySupport1999]. In brief, the VBN posits that underlining values inform broad environmental beliefs that activate norms that in turn support pro-environmental behavior. VBN involves a sequential chain that goes from values to beliefs to behavior. Additional work has examined the importance of belief systems, as developed by policy scholar using the Advocacy Coalition Framework []. 
+
+
+Additional work has examined the importance of belief systems, as developed by  []. 
 
 
 
@@ -50,27 +110,7 @@ and the Connectedness to Nature Scale (CNS) plus controls accounted for 35%.
 
 
 
-To further elaborate the attitude-behavior model we examine the relationship between cultural cognition, environmental orientation (attitude and emotional connection), and behavior. The cultural worldviews measured by cultural cognition have been shown to shape views about climate change [@kahanPolarizingImpactScience2012] as well as environmental orientation, as measured by the New Ecological Paradigm [@nowlinEnvironmentalPolicymakingEra2019]; however, cultural cognition does not have a strong association with pro-environmental behaviors [@sparksMeasuringEnvironmentalValues2021]. In this paper, we examine whether environmental orientations mediate the relationship between cultural cognition and behavior such that cultural cognition shapes environmental orientations, which in turn influences pro-environmental behavior. In doing so, we argue that when cultural cognition aligns with environmental orientation, there is a stronger relationship with pro-environmental behaviors than when considering attitude or affect alone, thus reducing the attitude-behavior gap.
 
-Cultural cognition was developed by Kahan and others [@kahanCultureIdentityProtectiveCognition2007] as a tool to measure how cultural values shape beliefs about risk. It is based on cultural theory and its conceptualization of worldviews. Cultural theory addresses how cultural values influence how people perceive and respond to risk. By measuring the cultural values of an individual, we may be able to predict how they will perceive and respond to risks associated with certain activities or products. We are interested in how cultural cognition shapes views toward environmental issues and how those views shape behavior.
-
-The cultural worldviews associated with cultural cognition are measured in two dimensions, a grid dimension (egalitarianism-hierarchy) and a group dimension (communitarianism-individualism). In general, those that are more egalitarian and communitarian are more concerned about environmental risks than those that are more hierarchical and individualist. Therefore, individuals high in egalitarianism and communitarianism should engage in pro-environmental behaviors to mitigate risks to the natural environment. However, previous research shows only a weak correlation between egalitarianism and communitarianism and pro-environmental behavior [@sparksMeasuringEnvironmentalValues2021].
-
-Taking the step from cultural worldviews to environmental orientation , we test the relationship between cultural cognition and environmental attitude – as measured by the New Ecological Paradigm [NEP; @dunlapNewTrendsMeasuring2000] – and emotional connection to nature – as measured by the Connectedness to Nature Scale [CNS; @mayerConnectednessNatureScale2004]. Altogether, combining cultural cognition and environmental orientation should improve our understanding of the drivers of environmentally protective behaviors. Specifically, in this paper, we suggest that environmental orientation mediates the relationship between cultural cognition and environmental behavior. Essentially, environmental orientation helps connect cultural worldviews and risk perceptions to action to reduce that risk. Moreover, cultural cognition helps to bridge the attitude-behavior gap by providing a basis through environmental orientations derive and subsequently influence behavior.
-
-# Beliefs and Pro-Environmental Behavior
-
-Value-Belief-Norm (VBN) framework
-
-belief system framework of the ACF
-
-cultural and environmental cognition
-
-Policy scholars have developed a sophisticated understanding of belief systems that can inform how beliefs influence attitudes []. With this approach, beliefs systems are made up of three different types of beliefs, including deep core, policy core, and secondary beliefs. 
-
-While not much work has connected belief systems to behavior  
-
-belief systems 
 
 ## Cultural Cognition
 
