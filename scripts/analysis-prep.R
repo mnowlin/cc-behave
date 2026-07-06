@@ -93,6 +93,7 @@ envatt$BEHAVE <- envatt$PEB
 # `stocks` is in neither index (dropped from PRIVATE in a prior review).
 envatt$PUBLIC  <- envatt$public
 envatt$PRIVATE <- envatt$private
+envatt$BEHAVE12 <- envatt$PUBLIC + envatt$PRIVATE   # PUBLIC + PRIVATE only, 0-12; tbl1 total
 
 ## =====================================================================
 ## 2. REVERSE-CODE THE ITEMS USED IN THE SEMs  (from "SEManalysis.R")
@@ -147,16 +148,13 @@ peb_sd   <- round(sd(envatt$PEB,   na.rm = TRUE), 2)
   water     = "Tried to use less water in your household",
   buycott   = "Bought a product because it was better for the environment",
   recycle   = "Voluntarily recycled newspapers, glass, aluminum, motor oil, etc.",
-  energy    = "Reduced your household's use of energy",
-  stocks    = "Bought or sold stocks based on companies' environmental records")
+  energy    = "Reduced your household's use of energy")
 
-# behavior items grouped by type (public = 7, private = 5, stocks = neither)
+# behavior items grouped by type (public = 7, private = 5)
 .public_vars  <- c("act.org","cand","money.org","cont.off","cont.bus","petition","meeting")
 .private_vars <- c("product","water","buycott","recycle","energy")
 .btype <- setNames(rep("Public", length(.public_vars)), .public_vars)
 .btype[.private_vars] <- "Private"
-.btype["stocks"] <- "—"
-.bvars <- c(.public_vars, .private_vars, "stocks")   # display order: public, private, stocks
 
 .item_row <- function(v) data.frame(
   Behavior = .behave_label[[v]], Type = .btype[[v]],
@@ -174,8 +172,7 @@ tbl1 <- rbind(
   .sum_row("Public behaviors (0-7)",  "PUBLIC"),
   do.call(rbind, lapply(.private_vars, .item_row)),
   .sum_row("Private behaviors (0-5)", "PRIVATE"),
-  .item_row("stocks"),
-  .sum_row("Total behaviors (0-13)",  "PEB"))
+  .sum_row("Total behaviors (0-12)",  "BEHAVE12"))
 
 ## =====================================================================
 ## 5. TABLE 2 -- measurement items + reliability (alpha, CR, AVE)
@@ -307,11 +304,73 @@ draw_sem <- function(fit) {
   plot(mark_sig(p, fit))
 }
 
+## Drop edges from a semPaths() qgraph object whose underlying lavaan
+## parameter is not significant at `alpha`, matching each drawn edge back
+## to parameterEstimates() by its endpoint node names (rather than by the
+## qgraph edge index, which is not stable once edges are removed).
+.keep_sig_edges <- function(p, fit, alpha = .05) {
+  pe   <- lavaan::parameterEstimates(fit)
+  nm   <- p$graphAttributes$Nodes$names
+  from <- nm[p$Edgelist$from]
+  to   <- nm[p$Edgelist$to]
+  pval <- mapply(function(f, t) {
+    r <- pe$pvalue[pe$lhs == t & pe$op == "~"  & pe$rhs == f]
+    if (!length(r)) r <- pe$pvalue[pe$lhs == f & pe$op == "~~" & pe$rhs == t]
+    if (!length(r)) r <- pe$pvalue[pe$lhs == t & pe$op == "~~" & pe$rhs == f]
+    if (length(r)) r[1] else NA
+  }, from, to)
+  keep <- !is.na(pval) & pval < alpha
+  el <- p$Edgelist
+  p$Edgelist <- list(from = el$from[keep], to = el$to[keep],
+                      weight = el$weight[keep], directed = el$directed[keep],
+                      bidirectional = el$bidirectional[keep])
+  p$graphAttributes$Edges <- lapply(p$graphAttributes$Edges, function(v) {
+    if (is.matrix(v)) v[keep, , drop = FALSE]
+    else if (length(v) == length(keep)) v[keep]
+    else v
+  })
+  p$graphAttributes$Graph$edgesort <- seq_len(sum(keep))
+  ## qgraph objects also echo the raw call arguments in $Arguments; plot.qgraph
+  ## consults some of these directly, so they need the same edge filter or a
+  ## stale (pre-filter) length-35 vector gets recycled against the new edges.
+  p$Arguments <- lapply(p$Arguments, function(v) {
+    if (is.matrix(v) && nrow(v) == length(keep)) v[keep, , drop = FALSE]
+    else if (length(v) == length(keep)) v[keep]
+    else v
+  })
+  ## plotOptions$srt (per-edge label rotation) is a [nEdges x 4] matrix keyed
+  ## by the same edge order; leaving it at the pre-filter edge count makes
+  ## plot.qgraph recycle it against the shorter edge list.
+  p$plotOptions <- lapply(p$plotOptions, function(v) {
+    if (is.matrix(v) && nrow(v) == length(keep)) v[keep, , drop = FALSE]
+    else if (length(v) == length(keep)) v[keep]
+    else v
+  })
+  p
+}
+
+## semPaths draws each covariance as a pair of mirrored directed edges (to
+## get the double-line "lens" look); both copies carry their own label.
+## When the two lines sit close together (adjacent nodes) the labels land on
+## top of each other and look like one; once curved further apart the
+## duplicate becomes visible (and can differ by a star if standard errors
+## round near a cutoff). Blank the second copy's label so each covariance is
+## only labeled once.
+.dedupe_cov_labels <- function(p) {
+  nm  <- p$graphAttributes$Nodes$names
+  key <- paste(pmin(p$Edgelist$from, p$Edgelist$to),
+               pmax(p$Edgelist$from, p$Edgelist$to))
+  dup <- duplicated(key)
+  p$graphAttributes$Edges$labels[dup] <- ""
+  p
+}
+
 ## Structural-only variant: drop the measurement indicators but keep the
 ## observed behavior outcomes (PUBLIC, PRIVATE) alongside the latent
 ## constructs, so the diagram shows the full structural chain
 ## (worldviews -> NEP -> CNS -> public/private behavior). Used in the main
 ## text; the full version with the measurement model lives in the supplement.
+## Only paths (regressions and covariances) significant at p < .05 are drawn.
 draw_sem_struct <- function(fit) {
   spm  <- semPlot::semPlotModel(fit)
   drop <- setdiff(spm@Vars$name[spm@Vars$manifest], c("PUBLIC", "PRIVATE"))
@@ -330,7 +389,14 @@ draw_sem_struct <- function(fit) {
   p <- semPaths(spm, whatLabels = "std", style = "ram", layout = lay,
                 residuals = FALSE, sizeMan = 9, sizeMan2 = 6, nCharNodes = 0,
                 edge.label.cex = .8, mar = c(4, 6, 4, 6), DoNotPlot = TRUE)
-  plot(mark_sig(p, fit))
+  ## HIER and COMM sit two slots away from INDIV and EGAL respectively on the
+  ## same vertical line, so their covariance edges would otherwise be drawn
+  ## straight through the intervening node. Bow them out to the left.
+  p <- semptools::set_curve(p, c("HIER ~~ INDIV" = -1.4, "INDIV ~~ HIER" = -1.4,
+                                  "EGAL ~~ COMM" = -1.4, "COMM ~~ EGAL" = -1.4))
+  p <- mark_sig(p, fit)
+  p <- .dedupe_cov_labels(p)
+  plot(.keep_sig_edges(p, fit))
 }
 
 ## Conceptual model diagram (Figure 1), drawn with base graphics so it
@@ -346,12 +412,20 @@ draw_concept_model <- function() {
   }
   arr <- function(x0, y0, x1, y1)
     arrows(x0, y0, x1, y1, length = 0.10, angle = 20, lwd = 1.4, col = "black")
+  ## Plain (arrowless) line spanning two adjacent box centers, labeled above
+  ## the line, used to name the construct pair without implying direction.
+  span <- function(x0, x1, y, lab) {
+    segments(x0, y, x1, y, lwd = 1.1, col = "black")
+    text((x0 + x1) / 2, y + 0.2, lab, col = "black", cex = 0.65, family = "serif")
+  }
   cc <- c(1.30, 1.5); nep <- c(4.00, 1.5); cns <- c(6.70, 1.5)
   pub <- c(9.9, 2.35); priv <- c(9.9, 0.65)
   arr(cc[1] + hw, cc[2], nep[1] - hw, nep[2])
   arr(nep[1] + hw, nep[2], cns[1] - hw, cns[2])
   arr(cns[1] + hw, cns[2] + 0.18, pub[1] - hw, pub[2] - 0.12)
   arr(cns[1] + hw, cns[2] - 0.18, priv[1] - hw, priv[2] + 0.12)
+  span(cc[1], nep[1], cc[2] + hh + 0.15, "Cognition")
+  span(nep[1], cns[1], nep[2] + hh + 0.15, "Environmental Orientation")
   box(cc[1], cc[2], "Cultural\nCognition")
   box(nep[1], nep[2], "New Ecological\nParadigm (NEP)")
   box(cns[1], cns[2], "Connectedness\nto Nature (CNS)")

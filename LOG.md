@@ -1,8 +1,101 @@
-# Session Log — cc-behave
+# Log — cc-behave
 
 A running record of work done on this project. Newest session at the top.
 Each entry follows the same structure: **Goal → What we did → Files changed →
 Decisions → Verification → Open items**.
+
+---
+
+## 2026-07-06 — Significant-paths-only SEM figure, drop stocks from Table 1, conceptual-model connector lines, rename session log
+
+**Goal:** Simplify the structural SEM figure to show only significant paths,
+remove the `stocks` item from the behaviors table, annotate the conceptual
+model with named construct-pair connectors, and confirm the rendered outputs
+land in `_output/` per the updated `CLAUDE.md` instruction.
+
+### What we did
+
+1. **`draw_sem_struct(fitFull)` now shows only paths significant at *p* < .05.**
+   Added `.keep_sig_edges()`, which matches each drawn qgraph edge back to
+   `parameterEstimates(fit)` by endpoint node names and strips non-significant
+   regressions/covariances — including the `Edgelist`, `graphAttributes$Edges`,
+   `Arguments`, and `plotOptions$srt` slots that qgraph's `plot.qgraph` reads
+   directly (leaving any of these at the pre-filter edge count triggers a
+   `duplicated(srt) & bidirectional` recycling warning). Added
+   `.dedupe_cov_labels()` because semPaths draws each covariance as two
+   mirrored edges with independent labels; blanking the second copy avoids a
+   duplicate (and occasionally differently-starred) label once the edge is
+   curved far enough apart to be visible. Also bowed the `HIER~~INDIV` and
+   `EGAL~~COMM` covariances outward via `semptools::set_curve()` — those pairs
+   sit two slots apart on the same vertical line, so left uncurved they'd draw
+   straight through the intervening node and be invisible.
+2. **Removed `stocks` from Table 1** (self-reported behaviors). Dropped the
+   item row and its label; the "Total behaviors" row now sums
+   `PUBLIC + PRIVATE` only (0–12, new `BEHAVE12` column) instead of the old
+   `PEB` (0–13, which silently included stocks). `PEB`/`BEHAVE` (0–13) are
+   left intact for anything else that references them — only the table
+   changed.
+3. **Added two labeled, arrowless connector lines to `draw_concept_model()`**
+   (Figure 1): "Cognition" above the Cultural Cognition–NEP boxes, and
+   "Environmental Orientation" above the NEP–CNS boxes. Sized labels (`cex`)
+   against `strwidth()` so "Environmental Orientation" fits within its span
+   without overflowing past the adjacent boxes.
+4. **Renamed `SESSION-LOG.md` → `LOG.md`** via `git mv` (this entry).
+
+### Files created / changed
+
+- `scripts/analysis-prep.R` *(changed)* — `.keep_sig_edges()` and
+  `.dedupe_cov_labels()` helpers (new); `draw_sem_struct()` filters to
+  significant paths and dedupes covariance labels; `draw_concept_model()`
+  gained the `span()` connector-line helper and two labeled calls; Table 1
+  construction (`.behave_label`, `.btype`, `tbl1`) drops `stocks`; added
+  `envatt$BEHAVE12`.
+- `SESSION-LOG.md` → `LOG.md` *(renamed)*.
+- `_output/cc-behave.{html,pdf,docx}` *(regenerated)* — re-rendered after the
+  script changes.
+
+### Decisions
+
+- **Filter covariances too, not just regressions** — "show only significant
+  paths" was applied uniformly to every drawn edge (regressions and
+  covariances) rather than special-casing covariances as "not really paths",
+  since the alternative required a judgment call the request didn't make.
+- **Table 1 total changed to 0–12, not left at 0–13** — leaving the total row
+  summing in a `stocks` value that no longer appears anywhere in the table
+  would make the table internally inconsistent (rows wouldn't sum to the
+  displayed total).
+- **`PEB`/`BEHAVE` (0–13) left unchanged** — nothing outside Table 1
+  currently references the behaviors total, so the underlying descriptive
+  variable was left as-is rather than redefining it project-wide.
+
+### Verification
+
+- Rendered `quarto render cc-behave.qmd` (all formats) after each change;
+  confirmed no warnings/errors and inspected the `fig-structural` and
+  `fig-model` PNGs directly.
+- `fig-structural`: confirmed exactly the 8 significant regression paths and
+  5 significant covariances are drawn, each covariance labeled once, no
+  edges hidden behind nodes.
+- Table 1: confirmed 12 item rows (7 public + 5 private) plus public/private
+  subtotals and a 0–12 total, with no `stocks` row.
+- `_output/` already receives all three rendered formats via the existing
+  `_quarto.yaml` `output-dir: _output` setting — no files were found
+  elsewhere in the project root needing to be moved.
+
+### Notable findings / flags
+
+- **`cc-behave.qmd` line ~188 references a `stocks` statistic** ("buying/selling
+  stocks at 0.12") that is no longer in Table 1 after this session's change.
+  Prose is author-maintained per `CLAUDE.md`, so this was flagged rather than
+  edited — the sentence should be updated or removed by the author.
+
+### Open items / next steps
+
+- Update the `cc-behave.qmd` prose sentence referencing the removed `stocks`
+  statistic.
+- This session's changes are **uncommitted** (`scripts/analysis-prep.R`,
+  `LOG.md` rename, regenerated `_output/*`); commit when at a stable
+  checkpoint.
 
 ---
 
