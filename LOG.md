@@ -6,6 +6,49 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-07-07 — Conceptual-model connector ticks, intro prose revisions
+
+**Goal:** Add visual connectors between the conceptual-model boxes and the
+"Cognition"/"Environmental Orientation" labels above them, and re-render the
+manuscript after the author's intro/lit-review prose edits.
+
+### What we did
+
+1. **`draw_concept_model()`'s connector line now has drop-ticks and a
+   segment gap.** Replaced the `span()` helper with `bracket()`, which draws
+   a short vertical tick from the line down to the top of each box it
+   labels (Cultural Cognition, NEP, CNS) and leaves a small gap in the line
+   at interior ticks. Previously the "Cognition" and "Environmental
+   Orientation" segments were two abutting horizontal lines with no visual
+   break; now the NEP tick doubles as the divider between them, and each
+   box is explicitly connected to the line above it. Line and label
+   positions are unchanged.
+2. **Author revised intro/lit-review prose in `cc-behave.qmd`** (new "Deep
+   Core Beliefs: Cultural Cognition" subsection, condensed VBN/ACF framing,
+   removed several stray placeholder/fragment lines). Prose is
+   author-maintained per `CLAUDE.md`; not authored by this session, only
+   re-rendered.
+3. **Re-rendered all three formats** (`quarto render cc-behave.qmd`) so
+   `_output/cc-behave.{html,pdf,docx}` reflect both changes.
+
+### Files created / changed
+
+- `scripts/analysis-prep.R` *(changed)* — `draw_concept_model()`: `span()` →
+  `bracket()` (drop-ticks + segment gap at NEP).
+- `cc-behave.qmd` *(changed)* — author prose edits to Introduction and
+  Cognition/Environmental Orientation/Behavior sections.
+- `_output/cc-behave.{html,pdf,docx}` *(regenerated)*.
+
+### Verification
+
+- Rendered `draw_concept_model()` standalone to a PNG and inspected it
+  before re-rendering the full manuscript: three ticks visible, gap at NEP
+  reads as a divider between the two labeled segments.
+- Full `quarto render cc-behave.qmd` completed for HTML, PDF, and DOCX with
+  no errors; inspected `fig-model-1.png` in the regenerated HTML output.
+
+---
+
 ## 2026-07-06 — Significant-paths-only SEM figure, drop stocks from Table 1, conceptual-model connector lines, rename session log
 
 **Goal:** Simplify the structural SEM figure to show only significant paths,

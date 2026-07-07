@@ -412,11 +412,22 @@ draw_concept_model <- function() {
   }
   arr <- function(x0, y0, x1, y1)
     arrows(x0, y0, x1, y1, length = 0.10, angle = 20, lwd = 1.4, col = "black")
-  ## Plain (arrowless) line spanning two adjacent box centers, labeled above
-  ## the line, used to name the construct pair without implying direction.
-  span <- function(x0, x1, y, lab) {
-    segments(x0, y, x1, y, lwd = 1.1, col = "black")
-    text((x0 + x1) / 2, y + 0.2, lab, col = "black", cex = 0.65, family = "serif")
+  ## Plain (arrowless) connector spanning a chain of box centers, labeled
+  ## above each segment, used to name construct pairs without implying
+  ## direction. Each box gets a short vertical tick dropping from the line
+  ## to its top edge; the line itself has a small gap at interior ticks
+  ## (e.g., NEP, shared by the Cognition and Environmental Orientation
+  ## segments) so the tick reads as a divider between segments rather than
+  ## letting them run together into one unbroken line.
+  bracket <- function(xs, y, box_top, labs, gap = 0.09) {
+    n <- length(xs)
+    for (i in seq_len(n - 1)) {
+      x0 <- xs[i] + if (i > 1) gap else 0
+      x1 <- xs[i + 1] - if (i + 1 < n) gap else 0
+      segments(x0, y, x1, y, lwd = 1.1, col = "black")
+      text((xs[i] + xs[i + 1]) / 2, y + 0.2, labs[i], col = "black", cex = 0.65, family = "serif")
+    }
+    for (x in xs) segments(x, y, x, box_top, lwd = 1.1, col = "black")
   }
   cc <- c(1.30, 1.5); nep <- c(4.00, 1.5); cns <- c(6.70, 1.5)
   pub <- c(9.9, 2.35); priv <- c(9.9, 0.65)
@@ -424,8 +435,8 @@ draw_concept_model <- function() {
   arr(nep[1] + hw, nep[2], cns[1] - hw, cns[2])
   arr(cns[1] + hw, cns[2] + 0.18, pub[1] - hw, pub[2] - 0.12)
   arr(cns[1] + hw, cns[2] - 0.18, priv[1] - hw, priv[2] + 0.12)
-  span(cc[1], nep[1], cc[2] + hh + 0.15, "Cognition")
-  span(nep[1], cns[1], nep[2] + hh + 0.15, "Environmental Orientation")
+  bracket(c(cc[1], nep[1], cns[1]), cc[2] + hh + 0.15, cc[2] + hh,
+          c("Cognition", "Environmental Orientation"))
   box(cc[1], cc[2], "Cultural\nCognition")
   box(nep[1], nep[2], "New Ecological\nParadigm (NEP)")
   box(cns[1], cns[2], "Connectedness\nto Nature (CNS)")
