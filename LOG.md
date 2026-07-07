@@ -6,6 +6,122 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-07-07 — HIER-INDIV/EGAL-COMM composite model promoted to main text, demographic controls added
+
+**Goal:** Relabel the conceptual-model boxes, build a Hierarch-Individualist /
+Egalitarian-Communitarian composite-group alternative to the four separate
+worldview measures, promote it to the main text in place of the four-scale
+model, add demographic controls to every SEM in the pipeline, and report the
+control coefficients.
+
+### What we did
+
+1. **Conceptual-model box labels** (`draw_concept_model()`): "Cultural
+   Cognition" → "Cultural Worldviews"; "New Ecological Paradigm (NEP)" →
+   "Ecological Worldviews (NEP)".
+2. **New composite worldview groups.** Added section 10 to
+   `analysis-prep.R`: `HIER_INDIV` and `EGAL_COMM`, dichotomous group
+   indicators (top half of both underlying scales, split at each scale's own
+   median) that collapse the four separate worldview latents (HIER, EGAL,
+   INDIV, COMM) into the two composite groups used in the cultural cognition
+   literature. Re-ran the serial-chain/full structural model
+   (`fitSerialHIEC`/`fitFullHIEC`) with these two group indicators as
+   predictors in place of the four latents, plus a matching
+   `draw_sem_struct_hiec()` diagram helper (2-predictor layout; controls and
+   dropped indicators excluded the same way `draw_sem_struct()` already
+   excludes them).
+3. **Promoted the composite-group model to the main text.** `cc-behave.qmd`'s
+   `fig-structural`, `tbl-serial-fit`, and `tbl-serial-effects` now draw from
+   `fitFullHIEC`/`tbl5_hiec`/`tbl6_hiec` instead of `fitFull`/`tbl5`/`tbl6`.
+   `tbl-measurement` (Table 2, all four separate worldview measures) was left
+   untouched, per instruction. The displaced four-separate-measure analysis
+   (structural-only figure, fit comparison, effect decomposition) moved to
+   `cc-behave-supplemental.qmd` under a new "Full combined model with the
+   four separate worldview measures" section, ahead of the existing
+   full-measurement-detail figure.
+4. **Demographic controls added to every SEM.** Added `male` (from `q76`)
+   and `white` (from `q77_4`, the White/Caucasian checkbox in the
+   check-all-that-apply race item) alongside the existing `age`, `educ`,
+   `hhincome`. A shared `.ctrl_rhs` string is appended to every structural
+   regression: `fitCNS`, `fitNEP`, the four Table 4 mediation models
+   (`.med_model()`), `fitSerial`/`fitFull`, and `fitSerialHIEC`/`fitFullHIEC`.
+   `draw_sem()` now drops control nodes from the full measurement diagrams
+   (`fig-cns`, `fig-nep`, `fig-serial`) for readability; `draw_sem_struct()`/
+   `draw_sem_struct_hiec()` already dropped them automatically since they're
+   manifest variables outside each function's keep-list. All affected figure
+   and table captions note the controls are included but not drawn.
+5. **New control-coefficient table.** Added `tbl_hiec_controls` (standardized
+   age/male/white/education/household-income effects on NEP, CNS, Public,
+   and Private from `fitFullHIEC`, the main-text model) and a new
+   "Demographic control coefficients" section in
+   `cc-behave-supplemental.qmd` reporting it.
+6. **Re-rendered all three formats for both documents.**
+
+### Files created / changed
+
+- `scripts/analysis-prep.R` *(changed)* — box label text; new section 10
+  (`HIER_INDIV`, `EGAL_COMM`, `fitSerialHIEC`, `fitFullHIEC`, `tbl5_hiec`,
+  `tbl6_hiec`, `tbl_hiec_controls`, `draw_sem_struct_hiec()`); `male`/`white`
+  added to data cleaning; `.ctrl_vars`/`.ctrl_rhs` and controls threaded
+  through `.semModelCNS`, `.semModelNEP`, `.med_model()`, `.serialModel`,
+  `.reg_full`, `.serialModelHIEC`, `.reg_fullHIEC`; `draw_sem()` drops
+  control nodes from the diagram.
+- `cc-behave.qmd` *(changed)* — `fig-structural`/`tbl-serial-fit`/
+  `tbl-serial-effects` now use the HIER-INDIV/EGAL-COMM model; captions note
+  controls are included but not shown.
+- `cc-behave-supplemental.qmd` *(changed)* — new "Full combined model with
+  the four separate worldview measures" section (structural figure, fit
+  table, decomposition table, moved from main text) ahead of the existing
+  full-measurement-detail figure; new "Demographic control coefficients"
+  section; intro paragraph updated to describe the reorganized document;
+  captions note controls throughout.
+- `_output/cc-behave.{html,pdf,docx}`, `_output/cc-behave-supplemental.{html,pdf,docx}`
+  *(regenerated)*.
+
+### Decisions
+
+- **HIER_INDIV/EGAL_COMM split at each scale's own median**, not a shared
+  threshold — keeps "top half" literally true for each scale independently,
+  matching the request.
+- **Controls omitted from every path diagram, not just the HIEC ones** —
+  `draw_sem()` (full measurement diagrams) was already close to the edge of
+  readability with just the measurement indicators; adding 5 more manifest
+  control nodes made it worse without adding anything the reader needs from
+  a diagram. Their coefficients are fully reported in tables instead
+  (`tbl_hiec_controls`), never silently dropped from the model or output.
+- **Only one control-coefficient table (fitFullHIEC), not one per model** —
+  the main text only reports the composite-group model, so that's the one
+  whose hidden control paths a reader would actually go looking for.
+- **`tbl-measurement` (Table 2) left on the four separate worldview
+  measures** — explicit instruction; the measurement/reliability story
+  (Cronbach's α, CR, AVE) is about the four original latents regardless of
+  which structural specification is reported downstream.
+
+### Notable findings / flags
+
+- **HIER_INDIV's positive direct path to PUBLIC behavior (0.12\*) is a
+  suppression effect, not a raw positive association.** The zero-order
+  correlation between `HIER_INDIV` and the `PUBLIC` composite is slightly
+  negative and non-significant (r = −0.062, p = .165); no individual public
+  behavior item has a strong or reliably positive raw correlation with
+  `HIER_INDIV` ("attended a meeting" and "contacted a business" are the
+  closest, both only marginal at p ≈ .05–.08). The positive direct path
+  emerges only net of NEP and CNS, which HIER_INDIV correlates strongly
+  negatively with (r = −0.43, −0.17); the model's *total* effect of
+  HIER_INDIV on Public is ≈0 (see `tbl6_hiec`). Worth a caveat if the
+  Discussion cites this path.
+
+### Open items / next steps
+
+- Discussion-section prose in `cc-behave.qmd` still narrates the *four
+  separate worldview measures* findings (egalitarianism/communitarianism
+  specifics); it needs updating to match the HIER-INDIV/EGAL-COMM results
+  now shown in the main-text tables. Not edited this session — prose is
+  author-maintained per `CLAUDE.md`.
+- This session's changes are **uncommitted**; commit when ready.
+
+---
+
 ## 2026-07-07 — Conceptual-model connector ticks, intro prose revisions
 
 **Goal:** Add visual connectors between the conceptual-model boxes and the

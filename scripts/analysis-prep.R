@@ -47,12 +47,16 @@ envatt <- read.csv(file.path(.proj, "data/apsa17.csv"))
 ## controls
 envatt$age      <- envatt$q75
 envatt$female   <- ifelse(envatt$q76 == 2, 1, 0)
+envatt$male     <- ifelse(envatt$q76 == 1, 1, 0)
 envatt$hhincome <- envatt$q83
 envatt$Ideology <- ifelse(envatt$q80 == 8, 4, envatt$q80)   # "haven't thought" -> moderate
 envatt$Dem      <- ifelse(envatt$q78 == 1 | envatt$q79c == 1, 1, 0)
 envatt$Rep      <- ifelse(envatt$q78 == 2 | envatt$q79c == 2, 1, 0)
 envatt$urban    <- envatt$q81
 envatt$educ     <- envatt$q82
+## race/ethnicity is a check-all-that-apply item (q77_1..q77_5: Black,
+## Asian, Hispanic, White, Other); q77_4 is the White/Caucasian checkbox.
+envatt$white    <- envatt$q77_4
 
 ## cultural cognition: egalitarianism-hierarchy (cc_eh_1..14)
 for (i in 1:7)  envatt[[paste0("cc_eh_", i)]] <- envatt[[paste0("q1x31_", i)]]
@@ -106,26 +110,35 @@ for (v in c("nep5","nep15"))                 envatt[[v]] <- 6 - envatt[[v]]
 ## =====================================================================
 ## 3. SEM MODELS
 ## =====================================================================
-.semModelCNS <- '
+## Demographic controls added to every structural (endogenous) regression
+## below: age, gender (male), race (white), education (educ, 1-6 ordinal),
+## and household income (hhincome, 1-8 ordinal). Kept out of the path
+## diagrams (draw_sem*() drop them as manifest nodes) for readability;
+## their estimates are still in the underlying lavaan fits and any table
+## built from parameterEstimates()/standardizedSolution().
+.ctrl_vars <- c("age", "male", "white", "educ", "hhincome")
+.ctrl_rhs  <- paste(.ctrl_vars, collapse = " + ")
+
+.semModelCNS <- paste0('
   HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7
   EGAL  =~ cc_eh_11 + cc_eh_13 + cc_eh_14
   INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12
   COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16
   CNS   =~ cns2 + cns6 + cns7
-  CNS     ~ HIER + EGAL + INDIV + COMM
-  PUBLIC  ~ CNS + HIER + EGAL + INDIV + COMM
-  PRIVATE ~ CNS + HIER + EGAL + INDIV + COMM
-'
-.semModelNEP <- '
+  CNS     ~ HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+  PUBLIC  ~ CNS + HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+  PRIVATE ~ CNS + HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+')
+.semModelNEP <- paste0('
   HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7
   EGAL  =~ cc_eh_11 + cc_eh_13 + cc_eh_14
   INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12
   COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16
   NEP   =~ nep5 + nep10 + nep15
-  NEP     ~ HIER + EGAL + INDIV + COMM
-  PUBLIC  ~ NEP + HIER + EGAL + INDIV + COMM
-  PRIVATE ~ NEP + HIER + EGAL + INDIV + COMM
-'
+  NEP     ~ HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+  PUBLIC  ~ NEP + HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+  PRIVATE ~ NEP + HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+')
 fitCNS <- sem(.semModelCNS, data = envatt)
 fitNEP <- sem(.semModelNEP, data = envatt)
 
@@ -250,16 +263,17 @@ tbl3 <- rbind(.fit_row(fitCNS, "CNS"), .fit_row(fitNEP, "NEP"))
                   ifelse(p < .05, "*",  ifelse(p < .10, "†", "")))))
 .fmt <- function(est, p) paste0(formatC(est, format = "f", digits = 3), .stars(p))
 
-# mediation with two observed outcomes (PUBLIC, PRIVATE) estimated jointly
+# mediation with two observed outcomes (PUBLIC, PRIVATE) estimated jointly;
+# demographic controls added to every regression (orient, PUBLIC, PRIVATE)
 .med_model <- function(focal, others, orient, items) paste0(
   "HIER  =~ cc_eh_2 + cc_eh_5 + cc_eh_7\n",
   "EGAL  =~ cc_eh_11 + cc_eh_13 + cc_eh_14\n",
   "INDIV =~ cc_ci_2 + cc_ci_3 + cc_ci_12\n",
   "COMM  =~ cc_ci_13 + cc_ci_14 + cc_ci_16\n",
   orient, " =~ ", items, "\n",
-  orient, " ~ a*", focal, " + ", paste(others, collapse = " + "), "\n",
-  "PUBLIC  ~ cu*", focal, " + ", paste(others, collapse = " + "), "\n",
-  "PRIVATE ~ cv*", focal, " + ", paste(others, collapse = " + "), "\n",
+  orient, " ~ a*", focal, " + ", paste(others, collapse = " + "), " + ", .ctrl_rhs, "\n",
+  "PUBLIC  ~ cu*", focal, " + ", paste(others, collapse = " + "), " + ", .ctrl_rhs, "\n",
+  "PRIVATE ~ cv*", focal, " + ", paste(others, collapse = " + "), " + ", .ctrl_rhs, "\n",
   "PUBLIC  ~ bu*", orient, "\n",
   "PRIVATE ~ bv*", orient, "\n",
   "ab_pub  := a*bu\n  ab_prv  := a*bv\n",
@@ -297,8 +311,13 @@ tbl4 <- do.call(rbind, lapply(.med_specs, function(s) {
 ## =====================================================================
 ## 8. FIGURE HELPER (Figures 2 & 3)
 ## =====================================================================
+## Demographic controls (.ctrl_vars) are dropped from the diagram for
+## readability -- their paths are estimated in `fit` and reported in the
+## tables, just not drawn here.
 draw_sem <- function(fit) {
-  p <- semPaths(fit, whatLabels = "std", sizeMan = 5, node.width = 1,
+  spm <- semPlot::semPlotModel(fit)
+  spm <- semptools::drop_nodes(spm, intersect(.ctrl_vars, spm@Vars$name))
+  p <- semPaths(spm, whatLabels = "std", sizeMan = 5, node.width = 1,
                 edge.label.cex = .75, style = "ram", rotation = 2,
                 mar = c(5, 5, 5, 5), DoNotPlot = TRUE)
   plot(mark_sig(p, fit))
@@ -399,6 +418,38 @@ draw_sem_struct <- function(fit) {
   plot(.keep_sig_edges(p, fit))
 }
 
+## Structural-only variant of the HIER-INDIV/EGAL-COMM full model (section
+## 10 below): same treatment as draw_sem_struct(), but with a two-node
+## layout since HIER_INDIV and EGAL_COMM replace the four separate
+## worldview latents.
+draw_sem_struct_hiec <- function(fit) {
+  spm  <- semPlot::semPlotModel(fit)
+  ## HIER_INDIV/EGAL_COMM are observed (manifest = TRUE), unlike the four
+  ## latent worldviews in draw_sem_struct(), so they must be spared here too.
+  keep <- c("PUBLIC", "PRIVATE", "HIER_INDIV", "EGAL_COMM")
+  drop <- setdiff(spm@Vars$name[spm@Vars$manifest], keep)
+  spm  <- semptools::drop_nodes(spm, drop)
+  ## node order follows spm@Vars: PUBLIC PRIVATE HIER_INDIV EGAL_COMM NEP CNS
+  lay <- matrix(c(
+     2.0,  0.8,   # PUBLIC
+     2.0, -0.8,   # PRIVATE
+    -2.0,  0.7,   # HIER_INDIV
+    -2.0, -0.7,   # EGAL_COMM
+    -0.7,  0.0,   # NEP
+     0.7,  0.0),  # CNS
+    ncol = 2, byrow = TRUE)
+  p <- semPaths(spm, whatLabels = "std", style = "ram", layout = lay,
+                residuals = FALSE, sizeMan = 9, sizeMan2 = 6, nCharNodes = 0,
+                edge.label.cex = .8, mar = c(4, 6, 4, 6), DoNotPlot = TRUE)
+  p <- mark_sig(p, fit)
+  p <- .dedupe_cov_labels(p)
+  p <- .keep_sig_edges(p, fit)
+  p <- semptools::change_node_label(p, c(
+    PUBLIC = "Public\nBehavior", PRIVATE = "Private\nBehavior",
+    HIER_INDIV = "HIER-\nINDIV", EGAL_COMM = "EGAL-\nCOMM"))
+  plot(p)
+}
+
 ## Conceptual model diagram (Figure 1), drawn with base graphics so it
 ## renders natively to HTML/PDF/DOCX without a headless browser. Pure black
 ## and white: cultural cognition -> NEP -> CNS -> public/private behavior.
@@ -437,8 +488,8 @@ draw_concept_model <- function() {
   arr(cns[1] + hw, cns[2] - 0.18, priv[1] - hw, priv[2] + 0.12)
   bracket(c(cc[1], nep[1], cns[1]), cc[2] + hh + 0.15, cc[2] + hh,
           c("Cognition", "Environmental Orientation"))
-  box(cc[1], cc[2], "Cultural\nCognition")
-  box(nep[1], nep[2], "New Ecological\nParadigm (NEP)")
+  box(cc[1], cc[2], "Cultural\nWorldviews")
+  box(nep[1], nep[2], "Ecological\nWorldviews (NEP)")
   box(cns[1], cns[2], "Connectedness\nto Nature (CNS)")
   box(pub[1], pub[2], "Public\nBehavior")
   box(priv[1], priv[2], "Private\nBehavior")
@@ -458,23 +509,25 @@ draw_concept_model <- function() {
   NEP   =~ nep5 + nep10 + nep15
   CNS   =~ cns2 + cns6 + cns7
 '
-.serialModel <- paste(.measSerial, '
-  NEP     ~ HIER + EGAL + INDIV + COMM
-  CNS     ~ NEP
-  PUBLIC  ~ CNS
-  PRIVATE ~ CNS
+.serialModel <- paste0(.measSerial, '
+  NEP     ~ HIER + EGAL + INDIV + COMM + ', .ctrl_rhs, '
+  CNS     ~ NEP + ', .ctrl_rhs, '
+  PUBLIC  ~ CNS + ', .ctrl_rhs, '
+  PRIVATE ~ CNS + ', .ctrl_rhs, '
 ')
 
 ## Full model with direct paths to both observed outcomes. Worldview codes:
 ## H=HIER, E=EGAL, I=INDIV, K=COMM. Outcome prefixes: u=PUBLIC, v=PRIVATE.
 ## a*=CC->NEP, d=NEP->CNS, m*=CC->CNS. Decomposition := generated per
-## worldview x outcome below.
+## worldview x outcome below. Demographic controls are added to every
+## equation but left unlabeled (their coefficients aren't part of the
+## decomposition, just partialled out of the worldview/NEP/CNS effects).
 .wv_full <- c(H = "HIER", E = "EGAL", I = "INDIV", K = "COMM")
 .reg_full <- c(
-  "NEP     ~ aH*HIER + aE*EGAL + aI*INDIV + aK*COMM",
-  "CNS     ~ d*NEP + mH*HIER + mE*EGAL + mI*INDIV + mK*COMM",
-  "PUBLIC  ~ uCNS*CNS + uNEP*NEP + uH*HIER + uE*EGAL + uI*INDIV + uK*COMM",
-  "PRIVATE ~ vCNS*CNS + vNEP*NEP + vH*HIER + vE*EGAL + vI*INDIV + vK*COMM")
+  paste0("NEP     ~ aH*HIER + aE*EGAL + aI*INDIV + aK*COMM + ", .ctrl_rhs),
+  paste0("CNS     ~ d*NEP + mH*HIER + mE*EGAL + mI*INDIV + mK*COMM + ", .ctrl_rhs),
+  paste0("PUBLIC  ~ uCNS*CNS + uNEP*NEP + uH*HIER + uE*EGAL + uI*INDIV + uK*COMM + ", .ctrl_rhs),
+  paste0("PRIVATE ~ vCNS*CNS + vNEP*NEP + vH*HIER + vE*EGAL + vI*INDIV + vK*COMM + ", .ctrl_rhs))
 .defs_full <- unlist(lapply(names(.wv_full), function(x) c(
   sprintf("dirP_%s := u%s",                          x, x),                # direct, public
   sprintf("serP_%s := a%s*d*uCNS",                   x, x),                # serial NEP->CNS, public
@@ -531,3 +584,120 @@ lrt_text <- sprintf(
 tbl6 <- do.call(rbind, lapply(names(.wv), function(nm) rbind(
   .decomp_row(nm, .wv[[nm]], "Public",  "P"),
   .decomp_row(nm, .wv[[nm]], "Private", "R"))))
+
+## =====================================================================
+## 10. EXPLORATORY: HIER-INDIV / EGAL-COMM COMPOSITE GROUPS
+##    Collapses the four worldview latents into the two composite,
+##    dichotomous groups common in the cultural cognition literature:
+##    Hierarch-Individualists (top half of both HIER and INDIV) and
+##    Egalitarian-Communitarians (top half of both EGAL and COMM).
+##    Re-runs the section 9 serial-chain/full model with HIER_INDIV and
+##    EGAL_COMM as observed predictors in place of the four separate
+##    worldview latents. Supplement-only (cc-behave-supplemental.qmd)
+##    while this is being explored; NOT wired into the main-text objects
+##    above (fitSerial/fitFull/tbl5/tbl6 are unchanged).
+## =====================================================================
+.wv_items <- list(
+  HIER  = c("cc_eh_2", "cc_eh_5", "cc_eh_7"),
+  EGAL  = c("cc_eh_11", "cc_eh_13", "cc_eh_14"),
+  INDIV = c("cc_ci_2", "cc_ci_3", "cc_ci_12"),
+  COMM  = c("cc_ci_13", "cc_ci_14", "cc_ci_16"))
+for (nm in names(.wv_items)) {
+  envatt[[paste0(nm, "_score")]] <- rowMeans(envatt[.wv_items[[nm]]], na.rm = TRUE)
+}
+## "top half" = at or above that scale's own median.
+.top_half <- function(x) x >= median(x, na.rm = TRUE)
+envatt$HIER_INDIV <- as.integer(.top_half(envatt$HIER_score) & .top_half(envatt$INDIV_score))
+envatt$EGAL_COMM  <- as.integer(.top_half(envatt$EGAL_score)  & .top_half(envatt$COMM_score))
+
+## ---- Table: group sizes ----
+tbl_hiec_n <- data.frame(
+  Group = c("Hierarch-Individualist (HIER-INDIV)", "Egalitarian-Communitarian (EGAL-COMM)",
+            "Both", "Neither"),
+  N = c(sum(envatt$HIER_INDIV == 1, na.rm = TRUE),
+        sum(envatt$EGAL_COMM  == 1, na.rm = TRUE),
+        sum(envatt$HIER_INDIV == 1 & envatt$EGAL_COMM == 1, na.rm = TRUE),
+        sum(envatt$HIER_INDIV == 0 & envatt$EGAL_COMM == 0, na.rm = TRUE)),
+  Percent = round(100 * c(
+    mean(envatt$HIER_INDIV == 1, na.rm = TRUE),
+    mean(envatt$EGAL_COMM  == 1, na.rm = TRUE),
+    mean(envatt$HIER_INDIV == 1 & envatt$EGAL_COMM == 1, na.rm = TRUE),
+    mean(envatt$HIER_INDIV == 0 & envatt$EGAL_COMM == 0, na.rm = TRUE)), 1),
+  check.names = FALSE)
+
+## ---- serial chain / full models, HIER_INDIV + EGAL_COMM in place of
+##      HIER + EGAL + INDIV + COMM ----
+.measSerialHIEC <- '
+  NEP   =~ nep5 + nep10 + nep15
+  CNS   =~ cns2 + cns6 + cns7
+'
+.serialModelHIEC <- paste0(.measSerialHIEC, '
+  NEP     ~ HIER_INDIV + EGAL_COMM + ', .ctrl_rhs, '
+  CNS     ~ NEP + ', .ctrl_rhs, '
+  PUBLIC  ~ CNS + ', .ctrl_rhs, '
+  PRIVATE ~ CNS + ', .ctrl_rhs, '
+')
+
+.wv_fullHIEC <- c(HI = "HIER_INDIV", EC = "EGAL_COMM")
+.reg_fullHIEC <- c(
+  paste0("NEP     ~ aHI*HIER_INDIV + aEC*EGAL_COMM + ", .ctrl_rhs),
+  paste0("CNS     ~ d*NEP + mHI*HIER_INDIV + mEC*EGAL_COMM + ", .ctrl_rhs),
+  paste0("PUBLIC  ~ uCNS*CNS + uNEP*NEP + uHI*HIER_INDIV + uEC*EGAL_COMM + ", .ctrl_rhs),
+  paste0("PRIVATE ~ vCNS*CNS + vNEP*NEP + vHI*HIER_INDIV + vEC*EGAL_COMM + ", .ctrl_rhs))
+.defs_fullHIEC <- unlist(lapply(names(.wv_fullHIEC), function(x) c(
+  sprintf("dirP_%s := u%s",                          x, x),
+  sprintf("serP_%s := a%s*d*uCNS",                   x, x),
+  sprintf("indP_%s := a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x),
+  sprintf("totP_%s := u%s + a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x, x),
+  sprintf("dirR_%s := v%s",                          x, x),
+  sprintf("serR_%s := a%s*d*vCNS",                   x, x),
+  sprintf("indR_%s := a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x),
+  sprintf("totR_%s := v%s + a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x, x))))
+.fullModelHIEC <- paste(c(.measSerialHIEC, .reg_fullHIEC, .defs_fullHIEC), collapse = "\n")
+
+fitSerialHIEC <- sem(.serialModelHIEC, data = envatt)
+fitFullHIEC   <- sem(.fullModelHIEC,   data = envatt)
+
+## ---- fit comparison (reuses .cmp_row from section 9) ----
+tbl5_hiec <- rbind(.cmp_row(fitSerialHIEC, "Serial chain (HI/EC)"),
+                    .cmp_row(fitFullHIEC,   "Full (HI/EC, + direct paths)"))
+
+.lrt_hiec <- lavTestLRT(fitSerialHIEC, fitFullHIEC)
+.i_hiec   <- which(!is.na(.lrt_hiec[["Chisq diff"]]))[1]
+lrt_text_hiec <- sprintf(
+  "Nested $\\chi^2$ difference test (serial chain nested in full model, HIER-INDIV/EGAL-COMM groups): $\\Delta\\chi^2(%d) = %.2f$, $p = %.4f$.",
+  .lrt_hiec[["Df diff"]][.i_hiec], .lrt_hiec[["Chisq diff"]][.i_hiec], .lrt_hiec[["Pr(>Chisq)"]][.i_hiec])
+
+## ---- standardized effect decomposition (reuses .fmt from section 7) ----
+.ssFullHIEC <- standardizedSolution(fitFullHIEC)
+.getdefHIEC <- function(name) {
+  r <- .ssFullHIEC[.ssFullHIEC$op == ":=" & .ssFullHIEC$lhs == name, ]
+  .fmt(r$est.std[1], r$pvalue[1])
+}
+.wv_hiec_lab <- c("Hierarch-Individualist" = "HI", "Egalitarian-Communitarian" = "EC")
+.decomp_row_hiec <- function(nm, x, outcome, pfx) data.frame(
+  Predictor = nm, Outcome = outcome,
+  Direct             = .getdefHIEC(paste0("dir", pfx, "_", x)),
+  "Serial (NEP→CNS)" = .getdefHIEC(paste0("ser", pfx, "_", x)),
+  "Total indirect"   = .getdefHIEC(paste0("ind", pfx, "_", x)),
+  Total              = .getdefHIEC(paste0("tot", pfx, "_", x)),
+  row.names = NULL, check.names = FALSE)
+tbl6_hiec <- do.call(rbind, lapply(names(.wv_hiec_lab), function(nm) rbind(
+  .decomp_row_hiec(nm, .wv_hiec_lab[[nm]], "Public",  "P"),
+  .decomp_row_hiec(nm, .wv_hiec_lab[[nm]], "Private", "R"))))
+
+## ---- demographic control coefficients, full combined model (HIER-INDIV/
+##      EGAL-COMM) reported in the main text -- omitted from the path
+##      diagram and from tbl6_hiec for readability, reported here instead ----
+.ctrl_lab <- c(age = "Age", male = "Male", white = "White",
+               educ = "Education", hhincome = "Household income")
+.ctrl_row_hiec <- function(v) {
+  r <- .ssFullHIEC[.ssFullHIEC$op == "~" & .ssFullHIEC$rhs == v &
+                     .ssFullHIEC$lhs %in% c("NEP", "CNS", "PUBLIC", "PRIVATE"), ]
+  vals <- setNames(mapply(.fmt, r$est.std, r$pvalue), r$lhs)
+  data.frame(Control = .ctrl_lab[[v]],
+             NEP = vals[["NEP"]], CNS = vals[["CNS"]],
+             Public = vals[["PUBLIC"]], Private = vals[["PRIVATE"]],
+             row.names = NULL, check.names = FALSE)
+}
+tbl_hiec_controls <- do.call(rbind, lapply(.ctrl_vars, .ctrl_row_hiec))

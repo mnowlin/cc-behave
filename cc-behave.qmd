@@ -45,107 +45,43 @@ Next, we develop our approach based on previous literature.
 
 The process though values and beliefs impact behavior is often understood as a process where higher-order beliefs influence second-order beliefs, which in turn influence behavior. One of the leading frameworks that adopts this approach is the Value-Belief-Norm (VBN) framework [@sternValueBeliefNormTheorySupport1999]. In brief, the VBN posits that underlining values inform broad environmental orientations that activate norms that in turn support pro-environmental behavior. VBN involves a sequential chain that goes from values to beliefs to behavior. Therefore, values inform attitudes, which in turn inform behaviors.
 
-
-Value-Belief-Norm (VBN) framework literature
+<!-- Value-Belief-Norm (VBN) framework literature -->
 
 A similar set of assumptions inform a sophisticated understanding of belief systems developed by policy scholar using the Advocacy Coalition Framework (ACF) [@nohrstedtAdvocacyCoalitionFramework2023; @sabatierPolicyChangeLearning1993; @henryUnderstandingEnvironmentalCognition2012]. With this approach, beliefs systems are made up of three different types of beliefs, including deep core, policy core, and secondary beliefs. Deep core beliefs are the broadest in scope and are fundamental beliefs that inform attitudes about multiple issues. Political ideology is an example of a deep core belief. Next, are policy core beliefs, which are beliefs about particular issues. Environmental orientations would be akin to policy core beliefs. Finally, secondary aspects are the narrowest in scope and include beliefs about how best to achieve the goals outlined in policy core beliefs.
 
-In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape *cognition* from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is "the way individuals structure their thinking about environmental issues and associated political actions" [@henryUnderstandingEnvironmentalCognition2012, 238]. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, deep core beliefs likely influence behaviors *indirectly* [@sparksMeasuringEnvironmentalValues2021], with the affective element of environmental orientations having the most direct influence on behaviors \[\].
+In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape *cognition* from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is "the way individuals structure their thinking about environmental issues and associated political actions" [@henryUnderstandingEnvironmentalCognition2012, 238]. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, deep core beliefs likely influence behaviors *indirectly* [@sparksMeasuringEnvironmentalValues2021], with the affective element of environmental orientations having the most direct influence on behaviors [].
 
 ## Deep Core Beliefs: Cultural Cognition 
 
 For our measure of deep core beliefs we use cultural cognition. Cultural cognition is derived from the cultural theory of risk developed by Mary Douglas and Aaron Wildavsky [@douglasRiskCultureEssay1982; @thompsonCulturalTheory1990]. Cultural theory (CT) has been identified as a leading way to conceptualize and measure deep core beliefs [@ripbergerCulturalTheoryMeasurement2014]. In brief, CT posits that social structures and relationships are represented by two dimensions, including a grid dimension and a group dimension. Four competing cultural worldviews arise based on their position on the grid and group dimensions. The grid dimension represents preferred social structures regarding the roles that one plays in society and the rules by which one must abide. The group dimension represents the importance of cohesive social units and the well-being of the broader community. The original formulation of CT produces four cultural worldviews based on the relative positions on the grid and group dimensions, including hierarchy (high grid, high group), egalitarianism (low grid, high group), individualism (low grid, and low group), and fatalism (high grid, low group). 
 
-Cultural worldviews provide a foundational, or core belief that inform beliefs about specific policy issues (i.e., policy core beliefs), societal controversies, and risks, among other beliefs [@nowlinEnvironmentalPolicymakingEra2019; @ripbergerCulturalTheoryMeasurement2014; @jenkins-smithBeliefSystemContinuity2014; @sotirovCognitiveTheoryShifting2016]. Several studies have shown a connection between cultural worldviews and risk perceptions associated with a host of environmental issues [see @xueCulturalWorldviewsEnvironmental2014], including fracking [@boudetFrackingControversyCommunication2014], nuclear waste [@jenkins-smithIdeologyCultureRisk1994], renewable energy [@tumlisonWhatExplainsLocal2018], geoengineering [@kahanGeoengineeringClimateChange2015], high-voltage power lines [@moyerUnderstandingLocalPolicy2016; @moyerCulturalPredispositionsSpecific2019], and climate change [@jonesLeadingWayCompromise2011; @kahanPolarizingImpactScience2012; @nowlinCulturalTheoryPartisanship2020; @priceMeasuringCulturalValues2014; @nowlinWhoShouldMore2022], among others.
+Cultural worldviews provide a foundational set of deep core beliefs that inform beliefs about specific policy issues (i.e., policy core beliefs), societal controversies, and risks, among other beliefs [@nowlinEnvironmentalPolicymakingEra2019; @ripbergerCulturalTheoryMeasurement2014; @jenkins-smithBeliefSystemContinuity2014; @sotirovCognitiveTheoryShifting2016]. In the context of cultural worldviews, perceptions of risk are based on the degree to which they undermine or threaten the preferred social order within each worldview. Several studies have shown a connection between cultural worldviews and risk perceptions associated with a host of environmental issues [see @xueCulturalWorldviewsEnvironmental2014], including fracking [@boudetFrackingControversyCommunication2014], nuclear waste [@jenkins-smithIdeologyCultureRisk1994], renewable energy [@tumlisonWhatExplainsLocal2018], geoengineering [@kahanGeoengineeringClimateChange2015], high-voltage power lines [@moyerUnderstandingLocalPolicy2016; @moyerCulturalPredispositionsSpecific2019], and climate change [@jonesLeadingWayCompromise2011; @kahanPolarizingImpactScience2012; @nowlinCulturalTheoryPartisanship2020; @priceMeasuringCulturalValues2014; @nowlinWhoShouldMore2022], among others.
 
-Cultural cognition draws CT and its cultural worldviews, but makes two important distinctions. The first is its focus on social and psychological mechanisms that examine how cultural worldview's shape interpret and process information, understand risks, and take positions on policy issues. @kahanCulturalCognitionConception2012 identifies five mechanisms, including *cultural identity-protective cognition*, where individuals conform their beliefs to those in their "group" that share cultural values; *culturally biased assimilation and cultural polarization*, involves selective attention to worldview-confirming information and balanced information tends drives people of opposing worldviews further apart rather than together; *cultural availability* occurs as worldview-confirming events and experts are more readily noticed, credited, and recalled; *cultural credibility heuristic* is when people trust sources whose apparent values match their own; and *cultural-identity affirmation*, has been show when framing information alongside an identity-affirming rather than identity-threatening policy solution makes people more receptive to the underlying facts.  
+Cultural cognition draws CT and its cultural worldviews, but makes two important distinctions. The first is its focus on social and psychological mechanisms that examine how cultural worldview's shape interpret and process information, understand risks, and take positions on policy issues. @kahanCulturalCognitionConception2012 identifies five mechanisms, including *cultural identity-protective cognition*, where individuals conform their beliefs to those in their "group" that share cultural values; *culturally biased assimilation and cultural polarization*, involves selective attention to worldview-confirming information and balanced information tends drives people of opposing worldviews further apart rather than together; *cultural availability* occurs as worldview-confirming events and experts are more readily noticed, credited, and recalled; *cultural credibility heuristic* is when people trust sources whose apparent values match their own; and *cultural-identity affirmation*, has been show when framing information alongside an identity-affirming rather than identity-threatening policy solution makes people more receptive to the underlying facts. Together, these mechanisms account for the cognition part of cultural cognition.  
 
 The second distinction of cultural cognition from CT is how cultural worldviews are measured empirically. As noted, the CT worldviews are based on the placement on the grid and group dimensions, and worldviews are a result of placement on both. However, cultural cognition conceives grid and group as two orthogonal dimensions with worldviews identified as being high or low on each dimension rather than a combination of the dimensions. Those high on the grid dimension are called hierarchical as they prefer a society with well-defined roles and clear lines of authority, whereas those low on the grid dimension are termed egalitarian as they value a social order based on an equal sharing of power and resources. Communitarian is the worldview that is high on the group dimension, and it represents a preference for a collectivist society. Finally, individualism is low on the group dimension preferring increased individual autonomy and responsibility [@kahanCulturalCognitionConception2012; @kahanCulturalCognitionPublic2006; @kahanPolarizingImpactScience2012].
 
-
-
-
-
-In brief, cultural cognition posits that worldviews are based on views about ideal social structures and relationships, and perceptions of risk are based on the degree to which they undermine or threaten the preferred social order within each worldview. 
-
-The 
-
-
-
-
-In general, communitarianism, with its concern about collective well-being and egalitarianism, with its concern about the negative impacts of concentrated power tend to see threats to the natural world as a large risk. Hierarchs believe that natural resources can be well managed by experts and individualism supports the use of natural resources in private enterprise, and therefore hierarchy and individualism tend not to be concerned about environment harm. As noted, cultural worldviews have been found to be associated with attitudes about environmental issues, yet not associated with pro-environmental behaviors [@sparksMeasuringEnvironmentalValues2021]. However, cultural cognition is associated with pro-environmental orientation, specifically the New Ecological Paradigm (NEP) [@nowlinEnvironmentalPolicymakingEra2019].
-
-
-
-
-
-
-
-
-
-that higher-order beliefs, like deep core beliefs, shape how people think about issues and filter information
-
-cultural and environmental cognition.
-
-Work using environmental cognition
-
-belief system framework of the ACF
-
-cultural and environmental cognition
-
-Policy scholars have developed a that can inform how beliefs influence attitudes \[\]. While not much work has connected belief systems to behavior
-
-belief systems
-
-Environmental orientations are part of broader belief systems, and policy scholars using the Advocacy Coalition Framework have developed a three-tiered hierarchical model of belief systems
-
-Cultural theory, developed by Mary Douglas and Aaron Wildavsky
-
-Deep core beliefs
-
-Additional work has examined the importance of belief systems, as developed by \[\].
-
-Environmental cognition connects the belief system of the ACF to VBN
-
-In this paper, we build on this approach by developing a theoretical framework
-
-The beliefs associated with VBN are often measured using the New Ecological Paradigm (NEP). However, recent work found the New Ecological Paradigm (NEP) scale plus controls accounted for 12% of variation in self-reported pro-environmental behavior [@sparksMeasuringEnvironmentalValues2021].
-
-and the Connectedness to Nature Scale (CNS) plus controls accounted for 35%.
-
-To further elaborate the attitude-behavior model we examine the relationship between cultural cognition, environmental orientation (attitude and emotional connection), and behavior.
-
-; however, cultural cognition does not have a strong association with pro-environmental behaviors [@sparksMeasuringEnvironmentalValues2021].
-
-In this paper, we examine whether environmental orientations mediate the relationship between cultural cognition and behavior such that cultural cognition shapes environmental orientations, which in turn influences pro-environmental behavior. In doing so, we argue that when cultural cognition aligns with environmental orientation, there is a stronger relationship with pro-environmental behaviors than when considering attitude or affect alone, thus reducing the attitude-behavior gap.
-
-Taking the step from cultural worldviews to environmental orientation , we test the relationship between cultural cognition and environmental attitude – as measured by the New Ecological Paradigm [NEP; @dunlapNewTrendsMeasuring2000] – and emotional connection to nature – as measured by the Connectedness to Nature Scale [CNS; @mayerConnectednessNatureScale2004]. Altogether, combining cultural cognition and environmental orientation should improve our understanding of the drivers of environmentally protective behaviors. Specifically, in this paper, we suggest that environmental orientation mediates the relationship between cultural cognition and environmental behavior. Essentially, environmental orientation helps connect cultural worldviews and risk perceptions to action to reduce that risk. Moreover, cultural cognition helps to bridge the attitude-behavior gap by providing a basis through environmental orientations derive and subsequently influence behavior.
-
-
-
-
+Regarding worldviews and environmental issues, in general, communitarianism, with its concern about collective well-being and egalitarianism, with its concern about the negative impacts of concentrated power tend to see threats to the natural world as a large risk. Hierarchs believe that natural resources can be well managed by experts and individualism supports the use of natural resources in private enterprise, and therefore hierarchy and individualism tend not to be concerned about environment harm. As noted, cultural worldviews have been found to be associated with attitudes about environmental issues, yet not associated with pro-environmental behaviors [@sparksMeasuringEnvironmentalValues2021]. However, cultural cognition is associated with pro-environmental orientation, specifically the New Ecological Paradigm (NEP) [@nowlinEnvironmentalPolicymakingEra2019].
 
 ## New Ecological Paradigm
 
-To understand environmental behavior, scholars often turn to mental attributes related to environmental orientation. A very common measure of environmental orientation is the New Ecological Paradigm (NEP) [@dunlapNewTrendsMeasuring2000]. This instrument was initially developed by Dunlap and Van Liere in 1978 and has been widely adopted to explain environmental behavior [e.g., @sternNewEnvironmentalTheories2000]. In 2000, Dunlap et al revised the NEP.
+To understand environmental behavior, scholars often turn to mental attributes related to environmental orientations. Our first measure of environmental orientations is the New Ecological Paradigm (NEP). The NEP, developed in 1978 [@dunlapNewEnvironmentalParadigm1978], has been widely adopted to explain environmental behavior [e.g., @sternNewEnvironmentalTheories2000]. It's original development focused on explaining the values associated with environmentalism as an emergent environmental paradigm that challenged the dominant social paradigm. Similar to cultural cognition, the NEP provides an ecological worldview that encompass values associated with the environment, and, as a worldview it includes cognition elements that shape how the world is seen []. Additionally, it is often used in the VBN as a measure of environmental beliefs [@canlasMoreTwentyYears2022]. The NEP was updated in 2000, and the new measure comprises five aspects which are “the reality of the limits to growth, anti-anthropocentrism, the fragility of earth’s balance, rejection of exemptionalism, and the possibility of an ecocrisis” [@dunlapNewTrendsMeasuring2000, 432].
 
-The 1978 conceptualization focused on what they considered an emergent environmental paradigm that challenged the dominant social paradigm [@dunlapNewEnvironmentalParadigm1978]. Dunlap and co-authors [-@dunlapNewTrendsMeasuring2000] re-imagined the NEP in 2000, shifting focus to an ecological worldview and toward more modern language to describe the ecological crises. The new measure comprises five aspects of this ecological paradigm which are “the reality of the limits to growth, anti-anthropocentrism, the fragility of earth’s balance, rejection of exemptionalism, and the possibility of an ecocrisis” (p. 432). To assess this construct, they designed 15 Likert items that contain a mix of attitude and belief measures which are balanced between a pro-environmental orientation and a negative environmental orientation [@dunlapNewTrendsMeasuring2000].
-
-The NEP is not without skeptics. One study applying scale analysis of the NEP based on a random sample of Norwegians found that the scale is not unidimensional as is often claimed [@grendstadNewEcologicalParadigm1999]. A recent study found the NEP to be the weakest predictor of environmental behavior when compared in the same sample to the Connectedness to Nature scale and environmentalist identity [@sparksMeasuringEnvironmentalValues2021]. This may be because endorsement of the NEP has decreased over time [@louMetaanalysisTemporalShifts2022]. In another study, Sparks and his colleagues [-@sparksMeasuringProenvironmentalOrientation2022] criticize the NEP (and the CNS) for failing to adequately identify political conservatives who also hold a pro-environment orientation.
+The NEP is not without skeptics. One study applying scale analysis of the NEP based on a random sample of Norwegians found that the scale is not unidimensional as is often claimed [@grendstadNewEcologicalParadigm1999]. In another study, @sparksMeasuringProenvironmentalOrientation2022 criticize the NEP for failing to adequately identify political conservatives who also hold a pro-environment orientation. Most important for our purposes is a recent study that found the NEP to be the weakest predictor of self-reported pro-environmental behavior, accounting for 12% of the variation, when compared in the same sample to the Connectedness to Nature Scale and environmentalist identity [@sparksMeasuringEnvironmentalValues2021]. This may be because endorsement of the NEP has decreased over time [@louMetaanalysisTemporalShifts2022], or it may be that feeling close and connected to nature is more proximate to behavior than more abstract, cognitive worldviews like cultural cognition and the NEP. 
 
 ## Connectedness to Nature
 
-A second common instrument measuring environmental orientation is the Connectedness to Nature Scale (CNS) [@mayerConnectednessNatureScale2004]. As implied by its name, the CNS seeks to measure an individual’s emotional connection to nature, rather than environmental attitude. Mayer and Franz draw inspiration from Leopold’s insistence that to address environmental problems, people must feel emotionally connected to the non-human community on which we are dependent upon. The idea is that current ecological crises are a direct result of humanity losing touch with the broader community in which we live. The hypothesis can be tested by measuring an individual’s affective connection to nature and determining if someone with more emotional connection correlates to more environmentally protective behaviors. They demonstrate this in their study and show that the CNS better predicts behavior [@mayerConnectednessNatureScale2004]. The full instrument is composed of 14 Likert items designed to directly assess an individual’s affective connection to nature.
+A second common instrument measuring environmental orientation is the Connectedness to Nature Scale (CNS) [@mayerConnectednessNatureScale2004]. As implied by its name, the CNS seeks to measure an individual’s emotional connection to nature, rather than an environmental worldview or attitude. Mayer and Franz draw inspiration from Leopold’s insistence that to address environmental problems, people must feel emotionally connected to the non-human community on which we are dependent upon. The idea is that current ecological crises are a direct result of humanity losing touch with the broader community in which we live. The hypothesis can be tested by measuring an individual’s affective connection to nature and determining if someone with more emotional connection correlates to more environmentally protective behaviors. They demonstrate this in their study and show that the CNS better predicts behavior [@mayerConnectednessNatureScale2004]. 
 
 Going from scale development, to specific applications, one study assessed the role of personality traits on environmental behavior [@brickUnearthingGreenPersonality2016]. The study also provided a comparison of the mediation effect of both the NEP and the CNS on environmental behaviors. The personality traits Openness and Conscientiousness were both shown to be positive predictors of environmental behavior. In both cases, the CNS had a stronger mediation effect than NEP. In other words, the CNS better predicts pro-environmental outcomes. However, these authors also note that the CNS contains language that is more consistent with liberal environmentalism, and so may fail to adequately capture the full dimensionality of environmental support across the political spectrum [@brickUnearthingGreenPersonality2016].
 
-Like the NEP, the CNS is composed mostly of items that tap into politically progressive environmentalism and thus may miss conservative pro-environmental orientation [@sparksMeasuringProenvironmentalOrientation2022]. However, the CNS is a much stronger predictor of environmental behavior – a smaller attitude-behavior gap – than the NEP [@sparksMeasuringEnvironmentalValues2021].
+Like the NEP, the CNS is composed mostly of items that tap into politically progressive environmentalism and thus may miss conservative pro-environmental orientation [@sparksMeasuringProenvironmentalOrientation2022]. However, the CNS is a much stronger predictor of environmental behavior – a smaller attitude-behavior gap – than the NEP, the CNS plus controls accounting for 35% of the variance in environmental behaviors[@sparksMeasuringEnvironmentalValues2021].
 
-## Pro-Environmental Behaviors
+# Conceptual Model and Hypotheses 
 
-Cultural cognition can be thought of as a determinant or antecedent of environmental orientation. Cultural views of risk and social-psychological tendencies likely precede the development of environment-specific attitudes and orientations. And given the weak correlation between cultural cognition and environmental behavior it is reasonable to view this as an indirect relationship.
+Cultural cognition can be thought of as a deep core belief, and therefore it is an antecedent to environmental orientations. Cultural-based views of risk and social-psychological tendencies likely precede the development of environment-specific cognition, attitudes, and orientations. And given the weak correlation between cultural cognition and environmental behavior it is reasonable to view this as an indirect relationship.
 
-Worldview and risk perception are likely strong drivers of environmental orientation because of the nature of environmental problems typically involves environmental risk. In addition, environmental orientation is likely associated with the myths of nature connected to the various cultural worldviews. As a result, environmental orientation, as measured by NEP and/or CNS, likely mediates the relationship between cultural cognition and environmental behavior. Figure 1 illustrates the conceptual model connecting cultural cognition, environmental orientation, and pro-environmental behavior.
+Taking the step from cultural worldviews to environmental orientations, we posit that environmental orientations contain both a cognitive, worldview element that can be measured by the New Ecological Paradigm (NEP) and an affective, emotional connection to nature, as measured by the Connectedness to Nature Scale (CNS). Additionally, we posit that emotional connections to nature are most predictive of pro-environmental behaviors than cultural or ecological worldviews. As noted, cultural worldviews are an antecedent to environmental orientations, and similarly, we posit that ecological worldviews are an antecedent to connectedness to nature. Finally, connectedness to nature influences both public and private pro-environmental paper. @fig-model illustrates the conceptual model connecting cognition, based on cultural and ecological worldviews; environmental orientations, including both the ecological worldview component and the affective connection to nature component; with both public and private pro-environmental behaviors. 
 
 ```{r}
 #| label: fig-model
@@ -155,15 +91,11 @@ Worldview and risk perception are likely strong drivers of environmental orienta
 draw_concept_model()
 ```
 
-# Hypotheses
+Based on the model shown in @fig-model, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior. As noted, egalitarianism and communitarianism has been shown to be predictive of concern regarding several environmental issues and environmental orientations. Therefore, we expect that:
 
-Based on the model shown in Figure 1, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior.
+H1: Egalitarianism positively correlates with the ecological worldview element of environmental orientation 
 
-As noted, egalitarianism and communitarianism has been shown to be predictive of concern regarding several environmental issues and environmental orientations. Therefore, we expect that:
-
-H1a: Egalitarianism positively correlates with environmental behavior H1b: Egalitarianism positively correlates with environmental orientation (NEP and CNS)
-
-H2a: Communitarianism positively correlates with environmental behavior H2b: Communitarianism positively correlates with environmental orientation (NEP and CNS)
+H2: Communitarianism positively correlates with environmental behavior H2b: Communitarianism positively correlates with environmental orientation (NEP and CNS)
 
 Previous research indicates that cultural cognition predicates environmental orientation and environmental orientation predicts pro-environmental behavior. Therefore, we posit that:
 
@@ -171,7 +103,7 @@ H3: Environmental orientation positively mediates the relationship between egali
 
 H4: Environmental orientation positively mediates the relationship between communitarianism and environmental behavior
 
-Additionally, through meditation analysis, we can examine the direct, indirect, and total effects of cultural cognition and the mediating effects of environmental orientation on environmental behavior.
+Our hypotheses are regarding a sequence approach, where cultural worldviews influence ecological worldviews, ecological worldviews influence the connectedness to nature, and connectedness to nature influence both public and private pro-environmental behaviors. However, in our analysis we also examine the direct influences of cultural worldviews on the CNS and behaviors as well as the direct influence of the NEP on behaviors. Additionally, through meditation analysis, we examine the direct, indirect, and total effects of cultural worldviews and the mediating effects of environmental orientations on environmental behavior.
 
 # Data and Methods
 
@@ -179,7 +111,7 @@ To examine the relationship between cultural cognition, environmental orientatio
 
 ## Measures
 
-Our dependent variable is a 13-item scale of self-reported pro-environmental behaviors with the questions taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “Which of these, if any, have you, yourself, done in the past year?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measure as observed, and we add the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 13 (all of the behaviors). The mean number of self-reported behaviors was 5.52, with a standard deviation of 2.98. @tbl-behaviors shows the wording for each behavior as well as the mean and sd for each self-reported behavior.
+Our dependent variable is a 12-item scale of self-reported pro-environmental behaviors with the questions taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “Which of these, if any, have you, yourself, done in the past year?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measure as observed, and we add the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 13 (all of the behaviors). The mean number of self-reported behaviors was 5.52, with a standard deviation of 2.98. @tbl-behaviors shows the wording for each behavior as well as the mean and sd for each self-reported behavior.
 
 ```{r}
 #| label: tbl-behaviors
@@ -216,11 +148,15 @@ To test our hypothesis, we estimated a Structural Equation Modeling (SEM) using 
 # Results
 
 ```{=html}
-<!-- Combined serial model: cultural cognition -> NEP -> CNS -> behavior.
-     The main text shows the STRUCTURAL portion only (measurement model omitted
-     for clarity). The full path diagram with the measurement model, the
-     CNS-only model, NEP-only model, their fit table, and the separate
-     mediation analysis live in cc-behave-supplemental.qmd.
+<!-- Combined serial model: cultural worldviews -> NEP -> CNS -> behavior.
+     The main text collapses the four worldview latents into two composite
+     groups, HIER-INDIV and EGAL-COMM (top half of both underlying scales;
+     see scripts/analysis-prep.R section 10), and shows the STRUCTURAL
+     portion only (measurement model omitted for clarity). The equivalent
+     model estimated with the four separate worldview measures, the full
+     path diagram with the measurement model, the CNS-only model, NEP-only
+     model, their fit table, and the separate mediation analysis live in
+     cc-behave-supplemental.qmd.
      Reference these in your prose with @fig-structural / @tbl-serial-fit /
      @tbl-serial-effects. -->
 ```
@@ -229,28 +165,44 @@ To test our hypothesis, we estimated a Structural Equation Modeling (SEM) using 
 
 ```{r}
 #| label: fig-structural
-#| fig-cap: "Structural model of the full combined SEM: cultural cognition → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. The measurement (indicator) portion is omitted for clarity; standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001. The full path diagram including the measurement model is in the supplemental materials."
+#| fig-cap: "Structural model of the full combined SEM: cultural worldview groups (HIER-INDIV, EGAL-COMM) → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. Controlling for age, gender, race, education, and household income (paths not shown). The measurement (indicator) portion is omitted for clarity; standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001. The full path diagram including the measurement model, and the equivalent model with the four separate worldview measures, are in the supplemental materials."
 #| fig-width: 9
 #| fig-height: 6.5
-draw_sem_struct(fitFull)
+draw_sem_struct_hiec(fitFullHIEC)
 ```
+
+
+<!-- So why does the SEM show +0.12*? That path is a direct effect, net of NEP and CNS — and HIER_INDIV correlates
+  strongly negatively with both mediators (r = −0.43 with NEP, r = −0.17 with CNS), which themselves positively
+  predict PUBLIC behavior. That negative indirect route pulls the total effect down (Table 6's "Total" for
+  HIER_INDIV→Public is −0.016, essentially null). Once you hold NEP and CNS constant, the leftover association flips
+  positive: I confirmed this directly — regressing PUBLIC and HIER_INDIV each on NEP and CNS and correlating the
+  residuals gives r = +0.067, matching the sign and rough magnitude of the SEM's 0.12* direct path.
+
+  This is a classic suppression pattern: Hierarch-Individualists have much lower environmental orientation, which
+  predicts less public behavior — but among people with equivalent environmental orientation,
+  Hierarch-Individualists edge slightly higher on public-facing behaviors (meetings, complaints to businesses) than
+  Egalitarian-Communitarians do. It's not a robust positive raw association; it's a controlled-for-mediators
+  artifact, and the total effect is null. Worth flagging in the Discussion if you're writing about this path, since
+  "HIER-INDIV → Public: 0.12*" read in isolation overstates it.-->
+
 
 <!-- Table 5: serial vs full fit comparison -->
 
 ```{r}
 #| label: tbl-serial-fit
-#| tbl-cap: "Fit comparison of the strict serial chain versus the full combined model with direct paths added"
-knitr::kable(tbl5, booktabs = TRUE, align = c("l", rep("r", 9)))
+#| tbl-cap: "Fit comparison of the strict serial chain versus the full combined model with direct paths added. Both models control for age, gender, race, education, and household income."
+knitr::kable(tbl5_hiec, booktabs = TRUE, align = c("l", rep("r", 9)))
 ```
 
-`r lrt_text`
+`r lrt_text_hiec`
 
 <!-- Table 6: effect decomposition in the full model -->
 
 ```{r}
 #| label: tbl-serial-effects
-#| tbl-cap: "Standardized decomposition of cultural cognition effects on public and private behavior in the full combined model († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
-knitr::kable(tbl6, booktabs = TRUE, align = c("l", "l", rep("r", 4)))
+#| tbl-cap: "Standardized decomposition of cultural worldview group effects on public and private behavior in the full combined model, controlling for age, gender, race, education, and household income († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
+knitr::kable(tbl6_hiec, booktabs = TRUE, align = c("l", "l", rep("r", 4)))
 ```
 
 # Discussion
@@ -276,6 +228,23 @@ Because cultural cognition shapes how an individual responds to risk [e.g., @kah
 Further, by explaining behavior with a mediation model we could close some of the so-called attitude-behavior gap. When cultural cognition and environmental orientation are aligned, people are more likely to engage in environmentally protective behavior.
 
 Another implication of this study is further evidence that CNS is a stronger predictor of behavior than NEP. This may be useful for researchers trying to decide which measure of pro-environmental orientation to include in their questionnaire. We would like to see further testing of this finding in studies in other contexts and through meta-analytic techniques.
+
+<!-- Altogether, combining cultural cognition and environmental orientation should improve our understanding of the drivers of environmentally protective behaviors. 
+
+Specifically, in this paper, we suggest that environmental orientation mediates the relationship between cultural cognition and environmental behavior. Essentially, environmental orientation helps connect cultural worldviews and risk perceptions to action to reduce that risk. Moreover, cultural cognition helps to bridge the attitude-behavior gap by providing a basis through environmental orientations derive and subsequently influence behavior.
+
+
+
+Worldview and risk perception are likely strong drivers of environmental orientation because of the nature of environmental problems typically involves environmental risk. In addition, environmental orientation is likely associated with the myths of nature connected to the various cultural worldviews. As a result, environmental orientation, as measured by NEP and/or CNS, likely mediates the relationship between cultural cognition and environmental behavior. Figure 1 
+
+
+To further elaborate the attitude-behavior model we examine the relationship between cultural cognition, environmental orientation (attitude and emotional connection), and behavior.
+
+
+In this paper, we examine whether environmental orientations mediate the relationship between cultural cognition and behavior such that cultural cognition shapes environmental orientations, which in turn influences pro-environmental behavior. In doing so, we argue that when cultural cognition aligns with environmental orientation, there is a stronger relationship with pro-environmental behaviors than when considering attitude or affect alone, thus reducing the attitude-behavior gap.
+
+-->
+
 
 \newpage
 
