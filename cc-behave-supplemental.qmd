@@ -57,6 +57,18 @@ draw_sem(fitNEP)
 knitr::kable(tbl3, booktabs = TRUE, align = c("l", rep("r", 8)))
 ```
 
+# Serial chain vs. full model fit, composite worldview groups
+
+The main text reports the full combined model (HIER-INDIV, EGAL-COMM composite groups) with direct paths added. Table S1a compares its fit against the strict serial-chain specification (no direct worldview → behavior paths) that motivated including those direct paths.
+
+<!-- Table S1a: serial vs full fit comparison, composite worldview groups (moved from main text) -->
+
+```{r}
+#| label: tbl-serial-fit-hiec
+#| tbl-cap: "Fit comparison of the strict serial chain versus the full combined model, composite worldview groups."
+make_tbl_serial_fit_flextable()
+```
+
 # Full combined model with the four separate worldview measures
 
 This section reports the full combined model (cultural worldviews → NEP → CNS → behavior, with direct paths) estimated with the four separate worldview measures — hierarchy, egalitarianism, individualism, and communitarianism — as latent predictors. The main text reports the same model with these four measures collapsed into the two composite groups described above; this specification is the one the composite-group model replaces.
@@ -122,7 +134,7 @@ Every model above and in the main text controls for age, gender (male), race (wh
 ```{r}
 #| label: tbl-hiec-controls
 #| tbl-cap: "Standardized demographic control coefficients from the full combined model reported in the main text (HIER-INDIV/EGAL-COMM), by outcome († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
-knitr::kable(tbl_hiec_controls, booktabs = TRUE, align = c("l", "r", "r", "r", "r"))
+knitr::kable(tbl_hiec_controls, booktabs = TRUE, align = c("l", "r", "r", "r"))
 ```
 
 \newpage

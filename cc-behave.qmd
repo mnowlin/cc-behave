@@ -27,7 +27,7 @@ source(if (file.exists("scripts/analysis-prep.R")) "scripts/analysis-prep.R" els
 
 # Introduction
 
-Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is important for enhancing sustainability. Scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior [@sternNewEnvironmentalTheories2000; @kollmussMindGapWhy2002; @giffordPersonalSocialFactors2014]. If people care strongly about the environment, why don’t they act in a more sustainable way? The attitude-behavior gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model [@kaiserOffsettingBehavioralCosts2021].
+Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is important for enhancing sustainability. Environmental behaviors are widely studied [@zhuBibliometricVisualAnalysis2021], and scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior [@sternNewEnvironmentalTheories2000; @kollmussMindGapWhy2002; @giffordPersonalSocialFactors2014]. If people care strongly about the environment, why don’t they act in a more sustainable way? The attitude-behavior gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model [@kaiserOffsettingBehavioralCosts2021].
 
 To understand how attitudes influence behaviors, scholars use approaches such as the Value-Belief-Norm (VBN) framework, where higher-order values shape second-order beliefs that, in turn, influence behaviors \[\]. Higher-order values form a cognitive foundation that influences how information about the world is processed and understood across multiple issues \[\]. When considering environmental behaviors, the second-order values involve environmental cognition, such as views about the relationship of humans to the natural world and how information about the environment is understood \[\]. In addition to environmental cognition, there are also affective feelings that individuals hold about the environment \[\]. Together environmental cognition and affective feelings form an environmental orientation that shapes environmental behaviors \[\]. However, to develop a complete attitude-behavior model, it is important to understand all of the various links in the chain, including the higher-order values and cognition that inform environmental orientations. Of note, the cultural worldviews measured by cultural cognition have been shown to shape environmental orientations [@nowlinEnvironmentalPolicymakingEra2019].
 
@@ -49,7 +49,7 @@ The process though values and beliefs impact behavior is often understood as a p
 
 A similar set of assumptions inform a sophisticated understanding of belief systems developed by policy scholar using the Advocacy Coalition Framework (ACF) [@nohrstedtAdvocacyCoalitionFramework2023; @sabatierPolicyChangeLearning1993; @henryUnderstandingEnvironmentalCognition2012]. With this approach, beliefs systems are made up of three different types of beliefs, including deep core, policy core, and secondary beliefs. Deep core beliefs are the broadest in scope and are fundamental beliefs that inform attitudes about multiple issues. Political ideology is an example of a deep core belief. Next, are policy core beliefs, which are beliefs about particular issues. Environmental orientations would be akin to policy core beliefs. Finally, secondary aspects are the narrowest in scope and include beliefs about how best to achieve the goals outlined in policy core beliefs.
 
-In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape *cognition* from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is "the way individuals structure their thinking about environmental issues and associated political actions" [@henryUnderstandingEnvironmentalCognition2012, 238]. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, deep core beliefs likely influence behaviors *indirectly* [@sparksMeasuringEnvironmentalValues2021], with the affective element of environmental orientations having the most direct influence on behaviors [].
+In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape *cognition* from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is "the way individuals structure their thinking about environmental issues and associated political actions" [@henryUnderstandingEnvironmentalCognition2012, 238]. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, it is not clear if deep core beliefs influence behaviors directly [@markleUnderstandingProEnvironmentalBehavior2019] or indirectly [@sparksMeasuringEnvironmentalValues2021]. However, the affective element of environmental orientations tend to have the most direct influence on behaviors [].
 
 ## Deep Core Beliefs: Cultural Cognition 
 
@@ -85,33 +85,27 @@ Taking the step from cultural worldviews to environmental orientations, we posit
 
 ```{r}
 #| label: fig-model
-#| fig-cap: "Conceptual model tested with the structural equation model: cultural cognition shapes environmental orientation—first the New Ecological Paradigm (NEP) and then the Connectedness to Nature Scale (CNS)—which in turn shapes public and private pro-environmental behavior."
+#| fig-cap: "Conceptual model tested with the structural equation model: cultural cognition shapes environmental orientation—first the New Ecological Paradigm (NEP) and then the Connectedness to Nature Scale (CNS)—which in turn shapes pro-environmental behavior."
 #| fig-width: 7
 #| fig-height: 2.3
 draw_concept_model()
 ```
 
-Based on the model shown in @fig-model, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior. As noted, egalitarianism and communitarianism has been shown to be predictive of concern regarding several environmental issues and environmental orientations. Therefore, we expect that:
+Based on the model shown in @fig-model, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior. Our hypotheses include the sequence approach shown in @fig-model, where cultural worldviews influence ecological worldviews, ecological worldviews influence the connectedness to nature, and connectedness to nature influence pro-environmental behaviors. We also have direct hypotheses, where cultural and ecological worldviews are directly associated with behaviors. We expect that:
 
-H1: Egalitarianism positively correlates with the ecological worldview element of environmental orientation 
+H1: Hierarchical-individualists are associated with a _decrease_ in the ecological worldview element of environmental orientation, a _decrease_ in the connected to nature element of environmental orientation, and _fewer_ pro-environmental behaviors 
 
-H2: Communitarianism positively correlates with environmental behavior H2b: Communitarianism positively correlates with environmental orientation (NEP and CNS)
+H2: Egalitarian-communitarians are associated with an _increase_ in the ecological worldview element of environmental orientation, an _increase_ in the connected to nature element of environmental orientation, and _more_ pro-environmental behaviors 
 
-Previous research indicates that cultural cognition predicates environmental orientation and environmental orientation predicts pro-environmental behavior. Therefore, we posit that:
-
-H3: Environmental orientation positively mediates the relationship between egalitarianism and environmental behavior
-
-H4: Environmental orientation positively mediates the relationship between communitarianism and environmental behavior
-
-Our hypotheses are regarding a sequence approach, where cultural worldviews influence ecological worldviews, ecological worldviews influence the connectedness to nature, and connectedness to nature influence both public and private pro-environmental behaviors. However, in our analysis we also examine the direct influences of cultural worldviews on the CNS and behaviors as well as the direct influence of the NEP on behaviors. Additionally, through meditation analysis, we examine the direct, indirect, and total effects of cultural worldviews and the mediating effects of environmental orientations on environmental behavior.
+H3: Environmental orientation is associated with _more_ pro-environmental behaviors
 
 # Data and Methods
 
-To examine the relationship between cultural cognition, environmental orientations, and behavior we draw on a sample of 501 adults living in the US purchased through Survey Sampling Inc. The survey was administered online in July 2017. The sample size was determined by cost considerations. IRB approval for the survey was approved by \[redacted for blind review\] Human Subjects Committee on April 3, 2017, protocol number 37-17-0256. Our analysis was not pre-registered.
+To examine the relationship between cultural cognition, environmental orientations, and behavior we draw on a sample of 501 adults living in the US purchased through Survey Sampling Inc. The survey was administered online in July 2017. The sample size was determined by cost considerations. IRB approval for the survey was approved by ... Human Subjects Committee on April 3, 2017, protocol number 37-17-0256. Our analysis was not pre-registered.
 
 ## Measures
 
-Our dependent variable is a 12-item scale of self-reported pro-environmental behaviors with the questions taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “Which of these, if any, have you, yourself, done in the past year?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measure as observed, and we add the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 13 (all of the behaviors). The mean number of self-reported behaviors was 5.52, with a standard deviation of 2.98. @tbl-behaviors shows the wording for each behavior as well as the mean and sd for each self-reported behavior.
+Our dependent variables are is a 12-item scale of self-reported pro-environmental behaviors, including 7 public and 5 private behaviors. Questions were taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “_Which of these, if any, have you, yourself, done in the past year_?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measures as observed and we added the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 12 (all of the behaviors). @tbl-behaviors shows the question wording as well as the mean and sd for each self-reported behavior.
 
 ```{r}
 #| label: tbl-behaviors
@@ -119,91 +113,63 @@ Our dependent variable is a 12-item scale of self-reported pro-environmental beh
 knitr::kable(tbl1, booktabs = TRUE, align = c("l", "l", "r", "r"))
 ```
 
-As shown in @tbl-behaviors, recycling had the highest mean among the self-reported behaviors at 0.79, which indicates that 79% of the respondents reported that they recycle. Recycling was followed closely by reducing household energy use at 0.78 and using less water at home at 0.75. The behaviors with the lowest means included buying/selling stocks at 0.12, contacting a business at 0.16, and attending a meeting at 0.17.
+As shown in @tbl-behaviors, the mean number of self-reported pro-environmental behaviors was `r round(mean(envatt$BEHAVE12, na.rm = TRUE), 2)`, with a standard deviation of `r round(sd(envatt$BEHAVE12, na.rm = TRUE), 2)` in the 0 to 12 scale. For public behaviors the mean was `r round(mean(envatt$public, na.rm = TRUE), 2)`, with a standard deviation of `r round(sd(envatt$public, na.rm = TRUE), 2)`, and the mean number of self-reported private behaviors was `r round(mean(envatt$private, na.rm = TRUE), 2)`, with a standard deviation of `r round(sd(envatt$private, na.rm = TRUE), 2)`. Overall, respondents reported far more private than public behaviors. In terms of the behavior themselves, recycling had the highest mean at `r round(mean(envatt$recycle, na.rm = TRUE), 2)`, which indicates that `r round(mean(envatt$recycle, na.rm = TRUE), 2) * 100`% of the respondents reported that they recycle, followed closely by reducing household energy use at `r round(mean(envatt$energy, na.rm = TRUE), 2)`; buying a product because it was better for the environment had the lowest mean among private behaviors at `r round(mean(envatt$buycott, na.rm = TRUE), 2)`. Among public behaviors, voting for or working for a candidate because of their environmental positions had the highest mean at `r round(mean(envatt$cand, na.rm = TRUE), 2)`, followed by signing a petition supporting environmental protection at `r round(mean(envatt$petition, na.rm = TRUE), 2)`; contacting a business to complain about environmentally harmful products/policies had the lowest mean among public behaviors at `r round(mean(envatt$cont.bus, na.rm = TRUE), 2)`.
 
-### Cultural Cognition
+Our independent variables are composite measures of cultural worldviews, ecological worldviews (New Ecological Paradigm), and the Connectedness to Nature Scale. For cultural cognition, we rely on the short form of the cultural cognition survey questions which includes three questions for each of the four cultural worldviews [see @kahanCulturalCognitionConception2012]. Respondents were asked their agreement on a 1 (strongly disagree) to 4 (strongly agree) scale with three statements for each of cultural worldviews. To measure the New Ecological Paradigm (NEP) we used agreement with three statements on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree). Finally, for the Connectedness to Nature Scale (CNS) using respondent agreement on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree) with three statements. For both the NEP and the CNS, a higher value indicates a stronger orientation towards the environment.  
 
-To measure cultural cognition, we rely on the short form of the cultural cognition survey questions which includes three questions for each of the four cultural worldviews [see @kahanCulturalCognitionConception2012]. Respondents were asked their agreement on a 1 (strongly disagree) to 4 (strongly agree) scale with each of the following statements. The hierarchy statements included, 1) We have gone too far in pushing equal rights in this country, 2) It seems like blacks, women, homosexuals and other groups don’t want equal rights, they want special rights just for them, and 3) The women’s rights movement has gone too far. The egalitarianism statements are, 1) We need to dramatically reduce inequalities between the rich and poor, whites and people of color, and men and women, 2) Our society would be better off if the distribution of wealth was more equal, and 3) We live in a sexist society that is fundamentally set up to discriminate against women. The individualism statements included, 1) If the government spent less time trying to fix everyone’s problems, we’d all be a lot better off, 2) Government regulations are almost always a waste of everyone’s time and money, and 3) Our government tries to do too many things for too many people. We should just let people take care of themselves. Finally, the communitarianism statements are, 1) Sometimes government needs to make laws that keep people from hurting themselves, 2) Government should put limits on the choices individuals can make so they don’t get in the way of what’s good for society, and 3) The government should do more to advance society’s goals, even if that means limiting the freedom and choices of individuals.
-
-### New Ecological Paradigm
-
-To measure the New Ecological Paradigm (NEP) we used agreement with the following three statements on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree). The statements are, 1) Humans are severely abusing the environment, 2) The so-called “ecological crisis” facing humankind has been greatly exaggerated (reverse-coded), and 3) If things continue on their present course, we will soon experience a major ecological catastrophe.
-
-### Connectedness to Nature
-
-We measured the Connectedness to Nature Scale (CNS) using respondent agreement on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree) with three statements. The statements included, 1) I think of the natural world as a community to which I belong, 2) I often feel a kinship with animals and plants, and 3) I feel as though I belong to the Earth as equally as it belongs to me.
-
-@tbl-measurement shows the measurement variables used for the latent constructs including the mean and standard deviation (sd) of each statement. In addition, Table 2 show the fit statistics for each of the latent constructs including Cronbach’s α, Composite Reliability (CR), and the Average Variance Extracted (AVE).
+@tbl-measurement shows the question wording for each measurement item used for the latent constructs as well as the fit statistics for each of the constructs including Cronbach’s $\alpha$, Composite Reliability (CR), and the Average Variance Extracted (AVE). As shown in @tbl-measurement, each of the constructs show sufficient reliability (α and CR \>0.70) except for the communitarianism scale. However, CR values between 0.60 and 0.70 are acceptable for exploratory analysis [@hairPrimerPartialLeast2015].
 
 ```{r}
 #| label: tbl-measurement
 #| tbl-cap: "Measurement items and construct reliability (Cronbach's α, composite reliability, average variance extracted)"
-knitr::kable(tbl2, booktabs = TRUE, align = c("l", "l", "r", "r", "r", "r", "r"))
+knitr::kable(tbl2, booktabs = TRUE, align = c("l", "l", "r", "r", "r"))
 ```
 
-As shown in @tbl-measurement, each of the constructs show sufficient reliability (α and CR \>0.70) except for the communitarianism scale. However, CR values between 0.60 and 0.70 are acceptable for exploratory analysis [@hairPrimerPartialLeast2015].
 
-To test our hypothesis, we estimated a Structural Equation Modeling (SEM) using the `lavaan` package in `R` [@rosseelLavaanPackageStructural2012]. The dependent variable, self-reported pro-environmental behaviors, is an observed variable and the cultural cognition worldviews, the CNS, and the NEP scale are latent constructs. We run separate analyses for the two measures of environmental orientation, CNS and NEP, and for both models we show the standardized regression coefficients for the measurement and structural models. In addition, we assess the fit of both models using the Root Mean Square Error of Approximation (RMSEA), the Comparative Fit Index (CFI), and the Standardized Root Mean Square Residual (SRMR). Finally, we examine the mediation effects of environmental orientation by examining the direct, indirect, and total effects of cultural cognition measures on pro-environmental behavior.
+On the cultural worldview measures, we combined the scales to create dummy variables for hierarchical-individualists and egalitarian-communitarians. Respondents who scored at or above the median for both scales were coded as 1, all others were coded as 0 [similar to @kahanPolarizingImpactScience2012]. Overall, `r sum(envatt$HIER_INDIV == 1, na.rm = TRUE)` respondents (`r round(mean(envatt$HIER_INDIV == 1, na.rm = TRUE) * 100, 1)`%) were classified as hierarchical-individualists, and `r sum(envatt$EGAL_COMM == 1, na.rm = TRUE)` respondents (`r round(mean(envatt$EGAL_COMM == 1, na.rm = TRUE) * 100, 1)`%) were classified as egalitarian-communitarians.
+
+To test our hypothesis, we estimated a Structural Equation Model (SEM) using the `lavaan` package in `R` [@rosseelLavaanPackageStructural2012]. The dependent variable, self-reported pro-environmental behaviors, is an observed variable and the cultural cognition worldviews, the CNS, and the NEP scale are latent constructs. In addition, we examine the mediation effects of environmental orientation by examining the direct, indirect, and total effects of cultural cognition measures on pro-environmental behavior.^[In the analysis we control for demographic variables, including age, gender (male=1), race (white=1), education, and income. We chose white males as the indicator variables because of the well-known _white-male effect_ associated with risk perceptions and cultural cognition [e.g., @kahanCultureIdentityProtectiveCognition2007]. More information about the demographic variables is available in the supplemental materials.
+]
 
 # Results
 
-```{=html}
-<!-- Combined serial model: cultural worldviews -> NEP -> CNS -> behavior.
-     The main text collapses the four worldview latents into two composite
-     groups, HIER-INDIV and EGAL-COMM (top half of both underlying scales;
-     see scripts/analysis-prep.R section 10), and shows the STRUCTURAL
-     portion only (measurement model omitted for clarity). The equivalent
-     model estimated with the four separate worldview measures, the full
-     path diagram with the measurement model, the CNS-only model, NEP-only
-     model, their fit table, and the separate mediation analysis live in
-     cc-behave-supplemental.qmd.
-     Reference these in your prose with @fig-structural / @tbl-serial-fit /
-     @tbl-serial-effects. -->
-```
+The results for the SEM are shown in @fig-structural. For clarity we only include the structural model and only the paths that were statistically significant at p<0.05. 
 
-<!-- Figure: structural model only (measurement model omitted) -->
-
+::: {#fig-structural}
 ```{r}
-#| label: fig-structural
-#| fig-cap: "Structural model of the full combined SEM: cultural worldview groups (HIER-INDIV, EGAL-COMM) → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. Controlling for age, gender, race, education, and household income (paths not shown). The measurement (indicator) portion is omitted for clarity; standardized coefficients shown; * p<0.05, ** p<0.01, *** p<0.001. The full path diagram including the measurement model, and the equivalent model with the four separate worldview measures, are in the supplemental materials."
 #| fig-width: 9
-#| fig-height: 6.5
+#| fig-height: 7.5
 draw_sem_struct_hiec(fitFullHIEC)
 ```
 
+Structural model of cultural worldviews, ecological worldviews, connectedness to nature, and pro-environmental behaviors.
+:::
 
-<!-- So why does the SEM show +0.12*? That path is a direct effect, net of NEP and CNS — and HIER_INDIV correlates
-  strongly negatively with both mediators (r = −0.43 with NEP, r = −0.17 with CNS), which themselves positively
-  predict PUBLIC behavior. That negative indirect route pulls the total effect down (Table 6's "Total" for
-  HIER_INDIV→Public is −0.016, essentially null). Once you hold NEP and CNS constant, the leftover association flips
-  positive: I confirmed this directly — regressing PUBLIC and HIER_INDIV each on NEP and CNS and correlating the
-  residuals gives r = +0.067, matching the sign and rough magnitude of the SEM's 0.12* direct path.
+As can be seen in @fig-structural, as expected, hierarchical-individualists were negatively associated with the NEP, whereas egalitarian-communitarians were positively associated. Also as expected, the NEP was positively associated with the CNS, and both NEP and CNS were associated with an increased number of pro-environmental behaviors. However, there was no direct relationship to cultural worldviews and behavior. Finally, egalitarian-communitarians were more likely to feel connected to nature, therefore, they had the strongest environmental orientation as both the cognitive and affective elements were significant. 
 
-  This is a classic suppression pattern: Hierarch-Individualists have much lower environmental orientation, which
-  predicts less public behavior — but among people with equivalent environmental orientation,
-  Hierarch-Individualists edge slightly higher on public-facing behaviors (meetings, complaints to businesses) than
-  Egalitarian-Communitarians do. It's not a robust positive raw association; it's a controlled-for-mediators
-  artifact, and the total effect is null. Worth flagging in the Discussion if you're writing about this path, since
-  "HIER-INDIV → Public: 0.12*" read in isolation overstates it.-->
+The path coefficients are standardized, which means that they equal the expected change in the standard deviation of the outcome variables for each standard deviation of the predictor, keeping all other variables constant. For example, the path coefficient from CNS to behaviors is 0.404, so holding the other variables constant, a 1-sd increase in the CNS scale is associated with a 0.404-sd increase in the number of behaviors. In terms of the number of actual predicted behaviors, as shown in @tbl-behaviors, the sd of behaviors is 2.86 and 0.404 x 2.86 equals 1.155 predicted additional behaviors for each 1-sd increase in the CNS.  
 
+Standardized path coefficients allows for a comparison of strength of the various relationships. As shown, the strongest relationship is between the two environmental orientation measures, with the NEP to CNS path = 0.425. In terms of the relationship to behaviors, the CNS path is the strongest at 0.404 followed by the NEP to behavior path at 0.240. No other paths to behaviors is significant. For cultural worldviews to environmental orientations, hierarchal individualists have the strongest (negative) relationship, at -0.392, with ecological worldviews. Egalitarian communitarians have a stronger relationship to ecological worldviews at 0.231 than connectedness to nature at 0.188.      
 
-<!-- Table 5: serial vs full fit comparison -->
+The fit statistics for the model are shown in @tbl-fit-full, and include the Root Mean Square Error of Approximation (RMSEA), the Comparative Fit Index (CFI), and the Standardized Root Mean Square Residual (SRMR). Overall, the statistics indicate a reasonable fit for the model [@huCutoffCriteriaFit1999].  
 
 ```{r}
-#| label: tbl-serial-fit
-#| tbl-cap: "Fit comparison of the strict serial chain versus the full combined model with direct paths added. Both models control for age, gender, race, education, and household income."
-knitr::kable(tbl5_hiec, booktabs = TRUE, align = c("l", rep("r", 9)))
+#| label: tbl-fit-full
+#| tbl-cap: "Model fit statistics for the structural model"
+make_tbl_fit_full_flextable()
 ```
 
-`r lrt_text_hiec`
-
-<!-- Table 6: effect decomposition in the full model -->
+Next we examine the direct, indirect, and total effects of cultural worldviews on behaviors. Those results are shown in @tbl-serial-effects. 
 
 ```{r}
 #| label: tbl-serial-effects
-#| tbl-cap: "Standardized decomposition of cultural worldview group effects on public and private behavior in the full combined model, controlling for age, gender, race, education, and household income († p<0.10, * p<0.05, ** p<0.01, *** p<0.001)"
-knitr::kable(tbl6_hiec, booktabs = TRUE, align = c("l", "l", rep("r", 4)))
+#| tbl-cap: "Standardized decomposition of cultural worldview group effects on pro-environmental behavior."
+make_tbl_serial_effects_flextable()
 ```
+
+For hierarchical individualists there was a total effect on behaviors of -0.121 and for egalitarian communitarians it was 0.199. However, as shown in @fig-structural and @tbl-serial-effects, there is no direct relationship from cultural worldviews to behaviors, therefore the effects are strictly a result of indirect effects as environmental orientations appear to mediate the relationship between cultural worldviews and behaviors. 
+
+The serial effect includes the paths of the cultural worldviews to NEP, NEP to CNS, and CNS to behaviors. So, for example, for hierarchical individualist the serial effect is calculated by −0.392 × 0.425 × 0.404 = −0.067. The total indirect effect captures the paths from cultural worldviews to NEP, NEP to behaviors, cultural worldviews to CNS, and the serial effect. For hierarchical individualist that is (−0.392×0.240) + (0.010×0.404) + (−0.067) = −0.094 + 0.004 − 0.067 = −0.157. Finally, the total effect is simply the direct effect plus the total indirect effect. 
 
 # Discussion
 

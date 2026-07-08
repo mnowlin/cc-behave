@@ -6,6 +6,167 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-07-08 — Single combined behavior outcome, note-embedding overhaul, two rendering-bug fixes
+
+**Goal:** Drop the serial-chain-only figure from the main text (keep only the
+full direct-paths composite-group model), combine public and private behavior
+into a single 0–12 outcome for that main-text model, rework how figure/table
+notes are attached to their objects, and replace Table 2's item/mean/sd
+columns with the actual question wording.
+
+### What we did
+
+1. **Note/caption architecture, iterated to its final form.** Went through
+   several designs before landing on the current one: separate "Note:"
+   paragraph below the chunk → wrapped in a `::: {#fig-id}` div so the note is
+   part of the same crossref float → note text generated as an R string object
+   in `analysis-prep.R` and referenced via inline `` `r note_...` `` → for
+   `fig-structural` specifically, the note is now drawn **directly onto the
+   plot** with `mtext()` inside `draw_sem_struct_hiec()` (left-justified,
+   wrapped, italic), the base-R equivalent of ggplot's `labs(caption = ...)`,
+   so it's genuinely part of the image in every output format, not markdown
+   text next to it.
+2. **Tables 3–4 (composite-group fit comparison, effect decomposition)
+   rendered as `flextable` objects** instead of `knitr::kable`, with the note
+   embedded via `add_footer_lines()` — same convention as the `cue-energy`
+   project. Discovered and fixed a **flextable + LuaLaTeX bug**: a cell whose
+   text starts with a literal `[` is silently dropped in the PDF output only
+   (confirmed with a minimal reproduction outside the document — the bracket
+   is swallowed somewhere in the nested `\fontspec{Helvetica}` wrapper
+   flextable emits per cell). Fixed by changing the RMSEA 90% CI format from
+   `[x, y]` to `(x, y)` in both `.fit_row()` and `.cmp_row()` — applied
+   globally, not just to the broken tables, so every RMSEA CI in both
+   documents looks the same.
+3. **Removed `fig-serial`** (the strict serial-chain-only figure) and its
+   `note_fig_serial` object from the main text, per the author's decision to
+   report only the full direct-paths model there. Moved the serial-vs-full
+   fit-comparison table to `cc-behave-supplemental.qmd` as a new
+   `tbl-serial-fit-hiec` (own section, ahead of the four-worldview-measure
+   material).
+4. **Combined behavior into a single `BEHAVE12` (0–12) outcome for the
+   main-text composite-group (HIER-INDIV/EGAL-COMM) model only** — scope
+   confirmed with the author (single-orientation and four-worldview models in
+   the supplement were explicitly left on the public/private split). Refit
+   `fitSerialHIEC`/`fitFullHIEC` with `BEHAVE12` in place of `PUBLIC`/
+   `PRIVATE`; simplified `.defs_fullHIEC` to one direct/serial/indirect/total
+   set per worldview group (`tbl6_hiec` dropped the `Outcome` column, 2 rows
+   instead of 4); rewrote `draw_sem_struct_hiec()`'s node layout for a single
+   behavior box; updated `tbl_hiec_controls`/`.ctrl_row_hiec` to one
+   `Behavior` column; `draw_concept_model()` now shows one "Pro-Environmental
+   Behavior" box instead of separate Public/Private boxes. **Table 1
+   (`tbl-behaviors`) intentionally left unchanged** — still shows the
+   public/private item breakdown, per explicit instruction — and a new
+   sentence reports `BEHAVE12`'s mean/sd inline alongside it.
+5. **Second rendering bug, found and fixed:** in `draw_sem_struct_hiec()`,
+   NEP, CNS, and BEHAVE12 were laid out collinear (all at `y = 0`), so the
+   significant direct NEP→BEHAVE12 path (0.24\*\*\*) was being drawn straight
+   through the CNS node and was completely hidden behind it — present in the
+   data and the filtered edge list, invisible on the page. Fixed with
+   `semptools::set_curve(p, c("BEHAVE12 ~ NEP" = 2))` to bow that edge above
+   CNS.
+6. **Table 2 (`tbl-measurement`) reworked**: replaced the `Item`/`Mean`/`SD`
+   columns with a `Statement` column (full survey question wording via a new
+   `.item_wording` lookup), keeping `Construct`/`α`/`CR`/`AVE`. No variable
+   labels shown.
+7. **Added inline R stats**: `BEHAVE12` mean/sd folded into the Table 1
+   paragraph; HIER-INDIV/EGAL-COMM sample N and % folded into the composite-
+   group paragraph.
+8. **New Table 3** (`tbl-fit-full`): fit statistics for the full direct-paths
+   model alone (previously only available as one row of a two-row comparison
+   table), with Hu & Bentler (1999) benchmark thresholds in the footer note.
+9. Re-rendered both documents, all three formats, after every change; cleaned
+   up a stray `Rplots.pdf` left in the project root from ad hoc testing.
+
+### Files created / changed
+
+- `scripts/analysis-prep.R` *(changed)* — `flextable` added to the package
+  list; `.item_wording` lookup + reworked `tbl2`; `.fit_row()`/`.cmp_row()`
+  RMSEA CI format `[x,y]` → `(x,y)`; `.serialModelHIEC`/`.reg_fullHIEC`/
+  `.defs_fullHIEC` rewritten for the single `BEHAVE12` outcome; `tbl6_hiec`
+  drops the `Outcome` column; new `tbl_fit_full_hiec` +
+  `make_tbl_fit_full_flextable()`; `make_tbl_serial_fit_flextable()`/
+  `make_tbl_serial_effects_flextable()` widths and note text updated;
+  `note_fig_serial` removed, `note_fig_structural`/`note_tbl_serial_fit`/
+  `note_tbl_serial_effects`/`note_tbl_fit_full` added or reworded;
+  `draw_sem_struct_hiec()` rewritten (single BEHAVE12 node, on-plot note via
+  `mtext()`, `set_curve()` fix for the hidden NEP→BEHAVE12 edge);
+  `draw_concept_model()` single behavior box; `.ctrl_row_hiec` single
+  `Behavior` column.
+- `cc-behave.qmd` *(changed)* — removed the `fig-serial` figure/section;
+  `fig-structural`/`tbl-serial-effects` moved to plain `tbl-cap`/`fig-cap`
+  chunks (note no longer a separate paragraph); new `tbl-fit-full` chunk;
+  `tbl-measurement` `align` spec updated for the new 5-column `tbl2`; inline
+  R added for `BEHAVE12` and HIER-INDIV/EGAL-COMM N/%; stale internal HTML
+  comments (old P/R-suffixed decomposition formulas, a suppression-effect
+  note tied to the removed PUBLIC/PRIVATE model) removed or corrected.
+- `cc-behave-supplemental.qmd` *(changed)* — new `tbl-serial-fit-hiec`
+  section; `tbl-hiec-controls` `align` spec updated for the new 4-column
+  `tbl_hiec_controls`.
+- `_output/cc-behave.{html,pdf,docx}`,
+  `_output/cc-behave-supplemental.{html,pdf,docx}` *(regenerated)*.
+- `Rplots.pdf` *(deleted)* — stray R graphics sink from ad hoc testing.
+
+### Decisions
+
+- **BEHAVE12 combination scoped to the main-text composite-group model
+  only**, confirmed explicitly with the author rather than assumed — the
+  supplement's single-orientation (CNS-only/NEP-only) and four-worldview
+  models still report the public/private split.
+- **RMSEA CI parentheses, not brackets, everywhere** — fixing only the two
+  flextable-rendered tables and leaving kable-rendered ones on brackets would
+  make the notation inconsistent across the two documents for no reason; the
+  bracket bug is LaTeX/flextable-specific, but the format change was applied
+  uniformly.
+- **Notes live in R, not in markdown prose** — every figure/table note is a
+  string object built in `analysis-prep.R` (or, for `fig-structural`, drawn
+  directly onto the plot), so the `.qmd` files reference an object rather
+  than duplicating text that could drift from the underlying numbers.
+- **Table 1 stays on the public/private split** even though the model
+  downstream now uses the combined scale — explicit instruction; the
+  behavior-item inventory and the modeling choice are treated as separate
+  concerns.
+
+### Verification
+
+- All six outputs (2 documents × HTML/PDF/DOCX) rendered without errors after
+  the final round of changes.
+- Isolated the flextable bracket bug with a minimal standalone LuaLaTeX
+  reproduction (outside the Quarto document) before applying the fix, then
+  confirmed the fix visually in both the new single-row table and the
+  existing two-row supplemental table.
+- Confirmed the NEP→BEHAVE12 edge fix by re-deriving the filtered edge list
+  in R (edge was always present with the correct label) and then visually
+  inspecting the rendered figure before and after `set_curve()`.
+- Hand-verified Table 4's worked example against the fitted model
+  (Hierarch-Individualist serial effect −0.392×0.425×0.404 ≈ −0.067; total
+  indirect ≈ −0.157) — matches the author's own worked-example prose added to
+  the Results section.
+- Confirmed Table 1's "Total behaviors (0-12)" row (5.40, SD 2.86) matches
+  the new inline `BEHAVE12` sentence exactly.
+
+### Notable findings / flags
+
+- **The two rendering bugs (flextable bracket-swallowing, collinear-layout
+  edge occlusion) were both silent** — no warnings, no errors, data present
+  and correct in R the whole time. Worth remembering that a "missing" number
+  or path in a rendered figure/table isn't proof the model doesn't produce
+  it; check the underlying object before concluding a null result.
+- Line 84 of `cc-behave.qmd` ("connectedness to nature influences both public
+  and private pro-environmental paper... with both public and private
+  pro-environmental behaviors") still describes the outcome as split, even
+  though the model and Results section now use the single combined
+  `BEHAVE12` scale. Prose is author-maintained per `CLAUDE.md`; flagged, not
+  edited.
+
+### Open items / next steps
+
+- Reconcile the line-84 public/private wording (Conceptual Model and
+  Hypotheses section) with the rest of the paper's single-outcome framing.
+- This session's changes are **uncommitted going into this entry** — commit
+  and push immediately follow.
+
+---
+
 ## 2026-07-07 — HIER-INDIV/EGAL-COMM composite model promoted to main text, demographic controls added
 
 **Goal:** Relabel the conceptual-model boxes, build a Hierarch-Individualist /

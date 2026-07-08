@@ -56,6 +56,8 @@ div.csl-indent {
 <script src="cc-behave_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="cc-behave_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="cc-behave_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="cc-behave_files/libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="cc-behave_files/libs/tabwid-1.1.3/tabwid.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -117,7 +119,7 @@ window.Quarto = {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is important for enhancing sustainability. Scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior <span class="citation" data-cites="sternNewEnvironmentalTheories2000 kollmussMindGapWhy2002 giffordPersonalSocialFactors2014">(<a href="#ref-giffordPersonalSocialFactors2014" role="doc-biblioref">Gifford and Nilsson 2014</a>; <a href="#ref-kollmussMindGapWhy2002" role="doc-biblioref">Kollmuss and Agyeman 2002</a>; <a href="#ref-sternNewEnvironmentalTheories2000" role="doc-biblioref">Stern 2000</a>)</span>. If people care strongly about the environment, why don’t they act in a more sustainable way? The attitude-behavior gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model <span class="citation" data-cites="kaiserOffsettingBehavioralCosts2021">(<a href="#ref-kaiserOffsettingBehavioralCosts2021" role="doc-biblioref">Kaiser, Kibbe, and Hentschke 2021</a>)</span>.</p>
+<p>Achieving environmentally sustainable outcomes requires some behavioral changes at the individual, community, and societal levels. However, not all individuals are equally likely to engage in pro-environmental behaviors, and understanding the psychological and cultural factors that drive these behaviors is important for enhancing sustainability. Environmental behaviors are widely studied <span class="citation" data-cites="zhuBibliometricVisualAnalysis2021">(<a href="#ref-zhuBibliometricVisualAnalysis2021" role="doc-biblioref">Zhu, Tong, and Song 2021</a>)</span>, and scholars of environmental psychology often lament the so-called ‘attitude-behavior’ gap wherein environmental attitudes do not explain very much of the variance in environmental behavior <span class="citation" data-cites="sternNewEnvironmentalTheories2000 kollmussMindGapWhy2002 giffordPersonalSocialFactors2014">(<a href="#ref-giffordPersonalSocialFactors2014" role="doc-biblioref">Gifford and Nilsson 2014</a>; <a href="#ref-kollmussMindGapWhy2002" role="doc-biblioref">Kollmuss and Agyeman 2002</a>; <a href="#ref-sternNewEnvironmentalTheories2000" role="doc-biblioref">Stern 2000</a>)</span>. If people care strongly about the environment, why don’t they act in a more sustainable way? The attitude-behavior gap is not because people are hypocrites, but because researchers do not yet have a complete attitude-behavior model <span class="citation" data-cites="kaiserOffsettingBehavioralCosts2021">(<a href="#ref-kaiserOffsettingBehavioralCosts2021" role="doc-biblioref">Kaiser, Kibbe, and Hentschke 2021</a>)</span>.</p>
 <p>To understand how attitudes influence behaviors, scholars use approaches such as the Value-Belief-Norm (VBN) framework, where higher-order values shape second-order beliefs that, in turn, influence behaviors []. Higher-order values form a cognitive foundation that influences how information about the world is processed and understood across multiple issues []. When considering environmental behaviors, the second-order values involve environmental cognition, such as views about the relationship of humans to the natural world and how information about the environment is understood []. In addition to environmental cognition, there are also affective feelings that individuals hold about the environment []. Together environmental cognition and affective feelings form an environmental orientation that shapes environmental behaviors []. However, to develop a complete attitude-behavior model, it is important to understand all of the various links in the chain, including the higher-order values and cognition that inform environmental orientations. Of note, the cultural worldviews measured by cultural cognition have been shown to shape environmental orientations <span class="citation" data-cites="nowlinEnvironmentalPolicymakingEra2019">(<a href="#ref-nowlinEnvironmentalPolicymakingEra2019" role="doc-biblioref">Nowlin 2019</a>)</span>.</p>
 <p>Cultural cognition was developed by Kahan and others <span class="citation" data-cites="kahanCultureIdentityProtectiveCognition2007">(<a href="#ref-kahanCultureIdentityProtectiveCognition2007" role="doc-biblioref">Kahan et al. 2007</a>)</span> as a tool to measure how cultural values shape beliefs about risk. It is based on cultural theory and its conceptualization of worldviews []. Cultural theory addresses how cultural values influence how people perceive and respond to risk. By measuring the cultural values of an individual, we may be able to predict how they will perceive and respond to risks associated with certain activities or products. We are interested in how cultural cognition shapes views toward environmental issues and how those views shape behavior.</p>
 <p>The cultural worldviews associated with cultural cognition are measured in two dimensions, a grid dimension (egalitarianism-hierarchy) and a group dimension (communitarianism-individualism). In general, those that are more egalitarian and communitarian are more concerned about environmental risks than those that are more hierarchical and individualist. Therefore, it is expected that individuals high in egalitarianism and communitarianism should engage in pro-environmental behaviors to mitigate risks to the natural environment. However, previous research shows only a weak correlation between egalitarianism and communitarianism and pro-environmental behavior <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>. Therefore, cultural cognition shapes how individuals think and process information about issues, but may not directly influence behaviors.</p>
@@ -130,7 +132,7 @@ window.Quarto = {
 <p>The process though values and beliefs impact behavior is often understood as a process where higher-order beliefs influence second-order beliefs, which in turn influence behavior. One of the leading frameworks that adopts this approach is the Value-Belief-Norm (VBN) framework <span class="citation" data-cites="sternValueBeliefNormTheorySupport1999">(<a href="#ref-sternValueBeliefNormTheorySupport1999" role="doc-biblioref">Stern et al. 1999</a>)</span>. In brief, the VBN posits that underlining values inform broad environmental orientations that activate norms that in turn support pro-environmental behavior. VBN involves a sequential chain that goes from values to beliefs to behavior. Therefore, values inform attitudes, which in turn inform behaviors.</p>
 <!-- Value-Belief-Norm (VBN) framework literature -->
 <p>A similar set of assumptions inform a sophisticated understanding of belief systems developed by policy scholar using the Advocacy Coalition Framework (ACF) <span class="citation" data-cites="nohrstedtAdvocacyCoalitionFramework2023 sabatierPolicyChangeLearning1993 henryUnderstandingEnvironmentalCognition2012">(<a href="#ref-henryUnderstandingEnvironmentalCognition2012" role="doc-biblioref">Henry and Dietz 2012</a>; <a href="#ref-nohrstedtAdvocacyCoalitionFramework2023" role="doc-biblioref">Nohrstedt et al. 2023</a>; <a href="#ref-sabatierPolicyChangeLearning1993" role="doc-biblioref">Sabatier and Jenkins-Smith 1993</a>)</span>. With this approach, beliefs systems are made up of three different types of beliefs, including deep core, policy core, and secondary beliefs. Deep core beliefs are the broadest in scope and are fundamental beliefs that inform attitudes about multiple issues. Political ideology is an example of a deep core belief. Next, are policy core beliefs, which are beliefs about particular issues. Environmental orientations would be akin to policy core beliefs. Finally, secondary aspects are the narrowest in scope and include beliefs about how best to achieve the goals outlined in policy core beliefs.</p>
-<p>In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape <em>cognition</em> from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is “the way individuals structure their thinking about environmental issues and associated political actions” <span class="citation" data-cites="henryUnderstandingEnvironmentalCognition2012">(<a href="#ref-henryUnderstandingEnvironmentalCognition2012" role="doc-biblioref">Henry and Dietz 2012, 238</a>)</span>. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, deep core beliefs likely influence behaviors <em>indirectly</em> <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>, with the affective element of environmental orientations having the most direct influence on behaviors [].</p>
+<p>In developing our approach, we draw on the notion of a sequential chain and a hierarchical ordering of values, beliefs, and attitudes that lead from abstract values to concrete actions. Specifically, we note that deep core beliefs inform environmental orientations that, in turn, make pro-environmental behavior more (or less) likely. In addition, we separate beliefs that shape <em>cognition</em> from the affective and identity elements of environmental orientations. Our measure of deep core beliefs is cultural cognition, which as the name implies, are deep rooted values that influence cognition. For environmental orientations, we draw on environmental cognition, which is “the way individuals structure their thinking about environmental issues and associated political actions” <span class="citation" data-cites="henryUnderstandingEnvironmentalCognition2012">(<a href="#ref-henryUnderstandingEnvironmentalCognition2012" role="doc-biblioref">Henry and Dietz 2012, 238</a>)</span>. We argue that environmental orientations contain a cognitive element as well as an affective element. Deep core beliefs influence both the cognitive and affective aspects of environmental orientation. Finally, deep core beliefs and environmental orientations influence pro-environmental behaviors; however, it is not clear if deep core beliefs influence behaviors directly <span class="citation" data-cites="markleUnderstandingProEnvironmentalBehavior2019">(<a href="#ref-markleUnderstandingProEnvironmentalBehavior2019" role="doc-biblioref">Markle 2019</a>)</span> or indirectly <span class="citation" data-cites="sparksMeasuringEnvironmentalValues2021">(<a href="#ref-sparksMeasuringEnvironmentalValues2021" role="doc-biblioref">Sparks et al. 2021</a>)</span>. However, the affective element of environmental orientations tend to have the most direct influence on behaviors [].</p>
 <section id="deep-core-beliefs-cultural-cognition" class="level2">
 <h2 class="anchored" data-anchor-id="deep-core-beliefs-cultural-cognition">Deep Core Beliefs: Cultural Cognition</h2>
 <p>For our measure of deep core beliefs we use cultural cognition. Cultural cognition is derived from the cultural theory of risk developed by Mary Douglas and Aaron Wildavsky <span class="citation" data-cites="douglasRiskCultureEssay1982 thompsonCulturalTheory1990">(<a href="#ref-douglasRiskCultureEssay1982" role="doc-biblioref">Douglas and Wildavsky 1982</a>; <a href="#ref-thompsonCulturalTheory1990" role="doc-biblioref">Thompson, Ellis, and Wildavsky 1990</a>)</span>. Cultural theory (CT) has been identified as a leading way to conceptualize and measure deep core beliefs <span class="citation" data-cites="ripbergerCulturalTheoryMeasurement2014">(<a href="#ref-ripbergerCulturalTheoryMeasurement2014" role="doc-biblioref">Ripberger et al. 2014</a>)</span>. In brief, CT posits that social structures and relationships are represented by two dimensions, including a grid dimension and a group dimension. Four competing cultural worldviews arise based on their position on the grid and group dimensions. The grid dimension represents preferred social structures regarding the roles that one plays in society and the rules by which one must abide. The group dimension represents the importance of cohesive social units and the well-being of the broader community. The original formulation of CT produces four cultural worldviews based on the relative positions on the grid and group dimensions, including hierarchy (high grid, high group), egalitarianism (low grid, high group), individualism (low grid, and low group), and fatalism (high grid, low group).</p>
@@ -160,7 +162,7 @@ window.Quarto = {
 <div id="fig-model" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Conceptual model tested with the structural equation model: cultural cognition shapes environmental orientation—first the New Ecological Paradigm (NEP) and then the Connectedness to Nature Scale (CNS)—which in turn shapes public and private pro-environmental behavior.
+Figure&nbsp;1: Conceptual model tested with the structural equation model: cultural cognition shapes environmental orientation—first the New Ecological Paradigm (NEP) and then the Connectedness to Nature Scale (CNS)—which in turn shapes pro-environmental behavior.
 </figcaption>
 <div aria-describedby="fig-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="cc-behave_files/figure-html/fig-model-1.png" class="img-fluid figure-img" width="672">
@@ -169,20 +171,17 @@ Figure&nbsp;1: Conceptual model tested with the structural equation model: cultu
 </div>
 </div>
 </div>
-<p>Based on the model shown in <a href="#fig-model" class="quarto-xref">Figure&nbsp;1</a>, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior. As noted, egalitarianism and communitarianism has been shown to be predictive of concern regarding several environmental issues and environmental orientations. Therefore, we expect that:</p>
-<p>H1: Egalitarianism positively correlates with the ecological worldview element of environmental orientation</p>
-<p>H2: Communitarianism positively correlates with environmental behavior H2b: Communitarianism positively correlates with environmental orientation (NEP and CNS)</p>
-<p>Previous research indicates that cultural cognition predicates environmental orientation and environmental orientation predicts pro-environmental behavior. Therefore, we posit that:</p>
-<p>H3: Environmental orientation positively mediates the relationship between egalitarianism and environmental behavior</p>
-<p>H4: Environmental orientation positively mediates the relationship between communitarianism and environmental behavior</p>
-<p>Our hypotheses are regarding a sequence approach, where cultural worldviews influence ecological worldviews, ecological worldviews influence the connectedness to nature, and connectedness to nature influence both public and private pro-environmental behaviors. However, in our analysis we also examine the direct influences of cultural worldviews on the CNS and behaviors as well as the direct influence of the NEP on behaviors. Additionally, through meditation analysis, we examine the direct, indirect, and total effects of cultural worldviews and the mediating effects of environmental orientations on environmental behavior.</p>
+<p>Based on the model shown in <a href="#fig-model" class="quarto-xref">Figure&nbsp;1</a>, we posit several hypotheses regarding the relationships between cultural cognition, the NEP, the CNS, and environmental behavior. Our hypotheses include the sequence approach shown in <a href="#fig-model" class="quarto-xref">Figure&nbsp;1</a>, where cultural worldviews influence ecological worldviews, ecological worldviews influence the connectedness to nature, and connectedness to nature influence pro-environmental behaviors. We also have direct hypotheses, where cultural and ecological worldviews are directly associated with behaviors. We expect that:</p>
+<p>H1: Hierarchical-individualists are associated with a <em>decrease</em> in the ecological worldview element of environmental orientation, a <em>decrease</em> in the connected to nature element of environmental orientation, and <em>fewer</em> pro-environmental behaviors</p>
+<p>H2: Egalitarian-communitarians are associated with an <em>increase</em> in the ecological worldview element of environmental orientation, an <em>increase</em> in the connected to nature element of environmental orientation, and <em>more</em> pro-environmental behaviors</p>
+<p>H3: Environmental orientation is associated with <em>more</em> pro-environmental behaviors</p>
 </section>
 <section id="data-and-methods" class="level1">
 <h1>Data and Methods</h1>
-<p>To examine the relationship between cultural cognition, environmental orientations, and behavior we draw on a sample of 501 adults living in the US purchased through Survey Sampling Inc.&nbsp;The survey was administered online in July 2017. The sample size was determined by cost considerations. IRB approval for the survey was approved by [redacted for blind review] Human Subjects Committee on April 3, 2017, protocol number 37-17-0256. Our analysis was not pre-registered.</p>
+<p>To examine the relationship between cultural cognition, environmental orientations, and behavior we draw on a sample of 501 adults living in the US purchased through Survey Sampling Inc.&nbsp;The survey was administered online in July 2017. The sample size was determined by cost considerations. IRB approval for the survey was approved by … Human Subjects Committee on April 3, 2017, protocol number 37-17-0256. Our analysis was not pre-registered.</p>
 <section id="measures" class="level2">
 <h2 class="anchored" data-anchor-id="measures">Measures</h2>
-<p>Our dependent variable is a 12-item scale of self-reported pro-environmental behaviors with the questions taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “Which of these, if any, have you, yourself, done in the past year?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measure as observed, and we add the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 13 (all of the behaviors). The mean number of self-reported behaviors was 5.52, with a standard deviation of 2.98. <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a> shows the wording for each behavior as well as the mean and sd for each self-reported behavior.</p>
+<p>Our dependent variables are is a 12-item scale of self-reported pro-environmental behaviors, including 7 public and 5 private behaviors. Questions were taken from the 2000 Gallup Earth Day Poll. Respondents were given a list of several environmental behaviors and asked, “<em>Which of these, if any, have you, yourself, done in the past year</em>?” Possible responses included, “Yes, have done; No, have not done; No opinion.” Yes, responses were coded as a 1 and no/no opinion were coded as 0. For the purposes of analysis, we treat the behavior measures as observed and we added the number of self-reported behaviors together to produce a measure that ranges from 0 (no behaviors) to 12 (all of the behaviors). <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a> shows the question wording as well as the mean and sd for each self-reported behavior.</p>
 <div class="cell">
 <div id="tbl-behaviors" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -304,19 +303,9 @@ Table&nbsp;1: Self-reported pro-environmental behaviors by type (public/private)
 </figure>
 </div>
 </div>
-<p>As shown in <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a>, recycling had the highest mean among the self-reported behaviors at 0.79, which indicates that 79% of the respondents reported that they recycle. Recycling was followed closely by reducing household energy use at 0.78 and using less water at home at 0.75. The behaviors with the lowest means included buying/selling stocks at 0.12, contacting a business at 0.16, and attending a meeting at 0.17.</p>
-<section id="cultural-cognition" class="level3">
-<h3 class="anchored" data-anchor-id="cultural-cognition">Cultural Cognition</h3>
-<p>To measure cultural cognition, we rely on the short form of the cultural cognition survey questions which includes three questions for each of the four cultural worldviews <span class="citation" data-cites="kahanCulturalCognitionConception2012">(see <a href="#ref-kahanCulturalCognitionConception2012" role="doc-biblioref">Kahan 2012</a>)</span>. Respondents were asked their agreement on a 1 (strongly disagree) to 4 (strongly agree) scale with each of the following statements. The hierarchy statements included, 1) We have gone too far in pushing equal rights in this country, 2) It seems like blacks, women, homosexuals and other groups don’t want equal rights, they want special rights just for them, and 3) The women’s rights movement has gone too far. The egalitarianism statements are, 1) We need to dramatically reduce inequalities between the rich and poor, whites and people of color, and men and women, 2) Our society would be better off if the distribution of wealth was more equal, and 3) We live in a sexist society that is fundamentally set up to discriminate against women. The individualism statements included, 1) If the government spent less time trying to fix everyone’s problems, we’d all be a lot better off, 2) Government regulations are almost always a waste of everyone’s time and money, and 3) Our government tries to do too many things for too many people. We should just let people take care of themselves. Finally, the communitarianism statements are, 1) Sometimes government needs to make laws that keep people from hurting themselves, 2) Government should put limits on the choices individuals can make so they don’t get in the way of what’s good for society, and 3) The government should do more to advance society’s goals, even if that means limiting the freedom and choices of individuals.</p>
-</section>
-<section id="new-ecological-paradigm-1" class="level3">
-<h3 class="anchored" data-anchor-id="new-ecological-paradigm-1">New Ecological Paradigm</h3>
-<p>To measure the New Ecological Paradigm (NEP) we used agreement with the following three statements on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree). The statements are, 1) Humans are severely abusing the environment, 2) The so-called “ecological crisis” facing humankind has been greatly exaggerated (reverse-coded), and 3) If things continue on their present course, we will soon experience a major ecological catastrophe.</p>
-</section>
-<section id="connectedness-to-nature-1" class="level3">
-<h3 class="anchored" data-anchor-id="connectedness-to-nature-1">Connectedness to Nature</h3>
-<p>We measured the Connectedness to Nature Scale (CNS) using respondent agreement on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree) with three statements. The statements included, 1) I think of the natural world as a community to which I belong, 2) I often feel a kinship with animals and plants, and 3) I feel as though I belong to the Earth as equally as it belongs to me.</p>
-<p><a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a> shows the measurement variables used for the latent constructs including the mean and standard deviation (sd) of each statement. In addition, Table 2 show the fit statistics for each of the latent constructs including Cronbach’s α, Composite Reliability (CR), and the Average Variance Extracted (AVE).</p>
+<p>As shown in <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a>, the mean number of self-reported pro-environmental behaviors was 5.4, with a standard deviation of 2.86 in the 0 to 12 scale. For public behaviors the mean was 1.8, with a standard deviation of 1.92, and the mean number of self-reported private behaviors was 3.6, with a standard deviation of 1.58. Overall, respondents reported far more private than public behaviors. In terms of the behavior themselves, recycling had the highest mean at 0.79, which indicates that 79% of the respondents reported that they recycle, followed closely by reducing household energy use at 0.78; buying a product because it was better for the environment had the lowest mean among private behaviors at 0.62. Among public behaviors, voting for or working for a candidate because of their environmental positions had the highest mean at 0.4, followed by signing a petition supporting environmental protection at 0.36; contacting a business to complain about environmentally harmful products/policies had the lowest mean among public behaviors at 0.16.</p>
+<p>Our independent variables are composite measures of cultural worldviews, ecological worldviews (New Ecological Paradigm), and the Connectedness to Nature Scale. For cultural cognition, we rely on the short form of the cultural cognition survey questions which includes three questions for each of the four cultural worldviews <span class="citation" data-cites="kahanCulturalCognitionConception2012">(see <a href="#ref-kahanCulturalCognitionConception2012" role="doc-biblioref">Kahan 2012</a>)</span>. Respondents were asked their agreement on a 1 (strongly disagree) to 4 (strongly agree) scale with three statements for each of cultural worldviews. To measure the New Ecological Paradigm (NEP) we used agreement with three statements on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree). Finally, for the Connectedness to Nature Scale (CNS) using respondent agreement on a 1 to 5 scale (1 - strongly disagree, 3 - neutral, 5 - strongly agree) with three statements. For both the NEP and the CNS, a higher value indicates a stronger orientation towards the environment.</p>
+<p><a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a> shows the question wording for each measurement item used for the latent constructs as well as the fit statistics for each of the constructs including Cronbach’s <span class="math inline">\(\alpha\)</span>, Composite Reliability (CR), and the Average Variance Extracted (AVE). As shown in <a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a>, each of the constructs show sufficient reliability (α and CR &gt;0.70) except for the communitarianism scale. However, CR values between 0.60 and 0.70 are acceptable for exploratory analysis <span class="citation" data-cites="hairPrimerPartialLeast2015">(<a href="#ref-hairPrimerPartialLeast2015" role="doc-biblioref">Hair et al. 2015</a>)</span>.</p>
 <div class="cell">
 <div id="tbl-measurement" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -326,12 +315,17 @@ Table&nbsp;2: Measurement items and construct reliability (Cronbach’s α, comp
 <div aria-describedby="tbl-measurement-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 79%">
+<col style="width: 3%">
+<col style="width: 3%">
+<col style="width: 3%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Construct</th>
-<th style="text-align: left;">Item</th>
-<th style="text-align: right;">Mean</th>
-<th style="text-align: right;">SD</th>
+<th style="text-align: left;">Statement</th>
 <th style="text-align: right;">α</th>
 <th style="text-align: right;">CR</th>
 <th style="text-align: right;">AVE</th>
@@ -340,162 +334,126 @@ Table&nbsp;2: Measurement items and construct reliability (Cronbach’s α, comp
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Hierarchy</td>
-<td style="text-align: left;">cc_eh_2</td>
-<td style="text-align: right;">2.33</td>
-<td style="text-align: right;">1.01</td>
+<td style="text-align: left;">We have gone too far in pushing equal rights in this country.</td>
 <td style="text-align: right;">0.83</td>
 <td style="text-align: right;">0.83</td>
 <td style="text-align: right;">0.62</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_eh_5</td>
-<td style="text-align: right;">2.43</td>
-<td style="text-align: right;">1.08</td>
+<td style="text-align: left;">It seems like blacks, women, homosexuals and other groups don’t want equal rights, they want special rights just for them.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_eh_7</td>
-<td style="text-align: right;">2.16</td>
-<td style="text-align: right;">0.98</td>
+<td style="text-align: left;">The women’s rights movement has gone too far.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Egalitarianism</td>
-<td style="text-align: left;">cc_eh_11</td>
-<td style="text-align: right;">3.13</td>
-<td style="text-align: right;">0.88</td>
+<td style="text-align: left;">We need to dramatically reduce inequalities between the rich and poor, whites and people of color, and men and women.</td>
 <td style="text-align: right;">0.77</td>
 <td style="text-align: right;">0.79</td>
 <td style="text-align: right;">0.55</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_eh_13</td>
-<td style="text-align: right;">2.94</td>
-<td style="text-align: right;">0.91</td>
+<td style="text-align: left;">Our society would be better off if the distribution of wealth was more equal.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_eh_14</td>
-<td style="text-align: right;">2.60</td>
-<td style="text-align: right;">0.87</td>
+<td style="text-align: left;">We live in a sexist society that is fundamentally set up to discriminate against women.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Individualism</td>
-<td style="text-align: left;">cc_ci_2</td>
-<td style="text-align: right;">2.69</td>
-<td style="text-align: right;">0.91</td>
+<td style="text-align: left;">If the government spent less time trying to fix everyone’s problems, we’d all be a lot better off.</td>
 <td style="text-align: right;">0.80</td>
 <td style="text-align: right;">0.80</td>
 <td style="text-align: right;">0.57</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_ci_3</td>
-<td style="text-align: right;">2.53</td>
-<td style="text-align: right;">0.90</td>
+<td style="text-align: left;">Government regulations are almost always a waste of everyone’s time and money.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_ci_12</td>
-<td style="text-align: right;">2.58</td>
-<td style="text-align: right;">0.86</td>
+<td style="text-align: left;">Our government tries to do too many things for too many people. We should just let people take care of themselves.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Communitarianism</td>
-<td style="text-align: left;">cc_ci_13</td>
-<td style="text-align: right;">3.01</td>
-<td style="text-align: right;">0.70</td>
+<td style="text-align: left;">Sometimes government needs to make laws that keep people from hurting themselves.</td>
 <td style="text-align: right;">0.61</td>
 <td style="text-align: right;">0.64</td>
 <td style="text-align: right;">0.38</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_ci_14</td>
-<td style="text-align: right;">2.44</td>
-<td style="text-align: right;">0.83</td>
+<td style="text-align: left;">Government should put limits on the choices individuals can make so they don’t get in the way of what’s good for society.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cc_ci_16</td>
-<td style="text-align: right;">2.31</td>
-<td style="text-align: right;">0.85</td>
+<td style="text-align: left;">The government should do more to advance society’s goals, even if that means limiting the freedom and choices of individuals.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CNS</td>
-<td style="text-align: left;">cns2</td>
-<td style="text-align: right;">3.78</td>
-<td style="text-align: right;">0.90</td>
+<td style="text-align: left;">I think of the natural world as a community to which I belong.</td>
 <td style="text-align: right;">0.76</td>
 <td style="text-align: right;">0.72</td>
 <td style="text-align: right;">0.47</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cns6</td>
-<td style="text-align: right;">3.69</td>
-<td style="text-align: right;">1.05</td>
+<td style="text-align: left;">I often feel a kinship with animals and plants.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">cns7</td>
-<td style="text-align: right;">3.71</td>
-<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">I feel as though I belong to the Earth as equally as it belongs to me.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">NEP</td>
-<td style="text-align: left;">nep5</td>
-<td style="text-align: right;">3.99</td>
-<td style="text-align: right;">1.14</td>
+<td style="text-align: left;">Humans are severely abusing the environment.</td>
 <td style="text-align: right;">0.70</td>
 <td style="text-align: right;">0.73</td>
 <td style="text-align: right;">0.48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">nep10</td>
-<td style="text-align: right;">3.25</td>
-<td style="text-align: right;">1.38</td>
+<td style="text-align: left;">The so-called “ecological crisis” facing humankind has been greatly exaggerated (reverse-coded).</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"></td>
-<td style="text-align: left;">nep15</td>
-<td style="text-align: right;">3.80</td>
-<td style="text-align: right;">1.15</td>
+<td style="text-align: left;">If things continue on their present course, we will soon experience a major ecological catastrophe.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -507,189 +465,66 @@ Table&nbsp;2: Measurement items and construct reliability (Cronbach’s α, comp
 </figure>
 </div>
 </div>
-<p>As shown in <a href="#tbl-measurement" class="quarto-xref">Table&nbsp;2</a>, each of the constructs show sufficient reliability (α and CR &gt;0.70) except for the communitarianism scale. However, CR values between 0.60 and 0.70 are acceptable for exploratory analysis <span class="citation" data-cites="hairPrimerPartialLeast2015">(<a href="#ref-hairPrimerPartialLeast2015" role="doc-biblioref">Hair et al. 2015</a>)</span>.</p>
-<p>To test our hypothesis, we estimated a Structural Equation Modeling (SEM) using the <code>lavaan</code> package in <code>R</code> <span class="citation" data-cites="rosseelLavaanPackageStructural2012">(<a href="#ref-rosseelLavaanPackageStructural2012" role="doc-biblioref">Rosseel 2012</a>)</span>. The dependent variable, self-reported pro-environmental behaviors, is an observed variable and the cultural cognition worldviews, the CNS, and the NEP scale are latent constructs. We run separate analyses for the two measures of environmental orientation, CNS and NEP, and for both models we show the standardized regression coefficients for the measurement and structural models. In addition, we assess the fit of both models using the Root Mean Square Error of Approximation (RMSEA), the Comparative Fit Index (CFI), and the Standardized Root Mean Square Residual (SRMR). Finally, we examine the mediation effects of environmental orientation by examining the direct, indirect, and total effects of cultural cognition measures on pro-environmental behavior.</p>
-</section>
+<p>On the cultural worldview measures, we combined the scales to create dummy variables for hierarchical-individualists and egalitarian-communitarians. Respondents who scored at or above the median for both scales were coded as 1, all others were coded as 0 <span class="citation" data-cites="kahanPolarizingImpactScience2012">(similar to <a href="#ref-kahanPolarizingImpactScience2012" role="doc-biblioref">Kahan et al. 2012</a>)</span>. Overall, 213 respondents (42.5%) were classified as hierarchical-individualists, and 176 respondents (35.1%) were classified as egalitarian-communitarians.</p>
+<p>To test our hypothesis, we estimated a Structural Equation Model (SEM) using the <code>lavaan</code> package in <code>R</code> <span class="citation" data-cites="rosseelLavaanPackageStructural2012">(<a href="#ref-rosseelLavaanPackageStructural2012" role="doc-biblioref">Rosseel 2012</a>)</span>. The dependent variable, self-reported pro-environmental behaviors, is an observed variable and the cultural cognition worldviews, the CNS, and the NEP scale are latent constructs. In addition, we examine the mediation effects of environmental orientation by examining the direct, indirect, and total effects of cultural cognition measures on pro-environmental behavior.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<!-- Combined serial model: cultural worldviews -> NEP -> CNS -> behavior.
-     The main text collapses the four worldview latents into two composite
-     groups, HIER-INDIV and EGAL-COMM (top half of both underlying scales;
-     see scripts/analysis-prep.R section 10), and shows the STRUCTURAL
-     portion only (measurement model omitted for clarity). The equivalent
-     model estimated with the four separate worldview measures, the full
-     path diagram with the measurement model, the CNS-only model, NEP-only
-     model, their fit table, and the separate mediation analysis live in
-     cc-behave-supplemental.qmd.
-     Reference these in your prose with @fig-structural / @tbl-serial-fit /
-     @tbl-serial-effects. -->
-<!-- Figure: structural model only (measurement model omitted) -->
-<div class="cell">
-<div class="cell-output-display">
+<p>The results for the SEM are shown in <a href="#fig-structural" class="quarto-xref">Figure&nbsp;2</a>. For clarity we only include the structural model and only the paths that were statistically significant at p&lt;0.05.</p>
 <div id="fig-structural" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-structural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Structural model of the full combined SEM: cultural worldview groups (HIER-INDIV, EGAL-COMM) → New Ecological Paradigm → Connectedness to Nature → public and private pro-environmental behavior, with direct paths. Controlling for age, gender, race, education, and household income (paths not shown). The measurement (indicator) portion is omitted for clarity; standardized coefficients shown; * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001. The full path diagram including the measurement model, and the equivalent model with the four separate worldview measures, are in the supplemental materials.
+Figure&nbsp;2: Structural model of cultural worldviews, ecological worldviews, connectedness to nature, and pro-environmental behaviors.
 </figcaption>
 <div aria-describedby="fig-structural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="cc-behave_files/figure-html/fig-structural-1.png" class="img-fluid figure-img" width="864">
-</div>
-</figure>
-</div>
-</div>
-</div>
-<!-- So why does the SEM show +0.12*? That path is a direct effect, net of NEP and CNS — and HIER_INDIV correlates
-  strongly negatively with both mediators (r = −0.43 with NEP, r = −0.17 with CNS), which themselves positively
-  predict PUBLIC behavior. That negative indirect route pulls the total effect down (Table 6's "Total" for
-  HIER_INDIV→Public is −0.016, essentially null). Once you hold NEP and CNS constant, the leftover association flips
-  positive: I confirmed this directly — regressing PUBLIC and HIER_INDIV each on NEP and CNS and correlating the
-  residuals gives r = +0.067, matching the sign and rough magnitude of the SEM's 0.12* direct path.
-
-  This is a classic suppression pattern: Hierarch-Individualists have much lower environmental orientation, which
-  predicts less public behavior — but among people with equivalent environmental orientation,
-  Hierarch-Individualists edge slightly higher on public-facing behaviors (meetings, complaints to businesses) than
-  Egalitarian-Communitarians do. It's not a robust positive raw association; it's a controlled-for-mediators
-  artifact, and the total effect is null. Worth flagging in the Discussion if you're writing about this path, since
-  "HIER-INDIV → Public: 0.12*" read in isolation overstates it.-->
-<!-- Table 5: serial vs full fit comparison -->
 <div class="cell">
-<div id="tbl-serial-fit" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-serial-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Fit comparison of the strict serial chain versus the full combined model with direct paths added. Both models control for age, gender, race, education, and household income.
-</figcaption>
-<div aria-describedby="tbl-serial-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 7%">
-<col style="width: 3%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 15%">
-<col style="width: 6%">
-<col style="width: 8%">
-<col style="width: 8%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: right;">Chi-sq</th>
-<th style="text-align: right;">df</th>
-<th style="text-align: right;">CFI</th>
-<th style="text-align: right;">TLI</th>
-<th style="text-align: right;">RMSEA</th>
-<th style="text-align: right;">RMSEA 90% CI</th>
-<th style="text-align: right;">SRMR</th>
-<th style="text-align: right;">AIC</th>
-<th style="text-align: right;">BIC</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Serial chain (HI/EC)</td>
-<td style="text-align: right;">199.70</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">0.877</td>
-<td style="text-align: right;">0.801</td>
-<td style="text-align: right;">0.075</td>
-<td style="text-align: right;">[0.064, 0.086]</td>
-<td style="text-align: right;">0.048</td>
-<td style="text-align: right;">11961.1</td>
-<td style="text-align: right;">12129.7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Full (HI/EC, + direct paths)</td>
-<td style="text-align: right;">151.85</td>
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">0.910</td>
-<td style="text-align: right;">0.829</td>
-<td style="text-align: right;">0.070</td>
-<td style="text-align: right;">[0.058, 0.082]</td>
-<td style="text-align: right;">0.039</td>
-<td style="text-align: right;">11929.2</td>
-<td style="text-align: right;">12131.6</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure class="figure">
+<p><img src="cc-behave_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<p>As can be seen in <a href="#fig-structural" class="quarto-xref">Figure&nbsp;2</a>, as expected, hierarchical-individualists were negatively associated with the NEP, whereas egalitarian-communitarians were positively associated. Also as expected, the NEP was positively associated with the CNS, and both NEP and CNS were associated with an increased number of pro-environmental behaviors. However, there was no direct relationship to cultural worldviews and behavior. Finally, egalitarian-communitarians were more likely to feel connected to nature, therefore, they had the strongest environmental orientation as both the cognitive and affective elements were significant.</p>
+<p>The path coefficients are standardized, which means that they equal the expected change in the standard deviation of the outcome variables for each standard deviation of the predictor, keeping all other variables constant. For example, the path coefficient from CNS to behaviors is 0.404, so holding the other variables constant, a 1-sd increase in the CNS scale is associated with a 0.404-sd increase in the number of behaviors. In terms of the number of actual predicted behaviors, as shown in <a href="#tbl-behaviors" class="quarto-xref">Table&nbsp;1</a>, the sd of behaviors is 2.86 and 0.404 x 2.86 equals 1.155 predicted additional behaviors for each 1-sd increase in the CNS.</p>
+<p>Standardized path coefficients allows for a comparison of strength of the various relationships. As shown, the strongest relationship is between the two environmental orientation measures, with the NEP to CNS path = 0.425. In terms of the relationship to behaviors, the CNS path is the strongest at 0.404 followed by the NEP to behavior path at 0.240. No other paths to behaviors is significant. For cultural worldviews to environmental orientations, hierarchal individualists have the strongest (negative) relationship, at -0.392, with ecological worldviews. Egalitarian communitarians have a stronger relationship to ecological worldviews at 0.231 than connectedness to nature at 0.188.</p>
+<p>The fit statistics for the model are shown in <a href="#tbl-fit-full" class="quarto-xref">Table&nbsp;3</a>, and include the Root Mean Square Error of Approximation (RMSEA), the Comparative Fit Index (CFI), and the Standardized Root Mean Square Residual (SRMR). Overall, the statistics indicate a reasonable fit for the model <span class="citation" data-cites="huCutoffCriteriaFit1999">(<a href="#ref-huCutoffCriteriaFit1999" role="doc-biblioref">Hu and Bentler 1999</a>)</span>.</p>
+<div class="cell">
+<div id="tbl-fit-full" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fit-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Model fit statistics for the structural model
+</figcaption>
+<div aria-describedby="tbl-fit-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-bf648f3a{}.cl-bf619fdc{font-family:'Helvetica';font-size:8pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf619fe6{font-family:'Helvetica';font-size:8pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf619fe7{font-family:'Helvetica';font-size:7pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf62d762{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:2pt;padding-right:2pt;line-height: 1;background-color:transparent;}.cl-bf62d76c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:2pt;padding-right:2pt;line-height: 1;background-color:transparent;}.cl-bf62d76d{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-bf62e522{width:1.55in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e523{width:0.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e52c{width:0.3in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e52d{width:0.45in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e52e{width:0.8in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e52f{width:0.55in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e536{width:1.55in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e537{width:0.5in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e540{width:0.3in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e541{width:0.45in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e542{width:0.8in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e54a{width:0.55in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e54b{width:1.55in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e554{width:0.5in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e555{width:0.3in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e556{width:0.45in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e55e{width:0.8in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf62e55f{width:0.55in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-bf648f3a"><thead><tr style="overflow-wrap:break-word;"><th class="cl-bf62e522"><p class="cl-bf62d762"><span class="cl-bf619fdc">Model</span></p></th><th class="cl-bf62e523"><p class="cl-bf62d76c"><span class="cl-bf619fdc">Chi-sq</span></p></th><th class="cl-bf62e52c"><p class="cl-bf62d76c"><span class="cl-bf619fdc">df</span></p></th><th class="cl-bf62e52d"><p class="cl-bf62d76c"><span class="cl-bf619fdc">CFI</span></p></th><th class="cl-bf62e52d"><p class="cl-bf62d76c"><span class="cl-bf619fdc">TLI</span></p></th><th class="cl-bf62e523"><p class="cl-bf62d76c"><span class="cl-bf619fdc">RMSEA</span></p></th><th class="cl-bf62e52e"><p class="cl-bf62d76c"><span class="cl-bf619fdc">RMSEA 90% CI</span></p></th><th class="cl-bf62e52d"><p class="cl-bf62d76c"><span class="cl-bf619fdc">SRMR</span></p></th><th class="cl-bf62e52f"><p class="cl-bf62d76c"><span class="cl-bf619fdc">AIC</span></p></th><th class="cl-bf62e52f"><p class="cl-bf62d76c"><span class="cl-bf619fdc">BIC</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-bf62e536"><p class="cl-bf62d762"><span class="cl-bf619fe6">Full (HI/EC, + direct paths)</span></p></td><td class="cl-bf62e537"><p class="cl-bf62d76c"><span class="cl-bf619fe6">141.46</span></p></td><td class="cl-bf62e540"><p class="cl-bf62d76c"><span class="cl-bf619fe6">40</span></p></td><td class="cl-bf62e541"><p class="cl-bf62d76c"><span class="cl-bf619fe6">0.905</span></p></td><td class="cl-bf62e541"><p class="cl-bf62d76c"><span class="cl-bf619fe6">0.834</span></p></td><td class="cl-bf62e537"><p class="cl-bf62d76c"><span class="cl-bf619fe6">0.071</span></p></td><td class="cl-bf62e542"><p class="cl-bf62d76c"><span class="cl-bf619fe6">(0.059, 0.084)</span></p></td><td class="cl-bf62e541"><p class="cl-bf62d76c"><span class="cl-bf619fe6">0.039</span></p></td><td class="cl-bf62e54a"><p class="cl-bf62d76c"><span class="cl-bf619fe6">10,559.8</span></p></td><td class="cl-bf62e54a"><p class="cl-bf62d76c"><span class="cl-bf619fe6">10,715.9</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="10" class="cl-bf62e54b"><p class="cl-bf62d76d"><span class="cl-bf619fe7">Note: Model controls for age, gender, race, education, and household income. Conventional benchmarks: CFI/TLI ≥ 0.90 acceptable, ≥ 0.95 good; RMSEA ≤ 0.08 acceptable, ≤ 0.05 good; SRMR ≤ 0.08 good (Hu and Bentler 1999).</span></p></td></tr></tfoot></table></div>
 </div>
 </div>
 </figure>
 </div>
 </div>
-<p>Nested <span class="math inline">\(\chi^2\)</span> difference test (serial chain nested in full model, HIER-INDIV/EGAL-COMM groups): <span class="math inline">\(\Delta\chi^2(8) = 47.85\)</span>, <span class="math inline">\(p = 0.0000\)</span>.</p>
-<!-- Table 6: effect decomposition in the full model -->
+<p>Next we examine the direct, indirect, and total effects of cultural worldviews on behaviors. Those results are shown in <a href="#tbl-serial-effects" class="quarto-xref">Table&nbsp;4</a>.</p>
 <div class="cell">
 <div id="tbl-serial-effects" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-serial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Standardized decomposition of cultural worldview group effects on public and private behavior in the full combined model, controlling for age, gender, race, education, and household income († p&lt;0.10, * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001)
+Table&nbsp;4: Standardized decomposition of cultural worldview group effects on pro-environmental behavior.
 </figcaption>
 <div aria-describedby="tbl-serial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="cell caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 20%">
-<col style="width: 17%">
-<col style="width: 11%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Predictor</th>
-<th style="text-align: left;">Outcome</th>
-<th style="text-align: right;">Direct</th>
-<th style="text-align: right;">Serial (NEP→CNS)</th>
-<th style="text-align: right;">Total indirect</th>
-<th style="text-align: right;">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Hierarch-Individualist</td>
-<td style="text-align: left;">Public</td>
-<td style="text-align: right;">0.122**</td>
-<td style="text-align: right;">-0.052***</td>
-<td style="text-align: right;">-0.138***</td>
-<td style="text-align: right;">-0.016</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Hierarch-Individualist</td>
-<td style="text-align: left;">Private</td>
-<td style="text-align: right;">-0.085†</td>
-<td style="text-align: right;">-0.058***</td>
-<td style="text-align: right;">-0.116***</td>
-<td style="text-align: right;">-0.201***</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Egalitarian-Communitarian</td>
-<td style="text-align: left;">Public</td>
-<td style="text-align: right;">0.073†</td>
-<td style="text-align: right;">0.031**</td>
-<td style="text-align: right;">0.142***</td>
-<td style="text-align: right;">0.216***</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Egalitarian-Communitarian</td>
-<td style="text-align: left;">Private</td>
-<td style="text-align: right;">-0.041</td>
-<td style="text-align: right;">0.035***</td>
-<td style="text-align: right;">0.137***</td>
-<td style="text-align: right;">0.096*</td>
-</tr>
-</tbody>
-</table>
+<div class="tabwid"><style>.cl-bf703f24{}.cl-bf6d9e4a{font-family:'Helvetica';font-size:9pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf6d9e54{font-family:'Helvetica';font-size:9pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf6d9e55{font-family:'Helvetica';font-size:8pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-bf6ec018{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-bf6ec019{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-bf6ec022{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-bf6ecd2e{width:1.8in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd2f{width:0.7in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd30{width:1.2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd31{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd38{width:1.8in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd39{width:0.7in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd3a{width:1.2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd3b{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd42{width:1.8in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd43{width:0.7in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd44{width:1.2in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd4c{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd4d{width:1.8in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd4e{width:0.7in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd4f{width:1.2in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-bf6ecd56{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-bf703f24"><thead><tr style="overflow-wrap:break-word;"><th class="cl-bf6ecd2e"><p class="cl-bf6ec018"><span class="cl-bf6d9e4a">Predictor</span></p></th><th class="cl-bf6ecd2f"><p class="cl-bf6ec019"><span class="cl-bf6d9e4a">Direct</span></p></th><th class="cl-bf6ecd30"><p class="cl-bf6ec019"><span class="cl-bf6d9e4a">Serial (NEP-CNS)</span></p></th><th class="cl-bf6ecd31"><p class="cl-bf6ec019"><span class="cl-bf6d9e4a">Total indirect</span></p></th><th class="cl-bf6ecd2f"><p class="cl-bf6ec019"><span class="cl-bf6d9e4a">Total</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-bf6ecd38"><p class="cl-bf6ec018"><span class="cl-bf6d9e54">Hierarch-Individualist</span></p></td><td class="cl-bf6ecd39"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">0.036</span></p></td><td class="cl-bf6ecd3a"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">-0.067***</span></p></td><td class="cl-bf6ecd3b"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">-0.157***</span></p></td><td class="cl-bf6ecd39"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">-0.121**</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-bf6ecd42"><p class="cl-bf6ec018"><span class="cl-bf6d9e54">Egalitarian-Communitarian</span></p></td><td class="cl-bf6ecd43"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">0.028</span></p></td><td class="cl-bf6ecd44"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">0.040***</span></p></td><td class="cl-bf6ecd4c"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">0.171***</span></p></td><td class="cl-bf6ecd43"><p class="cl-bf6ec019"><span class="cl-bf6d9e54">0.199***</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-bf6ecd4d"><p class="cl-bf6ec022"><span class="cl-bf6d9e55">Note: Effects are from the full combined model, controlling for age, gender, race, education, and household income. † p&lt;0.10, * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001.</span></p></td></tr></tfoot></table></div>
 </div>
 </div>
 </figure>
 </div>
 </div>
+<p>For hierarchical individualists there was a total effect on behaviors of -0.121 and for egalitarian communitarians it was 0.199. However, as shown in <a href="#fig-structural" class="quarto-xref">Figure&nbsp;2</a> and <a href="#tbl-serial-effects" class="quarto-xref">Table&nbsp;4</a>, there is no direct relationship from cultural worldviews to behaviors, therefore the effects are strictly a result of indirect effects as environmental orientations appear to mediate the relationship between cultural worldviews and behaviors.</p>
+<p>The serial effect includes the paths of the cultural worldviews to NEP, NEP to CNS, and CNS to behaviors. So, for example, for hierarchical individualist the serial effect is calculated by −0.392 × 0.425 × 0.404 = −0.067. The total indirect effect captures the paths from cultural worldviews to NEP, NEP to behaviors, cultural worldviews to CNS, and the serial effect. For hierarchical individualist that is (−0.392×0.240) + (0.010×0.404) + (−0.067) = −0.094 + 0.004 − 0.067 = −0.157. Finally, the total effect is simply the direct effect plus the total indirect effect.</p>
 </section>
 <section id="discussion" class="level1">
 <h1>Discussion</h1>
@@ -728,6 +563,7 @@ In this paper, we examine whether environmental orientations mediate the relatio
 
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-boudetFrackingControversyCommunication2014" class="csl-entry" role="listitem">
 Boudet, Hilary, Christopher Clarke, Dylan Bugden, Edward Maibach, Connie Roser-Renouf, and Anthony Leiserowitz. 2014. <span>“<span>‘<span>Fracking</span>’</span> <span>Controversy</span> and <span>Communication</span>: <span>Using National Survey Data</span> to <span>Understand Public Perceptions</span> of <span>Hydraulic Fracturing</span>.”</span> <em>Energy Policy</em> 65: 57–67.
@@ -758,6 +594,9 @@ Hair, Joseph Franklin, G. Tomas M. Hult, Christian M. Ringle, and Marko Sarstedt
 </div>
 <div id="ref-henryUnderstandingEnvironmentalCognition2012" class="csl-entry" role="listitem">
 Henry, Adam Douglas, and Thomas Dietz. 2012. <span>“Understanding <span>Environmental Cognition</span>.”</span> <em>Organization &amp; Environment</em> 25(3): 238–58.
+</div>
+<div id="ref-huCutoffCriteriaFit1999" class="csl-entry" role="listitem">
+Hu, Li‐tze, and Peter M. Bentler. 1999. <span>“Cutoff <span>Criteria</span> for <span>Fit Indexes</span> in <span>Covariance Structure Analysis</span>: <span>Conventional Criteria Versus New Alternatives</span>.”</span> <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 6(1): 1–55.
 </div>
 <div id="ref-jenkins-smithBeliefSystemContinuity2014" class="csl-entry" role="listitem">
 Jenkins-Smith, Hank C., Carol L. Silva, Kuhika Gupta, and Joseph T. Ripberger. 2014. <span>“Belief <span>System Continuity</span> and <span>Change</span> in <span>Policy Advocacy Coalitions</span>: <span>Using Cultural Theory</span> to <span>Specify Belief Systems</span>, <span>Coalitions</span>, and <span>Sources</span> of <span>Change</span>.”</span> <em>Policy Studies Journal</em> 42(4): 484–508.
@@ -794,6 +633,9 @@ Kovács, Lilla Nóra, Gesine Jordan, Frida Berglund, Benedict Holden, Elena Nieh
 </div>
 <div id="ref-louMetaanalysisTemporalShifts2022" class="csl-entry" role="listitem">
 Lou, Xiaobin, Liman Man Wai Li, Weiwei Xia, and Qishan Zhu. 2022. <span>“A <span>Meta-Analysis</span> of <span>Temporal Shifts</span> in <span>Environmental Concern Between</span> 1994 and 2017: <span>An Examination</span> of the <span>New Environmental Paradigm</span>.”</span> <em>Anthropocene</em> 38: 100335.
+</div>
+<div id="ref-markleUnderstandingProEnvironmentalBehavior2019" class="csl-entry" role="listitem">
+Markle, Gail. 2019. <span>“Understanding <span>Pro-Environmental Behavior</span> in the <span>US</span>: <span>Insights</span> from <span>Grid-Group Cultural Theory</span> and <span>Cognitive Sociology</span>.”</span> <em>Sustainability</em> 11(2): 532.
 </div>
 <div id="ref-mayerConnectednessNatureScale2004" class="csl-entry" role="listitem">
 Mayer, F. Stephan, and Cynthia McPherson Frantz. 2004. <span>“The <span>Connectedness</span> to <span>Nature Scale</span>: <span>A Measure</span> of <span>Individuals</span>’ <span>Feeling</span> in <span>Community</span> with <span>Nature</span>.”</span> <em>Journal of Environmental Psychology</em> 24(4): 503–15.
@@ -852,7 +694,15 @@ Tumlison, Creed, Eric D. Button, Geoboo Song, and John Kester. 2018. <span>“Wh
 <div id="ref-xueCulturalWorldviewsEnvironmental2014" class="csl-entry" role="listitem">
 Xue, Wen, Donald W. Hine, Natasha M. Loi, Einar B. Thorsteinsson, and Wendy J. Phillips. 2014. <span>“Cultural <span>Worldviews</span> and <span>Environmental Risk Perceptions</span>: <span>A Meta-Analysis</span>.”</span> <em>Journal of Environmental Psychology</em> 40.
 </div>
-</div></section></div></main>
+<div id="ref-zhuBibliometricVisualAnalysis2021" class="csl-entry" role="listitem">
+Zhu, Chunkui, Peishan Tong, and Zhiping Song. 2021. <span>“A <span>Bibliometric</span> and <span>Visual Analysis</span> of <span>Environmental Behavior Research</span>.”</span> <em>Sustainability</em> 13(18): 10338.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>In the analysis we control for demographic variables, including age, gender (male=1), race (white=1), education, and income. We chose white males as the indicator variables because of the well-known <em>white-male effect</em> associated with risk perceptions and cultural cognition <span class="citation" data-cites="kahanCultureIdentityProtectiveCognition2007">(e.g., <a href="#ref-kahanCultureIdentityProtectiveCognition2007" role="doc-biblioref">Kahan et al. 2007</a>)</span>. More information about the demographic variables is available in the supplemental materials.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

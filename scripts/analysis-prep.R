@@ -20,7 +20,7 @@
 ## =====================================================================
 
 ## ---- packages -------------------------------------------------------
-.pkgs <- c("psych", "lavaan", "semTools", "semPlot", "semptools")
+.pkgs <- c("psych", "lavaan", "semTools", "semPlot", "semptools", "flextable")
 .missing <- .pkgs[!vapply(.pkgs, requireNamespace, logical(1), quietly = TRUE)]
 if (length(.missing)) {
   install.packages(.missing, repos = "https://cloud.r-project.org")
@@ -28,6 +28,7 @@ if (length(.missing)) {
 suppressPackageStartupMessages({
   library(psych); library(lavaan); library(semTools)
   library(semPlot); library(semptools)
+  library(flextable)   # Tables 3-4 rendered natively for html/pdf/docx, notes in the footer
 })
 
 ## ---- locate project root (robust to cwd) ----------------------------
@@ -218,16 +219,36 @@ fitMeas <- cfa(.measModel, data = envatt)
 names(.cr)  <- names(.constructs)
 names(.ave) <- names(.constructs)
 
-## combined table: item rows with mean/sd; alpha/CR/AVE on first row per
-## construct only (blank on the rest for a clean published-style layout)
+## question wording for each measurement item (survey text, not the
+## variable label), used in tbl2 in place of the variable name/mean/sd
+.item_wording <- c(
+  cc_eh_2   = "We have gone too far in pushing equal rights in this country.",
+  cc_eh_5   = "It seems like blacks, women, homosexuals and other groups don’t want equal rights, they want special rights just for them.",
+  cc_eh_7   = "The women’s rights movement has gone too far.",
+  cc_eh_11  = "We need to dramatically reduce inequalities between the rich and poor, whites and people of color, and men and women.",
+  cc_eh_13  = "Our society would be better off if the distribution of wealth was more equal.",
+  cc_eh_14  = "We live in a sexist society that is fundamentally set up to discriminate against women.",
+  cc_ci_2   = "If the government spent less time trying to fix everyone’s problems, we’d all be a lot better off.",
+  cc_ci_3   = "Government regulations are almost always a waste of everyone’s time and money.",
+  cc_ci_12  = "Our government tries to do too many things for too many people. We should just let people take care of themselves.",
+  cc_ci_13  = "Sometimes government needs to make laws that keep people from hurting themselves.",
+  cc_ci_14  = "Government should put limits on the choices individuals can make so they don’t get in the way of what’s good for society.",
+  cc_ci_16  = "The government should do more to advance society’s goals, even if that means limiting the freedom and choices of individuals.",
+  cns2      = "I think of the natural world as a community to which I belong.",
+  cns6      = "I often feel a kinship with animals and plants.",
+  cns7      = "I feel as though I belong to the Earth as equally as it belongs to me.",
+  nep5      = "Humans are severely abusing the environment.",
+  nep10     = "The so-called “ecological crisis” facing humankind has been greatly exaggerated (reverse-coded).",
+  nep15     = "If things continue on their present course, we will soon experience a major ecological catastrophe.")
+
+## combined table: item rows with question wording; alpha/CR/AVE on first
+## row per construct only (blank on the rest for a clean published-style layout)
 .first <- function(x, n) c(formatC(x, format = "f", digits = 2), rep("", n - 1))
 tbl2 <- do.call(rbind, lapply(names(.constructs), function(cn) {
   items <- .constructs[[cn]]
   data.frame(
     Construct = c(cn, rep("", length(items) - 1)),
-    Item = items,
-    Mean = round(sapply(items, function(v) mean(envatt[[v]], na.rm = TRUE)), 2),
-    SD   = round(sapply(items, function(v) sd(envatt[[v]],   na.rm = TRUE)), 2),
+    Statement = unname(.item_wording[items]),
     Alpha = .first(.alpha[cn], length(items)),
     CR    = .first(.cr[cn],    length(items)),
     AVE   = .first(.ave[cn],   length(items)),
@@ -246,7 +267,7 @@ names(tbl2)[names(tbl2) == "Alpha"] <- "α"   # Greek alpha
              df    = as.integer(fm[["df"]]),
              "Chi-sq" = round(fm[["chisq"]], 2),
              RMSEA = round(fm[["rmsea"]], 3),
-             "RMSEA 90% CI" = sprintf("[%.3f, %.3f]",
+             "RMSEA 90% CI" = sprintf("(%.3f, %.3f)",
                                       fm[["rmsea.ci.lower"]], fm[["rmsea.ci.upper"]]),
              CFI   = round(fm[["cfi"]],   3),
              TLI   = round(fm[["tli"]],   3),
@@ -421,38 +442,50 @@ draw_sem_struct <- function(fit) {
 ## Structural-only variant of the HIER-INDIV/EGAL-COMM full model (section
 ## 10 below): same treatment as draw_sem_struct(), but with a two-node
 ## layout since HIER_INDIV and EGAL_COMM replace the four separate
-## worldview latents.
-draw_sem_struct_hiec <- function(fit) {
+## worldview latents, and a single combined BEHAVE12 (0-12) outcome in
+## place of the separate PUBLIC/PRIVATE outcomes. The detailed note is
+## drawn onto the plot itself (like ggplot's labs(caption = ...)) so it is
+## part of the image rather than a separate paragraph in the .qmd; the
+## base "pdf" graphics device can't encode the unicode arrow, so it is
+## swapped for "->" in the on-plot version only.
+draw_sem_struct_hiec <- function(fit, note = note_fig_structural) {
   spm  <- semPlot::semPlotModel(fit)
   ## HIER_INDIV/EGAL_COMM are observed (manifest = TRUE), unlike the four
   ## latent worldviews in draw_sem_struct(), so they must be spared here too.
-  keep <- c("PUBLIC", "PRIVATE", "HIER_INDIV", "EGAL_COMM")
+  keep <- c("BEHAVE12", "HIER_INDIV", "EGAL_COMM")
   drop <- setdiff(spm@Vars$name[spm@Vars$manifest], keep)
   spm  <- semptools::drop_nodes(spm, drop)
-  ## node order follows spm@Vars: PUBLIC PRIVATE HIER_INDIV EGAL_COMM NEP CNS
+  ## node order follows spm@Vars: BEHAVE12 HIER_INDIV EGAL_COMM NEP CNS
   lay <- matrix(c(
-     2.0,  0.8,   # PUBLIC
-     2.0, -0.8,   # PRIVATE
+     2.0,  0.0,   # BEHAVE12
     -2.0,  0.7,   # HIER_INDIV
     -2.0, -0.7,   # EGAL_COMM
     -0.7,  0.0,   # NEP
      0.7,  0.0),  # CNS
     ncol = 2, byrow = TRUE)
+  par(mar = c(11, 6, 4, 6))
   p <- semPaths(spm, whatLabels = "std", style = "ram", layout = lay,
                 residuals = FALSE, sizeMan = 9, sizeMan2 = 6, nCharNodes = 0,
-                edge.label.cex = .8, mar = c(4, 6, 4, 6), DoNotPlot = TRUE)
+                edge.label.cex = .8, mar = c(11, 6, 4, 6), DoNotPlot = TRUE)
+  ## NEP, CNS, and BEHAVE12 are collinear (all at y = 0), so the direct
+  ## NEP -> BEHAVE12 edge would otherwise be drawn straight through the CNS
+  ## node -- bow it upward so it's visible instead of hidden behind CNS.
+  p <- semptools::set_curve(p, c("BEHAVE12 ~ NEP" = 2))
   p <- mark_sig(p, fit)
   p <- .dedupe_cov_labels(p)
   p <- .keep_sig_edges(p, fit)
   p <- semptools::change_node_label(p, c(
-    PUBLIC = "Public\nBehavior", PRIVATE = "Private\nBehavior",
+    BEHAVE12 = "Pro-Env.\nBehavior",
     HIER_INDIV = "HIER-\nINDIV", EGAL_COMM = "EGAL-\nCOMM"))
   plot(p)
+  note_lines <- strwrap(paste("Note:", gsub("→", "->", note, fixed = TRUE)), width = 100)
+  mtext(note_lines, side = 1, line = seq_along(note_lines) + 1.5, cex = 0.62, font = 3,
+        adj = 0)
 }
 
 ## Conceptual model diagram (Figure 1), drawn with base graphics so it
 ## renders natively to HTML/PDF/DOCX without a headless browser. Pure black
-## and white: cultural cognition -> NEP -> CNS -> public/private behavior.
+## and white: cultural cognition -> NEP -> CNS -> pro-environmental behavior.
 draw_concept_model <- function() {
   op <- par(mar = c(0, 0, 0, 0), family = "serif"); on.exit(par(op))
   plot.new(); plot.window(xlim = c(0, 11.2), ylim = c(0, 3), asp = 1)
@@ -481,18 +514,16 @@ draw_concept_model <- function() {
     for (x in xs) segments(x, y, x, box_top, lwd = 1.1, col = "black")
   }
   cc <- c(1.30, 1.5); nep <- c(4.00, 1.5); cns <- c(6.70, 1.5)
-  pub <- c(9.9, 2.35); priv <- c(9.9, 0.65)
+  behave <- c(9.9, 1.5)
   arr(cc[1] + hw, cc[2], nep[1] - hw, nep[2])
   arr(nep[1] + hw, nep[2], cns[1] - hw, cns[2])
-  arr(cns[1] + hw, cns[2] + 0.18, pub[1] - hw, pub[2] - 0.12)
-  arr(cns[1] + hw, cns[2] - 0.18, priv[1] - hw, priv[2] + 0.12)
+  arr(cns[1] + hw, cns[2], behave[1] - hw, behave[2])
   bracket(c(cc[1], nep[1], cns[1]), cc[2] + hh + 0.15, cc[2] + hh,
           c("Cognition", "Environmental Orientation"))
   box(cc[1], cc[2], "Cultural\nWorldviews")
   box(nep[1], nep[2], "Ecological\nWorldviews (NEP)")
   box(cns[1], cns[2], "Connectedness\nto Nature (CNS)")
-  box(pub[1], pub[2], "Public\nBehavior")
-  box(priv[1], priv[2], "Private\nBehavior")
+  box(behave[1], behave[2], "Pro-Environmental\nBehavior")
 }
 
 ## =====================================================================
@@ -550,7 +581,7 @@ fitFull   <- sem(.fullModel,   data = envatt)
              "Chi-sq" = round(fm[["chisq"]], 2), df = as.integer(fm[["df"]]),
              CFI = round(fm[["cfi"]], 3), TLI = round(fm[["tli"]], 3),
              RMSEA = round(fm[["rmsea"]], 3),
-             "RMSEA 90% CI" = sprintf("[%.3f, %.3f]",
+             "RMSEA 90% CI" = sprintf("(%.3f, %.3f)",
                                       fm[["rmsea.ci.lower"]], fm[["rmsea.ci.upper"]]),
              SRMR = round(fm[["srmr"]], 3),
              AIC = round(fm[["aic"]], 1), BIC = round(fm[["bic"]], 1),
@@ -626,33 +657,28 @@ tbl_hiec_n <- data.frame(
   check.names = FALSE)
 
 ## ---- serial chain / full models, HIER_INDIV + EGAL_COMM in place of
-##      HIER + EGAL + INDIV + COMM ----
+##      HIER + EGAL + INDIV + COMM, single BEHAVE12 (0-12) outcome in place
+##      of the separate PUBLIC/PRIVATE observed outcomes ----
 .measSerialHIEC <- '
   NEP   =~ nep5 + nep10 + nep15
   CNS   =~ cns2 + cns6 + cns7
 '
 .serialModelHIEC <- paste0(.measSerialHIEC, '
-  NEP     ~ HIER_INDIV + EGAL_COMM + ', .ctrl_rhs, '
-  CNS     ~ NEP + ', .ctrl_rhs, '
-  PUBLIC  ~ CNS + ', .ctrl_rhs, '
-  PRIVATE ~ CNS + ', .ctrl_rhs, '
+  NEP      ~ HIER_INDIV + EGAL_COMM + ', .ctrl_rhs, '
+  CNS      ~ NEP + ', .ctrl_rhs, '
+  BEHAVE12 ~ CNS + ', .ctrl_rhs, '
 ')
 
 .wv_fullHIEC <- c(HI = "HIER_INDIV", EC = "EGAL_COMM")
 .reg_fullHIEC <- c(
-  paste0("NEP     ~ aHI*HIER_INDIV + aEC*EGAL_COMM + ", .ctrl_rhs),
-  paste0("CNS     ~ d*NEP + mHI*HIER_INDIV + mEC*EGAL_COMM + ", .ctrl_rhs),
-  paste0("PUBLIC  ~ uCNS*CNS + uNEP*NEP + uHI*HIER_INDIV + uEC*EGAL_COMM + ", .ctrl_rhs),
-  paste0("PRIVATE ~ vCNS*CNS + vNEP*NEP + vHI*HIER_INDIV + vEC*EGAL_COMM + ", .ctrl_rhs))
+  paste0("NEP      ~ aHI*HIER_INDIV + aEC*EGAL_COMM + ", .ctrl_rhs),
+  paste0("CNS      ~ d*NEP + mHI*HIER_INDIV + mEC*EGAL_COMM + ", .ctrl_rhs),
+  paste0("BEHAVE12 ~ uCNS*CNS + uNEP*NEP + uHI*HIER_INDIV + uEC*EGAL_COMM + ", .ctrl_rhs))
 .defs_fullHIEC <- unlist(lapply(names(.wv_fullHIEC), function(x) c(
-  sprintf("dirP_%s := u%s",                          x, x),
-  sprintf("serP_%s := a%s*d*uCNS",                   x, x),
-  sprintf("indP_%s := a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x),
-  sprintf("totP_%s := u%s + a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x, x),
-  sprintf("dirR_%s := v%s",                          x, x),
-  sprintf("serR_%s := a%s*d*vCNS",                   x, x),
-  sprintf("indR_%s := a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x),
-  sprintf("totR_%s := v%s + a%s*vNEP + m%s*vCNS + a%s*d*vCNS", x, x, x, x, x))))
+  sprintf("dir_%s := u%s",                          x, x),
+  sprintf("ser_%s := a%s*d*uCNS",                   x, x),
+  sprintf("ind_%s := a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x),
+  sprintf("tot_%s := u%s + a%s*uNEP + m%s*uCNS + a%s*d*uCNS", x, x, x, x, x))))
 .fullModelHIEC <- paste(c(.measSerialHIEC, .reg_fullHIEC, .defs_fullHIEC), collapse = "\n")
 
 fitSerialHIEC <- sem(.serialModelHIEC, data = envatt)
@@ -665,7 +691,7 @@ tbl5_hiec <- rbind(.cmp_row(fitSerialHIEC, "Serial chain (HI/EC)"),
 .lrt_hiec <- lavTestLRT(fitSerialHIEC, fitFullHIEC)
 .i_hiec   <- which(!is.na(.lrt_hiec[["Chisq diff"]]))[1]
 lrt_text_hiec <- sprintf(
-  "Nested $\\chi^2$ difference test (serial chain nested in full model, HIER-INDIV/EGAL-COMM groups): $\\Delta\\chi^2(%d) = %.2f$, $p = %.4f$.",
+  "Nested χ² difference test (serial chain nested in full model, HIER-INDIV/EGAL-COMM groups): Δχ²(%d) = %.2f, p = %.4f.",
   .lrt_hiec[["Df diff"]][.i_hiec], .lrt_hiec[["Chisq diff"]][.i_hiec], .lrt_hiec[["Pr(>Chisq)"]][.i_hiec])
 
 ## ---- standardized effect decomposition (reuses .fmt from section 7) ----
@@ -675,16 +701,105 @@ lrt_text_hiec <- sprintf(
   .fmt(r$est.std[1], r$pvalue[1])
 }
 .wv_hiec_lab <- c("Hierarch-Individualist" = "HI", "Egalitarian-Communitarian" = "EC")
-.decomp_row_hiec <- function(nm, x, outcome, pfx) data.frame(
-  Predictor = nm, Outcome = outcome,
-  Direct             = .getdefHIEC(paste0("dir", pfx, "_", x)),
-  "Serial (NEP→CNS)" = .getdefHIEC(paste0("ser", pfx, "_", x)),
-  "Total indirect"   = .getdefHIEC(paste0("ind", pfx, "_", x)),
-  Total              = .getdefHIEC(paste0("tot", pfx, "_", x)),
+.decomp_row_hiec <- function(nm, x) data.frame(
+  Predictor = nm,
+  Direct             = .getdefHIEC(paste0("dir_", x)),
+  "Serial (NEP-CNS)" = .getdefHIEC(paste0("ser_", x)),
+  "Total indirect"   = .getdefHIEC(paste0("ind_", x)),
+  Total              = .getdefHIEC(paste0("tot_", x)),
   row.names = NULL, check.names = FALSE)
-tbl6_hiec <- do.call(rbind, lapply(names(.wv_hiec_lab), function(nm) rbind(
-  .decomp_row_hiec(nm, .wv_hiec_lab[[nm]], "Public",  "P"),
-  .decomp_row_hiec(nm, .wv_hiec_lab[[nm]], "Private", "R"))))
+tbl6_hiec <- do.call(rbind, lapply(names(.wv_hiec_lab), function(nm)
+  .decomp_row_hiec(nm, .wv_hiec_lab[[nm]])))
+
+## ---- Table: fit statistics for the full direct-path model only (main
+##      text reports just this one model; the serial-vs-full comparison
+##      lives in the supplemental materials as tbl-serial-fit-hiec) ----
+tbl_fit_full_hiec <- tbl5_hiec[tbl5_hiec$Model == "Full (HI/EC, + direct paths)", ]
+
+## ---- notes for the full-model figure and tables (main text) ----
+note_fig_structural <- paste(
+  "Cultural worldview groups (HIER-INDIV, EGAL-COMM) → New Ecological Paradigm →",
+  "Connectedness to Nature → pro-environmental behavior (0-12 scale, public and private",
+  "behaviors combined), with direct paths.",
+  "Controlling for age, gender, race, education, and household income (paths not shown).",
+  "The measurement (indicator) portion is omitted for clarity; standardized coefficients shown;",
+  "* p<0.05, ** p<0.01, *** p<0.001. The full path diagram including the measurement model, and",
+  "the equivalent model with the four separate worldview measures, are in the supplemental materials.")
+note_tbl_serial_fit <- paste(
+  "Both models control for age, gender, race, education, and household income.", lrt_text_hiec)
+note_tbl_fit_full <- paste(
+  "Model controls for age, gender, race, education, and household income.",
+  "Conventional benchmarks: CFI/TLI ≥ 0.90 acceptable, ≥ 0.95 good;",
+  "RMSEA ≤ 0.08 acceptable, ≤ 0.05 good; SRMR ≤ 0.08 good",
+  "(Hu and Bentler 1999).")
+note_tbl_serial_effects <- paste(
+  "Effects are from the full combined model, controlling for age, gender, race, education, and",
+  "household income. † p<0.10, * p<0.05, ** p<0.01, *** p<0.001.")
+
+## ---- Tables 3-4 rendered as flextables (note embedded in the footer, so it
+##      travels with the table object itself rather than living in the .qmd) ----
+make_tbl_serial_fit_flextable <- function() {
+  tbl5_hiec |>
+    flextable() |>
+    align(j = 1, align = "left", part = "all") |>
+    align(j = 2:10, align = "center", part = "all") |>
+    bold(part = "header") |>
+    fontsize(size = 8, part = "all") |>
+    padding(padding = 2, part = "all") |>
+    add_footer_lines(values = paste("Note:", note_tbl_serial_fit)) |>
+    fontsize(size = 7, part = "footer") |>
+    italic(part = "footer") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = 1,     width = 1.55) |>
+    width(j = 2,     width = 0.50) |>
+    width(j = 3,     width = 0.30) |>
+    width(j = 4:5,   width = 0.45) |>
+    width(j = 6,     width = 0.50) |>
+    width(j = 7,     width = 0.80) |>
+    width(j = 8,     width = 0.45) |>
+    width(j = 9:10,  width = 0.55)
+}
+
+make_tbl_fit_full_flextable <- function() {
+  tbl_fit_full_hiec |>
+    flextable() |>
+    align(j = 1, align = "left", part = "all") |>
+    align(j = 2:10, align = "center", part = "all") |>
+    bold(part = "header") |>
+    fontsize(size = 8, part = "all") |>
+    padding(padding = 2, part = "all") |>
+    add_footer_lines(values = paste("Note:", note_tbl_fit_full)) |>
+    fontsize(size = 7, part = "footer") |>
+    italic(part = "footer") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = 1,     width = 1.55) |>
+    width(j = 2,     width = 0.50) |>
+    width(j = 3,     width = 0.30) |>
+    width(j = 4:5,   width = 0.45) |>
+    width(j = 6,     width = 0.50) |>
+    width(j = 7,     width = 0.80) |>
+    width(j = 8,     width = 0.45) |>
+    width(j = 9:10,  width = 0.55)
+}
+
+make_tbl_serial_effects_flextable <- function() {
+  tbl6_hiec |>
+    flextable() |>
+    align(j = 1,   align = "left",   part = "all") |>
+    align(j = 2:5, align = "center", part = "all") |>
+    bold(part = "header") |>
+    fontsize(size = 9, part = "all") |>
+    padding(padding = 3, part = "all") |>
+    add_footer_lines(values = paste("Note:", note_tbl_serial_effects)) |>
+    fontsize(size = 8, part = "footer") |>
+    italic(part = "footer") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = 1, width = 1.80) |>
+    width(j = 2, width = 0.70) |>
+    width(j = 3, width = 1.20) |>
+    width(j = 4, width = 1.00) |>
+    width(j = 5, width = 0.70)
+}
 
 ## ---- demographic control coefficients, full combined model (HIER-INDIV/
 ##      EGAL-COMM) reported in the main text -- omitted from the path
@@ -693,11 +808,11 @@ tbl6_hiec <- do.call(rbind, lapply(names(.wv_hiec_lab), function(nm) rbind(
                educ = "Education", hhincome = "Household income")
 .ctrl_row_hiec <- function(v) {
   r <- .ssFullHIEC[.ssFullHIEC$op == "~" & .ssFullHIEC$rhs == v &
-                     .ssFullHIEC$lhs %in% c("NEP", "CNS", "PUBLIC", "PRIVATE"), ]
+                     .ssFullHIEC$lhs %in% c("NEP", "CNS", "BEHAVE12"), ]
   vals <- setNames(mapply(.fmt, r$est.std, r$pvalue), r$lhs)
   data.frame(Control = .ctrl_lab[[v]],
              NEP = vals[["NEP"]], CNS = vals[["CNS"]],
-             Public = vals[["PUBLIC"]], Private = vals[["PRIVATE"]],
+             Behavior = vals[["BEHAVE12"]],
              row.names = NULL, check.names = FALSE)
 }
 tbl_hiec_controls <- do.call(rbind, lapply(.ctrl_vars, .ctrl_row_hiec))
