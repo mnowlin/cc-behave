@@ -256,6 +256,42 @@ tbl2 <- do.call(rbind, lapply(names(.constructs), function(cn) {
 }))
 names(tbl2)[names(tbl2) == "Alpha"] <- "α"   # Greek alpha
 
+## ---- Tables 1-2 rendered as flextables (fixed column widths keep the
+##      Mean/SD/α/CR/AVE columns from wrapping, text columns left-aligned
+##      and vertically centered) ----
+make_tbl1_flextable <- function() {
+  tbl1 |>
+    flextable() |>
+    align(j = 1:2, align = "left",   part = "all") |>
+    align(j = 3:4, align = "center", part = "all") |>
+    valign(valign = "center", part = "all") |>
+    bold(part = "header") |>
+    fontsize(size = 9, part = "all") |>
+    padding(padding = 3, part = "all") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = 1, width = 4.30) |>
+    width(j = 2, width = 0.80) |>
+    width(j = 3, width = 0.65) |>
+    width(j = 4, width = 0.65)
+}
+
+make_tbl2_flextable <- function() {
+  tbl2 |>
+    flextable() |>
+    align(j = 1:2, align = "left",   part = "all") |>
+    align(j = 3:5, align = "center", part = "all") |>
+    valign(valign = "center", part = "all") |>
+    bold(part = "header") |>
+    fontsize(size = 9, part = "all") |>
+    padding(padding = 3, part = "all") |>
+    set_table_properties(layout = "fixed") |>
+    width(j = 1, width = 1.10) |>
+    width(j = 2, width = 3.85) |>
+    width(j = 3, width = 0.55) |>
+    width(j = 4, width = 0.55) |>
+    width(j = 5, width = 0.55)
+}
+
 ## =====================================================================
 ## 6. TABLE 3 -- model fit statistics
 ## =====================================================================

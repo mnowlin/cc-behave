@@ -6,6 +6,170 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-07-12 — Table 1/2 layout fix: left-aligned/vertically-centered text, numbers on one line
+
+**Goal:** Tables 1 (`tbl-behaviors`) and 2 (`tbl-measurement`) were rendered
+with `knitr::kable`, which left column widths to Word's autofit — long
+`Behavior`/`Statement` text squeezed the `Mean`/`SD`/`α`/`CR`/`AVE` columns
+narrow enough that the numbers wrapped onto two lines, and cell text wasn't
+consistently left-aligned/vertically centered.
+
+### What we did
+
+- Converted both tables from `knitr::kable` to `flextable`, matching the
+  approach already used for Tables 3-4 (`make_tbl_fit_full_flextable()`,
+  `make_tbl_serial_effects_flextable()`), which give explicit control over
+  column widths and alignment across all three output formats.
+- Added `make_tbl1_flextable()` and `make_tbl2_flextable()` in
+  `scripts/analysis-prep.R`: text columns (`Behavior`/`Type`,
+  `Construct`/`Statement`) left-aligned, numeric columns
+  (`Mean`/`SD`, `α`/`CR`/`AVE`) center-aligned, `valign = "center"` on all
+  cells, and `set_table_properties(layout = "fixed")` with explicit
+  per-column widths (in inches) sized so the numeric columns never wrap.
+- Updated the `tbl-behaviors` and `tbl-measurement` chunks in `cc-behave.qmd`
+  to call the new functions instead of `knitr::kable`.
+- Re-rendered all three formats and spot-checked the DOCX by unzipping it and
+  grepping `word/document.xml` for the expected `w:val="left"`/`"center"`
+  alignment attributes on the table cells.
+
+### Files changed
+
+- `scripts/analysis-prep.R` *(changed)* — added `make_tbl1_flextable()` and
+  `make_tbl2_flextable()` next to the existing Table 3/4 flextable
+  constructors.
+- `cc-behave.qmd` *(changed)* — `tbl-behaviors`/`tbl-measurement` chunks now
+  call `make_tbl1_flextable()`/`make_tbl2_flextable()`.
+- `_output/cc-behave.{html,pdf,docx}` *(regenerated)*.
+
+### Verification
+
+- Re-rendered `cc-behave.qmd` end-to-end with no errors.
+- Unzipped the rendered `.docx` and confirmed `left`/`center` alignment
+  attributes are present in `word/document.xml` for the affected table cells.
+
+### Open items / next steps
+
+- None.
+
+---
+
+## 2026-07-12 — DOCX template swap, PDF italics fix, author/affiliation metadata (footnote style for PDF/DOCX)
+
+**Goal:** Switch the DOCX output to the author's own Word template, fix a PDF
+rendering bug where all italics were showing as underlines, and add author
+affiliation information — ending on the author's preferred presentation:
+affiliation as a footnote after each name for PDF/DOCX.
+
+### What we did
+
+1. **Swapped the DOCX reference template** from `sustainability-template.dot`
+   to `custom-reference-doc.docx`.
+2. **Diagnosed and fixed a PDF-only bug: every `*italic*` rendered as an
+   underline instead.** Root cause: Quarto's LaTeX template unconditionally
+   loads `\usepackage{ulem}` (for strikethrough support) without the
+   `normalem` option, and plain `ulem` redefines `\emph` to underline rather
+   than italicize — a known Pandoc/Quarto gotcha, not specific to this
+   document. Fixed with a single `\normalem` line added to
+   `pdf.include-in-header`, positioned after Quarto's own `ulem` load (confirmed
+   in the compiled `.tex`).
+3. **Added author/affiliation metadata and chased it through all three
+   formats**, hitting a different gap in each:
+   - **HTML** — Quarto's title-block partial shows the affiliation *name* but
+     its template never references `department` at all. Fixed with a custom
+     `title-metadata.html` template partial (a patched copy of Quarto's own,
+     adding the department line).
+   - **PDF** — the default title template drops affiliations entirely
+     (`\author{Name1 \and Name2}`, nothing else). Built a custom `title.tex`
+     partial to pull `department`/affiliation `name` from Quarto's `by-author`
+     variable — which surfaced a real Quarto bug along the way: specifying
+     `template-partials` for the PDF format silently drops Quarto's own
+     `documentclass: scrartcl` default, falling back to plain `article`. Had to
+     set `documentclass`/`classoption` explicitly to compensate.
+   - **DOCX** — the docx writer only ever prints bare author names. Built a
+     Lua filter (`docx-author-affiliations.lua`) plus a parallel
+     `author-affiliations:` metadata list to inject affiliation text, since by
+     the time a user Lua filter runs, `meta.author` has already been flattened
+     to plain names by Quarto's own internal processing — the nested
+     affiliation/department fields are gone by then.
+4. **Author changed direction: wanted the affiliation as a footnote after the
+   name, not inline text or a side column.** This turned out to simplify
+   things a lot: embedding real Pandoc markdown footnote syntax (`^[...]`)
+   directly in `author.name` produces genuine native footnotes for **both**
+   PDF (`\footnote{}`) and DOCX (real Word `footnoteReference`) with **no**
+   custom template or Lua filter needed at all. The same trick **triples every
+   entry in HTML's footnote list** — confirmed with a minimal reproduction
+   outside this document — a distinct Quarto bug (author metadata appears to
+   get internally re-processed multiple times for HTML, each pass re-registering
+   the same footnote). Decision: use the footnote-in-name trick for PDF/DOCX;
+   keep the custom `title-metadata.html` affiliation-column display for HTML
+   only, since it isn't affected by that bug.
+5. **Simplified `cc-behave.qmd`** to give each format its own `author:` block
+   under `format:` (footnote-embedded name for pdf/docx; structured
+   `affiliations:` object for html), since one shared top-level `author:`
+   couldn't satisfy both shapes. Removed the now-unneeded `title.tex`,
+   `docx-author-affiliations.lua`, and `author-affiliations:` field — the PDF
+   `documentclass`/`classoption` workaround also became unnecessary once
+   `template-partials` was dropped from the PDF format entirely.
+6. Re-rendered all three formats repeatedly through this process to verify
+   each fix in isolation and the final combined state.
+
+### Files created / changed
+
+- `cc-behave.qmd` *(changed)* — `docx.reference-doc` → `custom-reference-doc.docx`;
+  `\normalem` added to `pdf.include-in-header`; top-level `author:` replaced
+  with per-format `format.html.author` (structured, with `affiliations:`) and
+  `format.pdf.author`/`format.docx.author` (footnote-embedded `name:`);
+  `format.html.template-partials: [title-metadata.html]` added.
+- `title-metadata.html` *(new)* — copy of Quarto's default HTML
+  title-metadata partial with a `department` line added ahead of the
+  affiliation name.
+- `custom-reference-doc.docx` *(added, untracked)* — the author's Word
+  template, now referenced by `format.docx.reference-doc`.
+- `_output/cc-behave.{html,pdf,docx}` *(regenerated)*.
+- `title.tex`, `docx-author-affiliations.lua`, and the `author-affiliations:`
+  metadata field were created earlier in this session and then **removed
+  again** once the footnote-based approach made them unnecessary — not part
+  of the final state.
+
+### Decisions
+
+- **Footnote-embedded author name (`^[...]` in YAML) is the source of truth
+  for PDF/DOCX affiliation display; HTML keeps a separate, non-footnote
+  structured author block** — a deliberate format-specific divergence to
+  route around the HTML footnote-duplication bug, not an oversight or
+  inconsistency to reconcile later.
+- **`\normalem` fixes the root cause (package load order), not each `\emph`
+  call** — a one-line fix in `include-in-header` rather than hunting down
+  every italic in the manuscript.
+- **`documentclass`/`classoption` overrides were added, then removed again**
+  once `template-partials` was dropped from the `pdf` format — they were only
+  needed to compensate for the side effect of using `template-partials`, which
+  no longer happens.
+
+### Verification
+
+- PDF italics: confirmed genuinely italic (not underlined) by inspecting the
+  compiled `.tex` — `\normalem` lands immediately after Quarto's `\usepackage{ulem}`.
+- HTML: confirmed department now appears in the affiliation column, and
+  confirmed (via grep) that "Department of Political Science" appears exactly
+  once in the rendered HTML — no footnote-list duplication.
+- PDF/DOCX: confirmed a single native footnote per author with no duplicate
+  numbering — inspected the compiled `.tex` `\footnote{}` calls directly and
+  the DOCX's `word/footnotes.xml` contents.
+- All three formats render cleanly end-to-end via `quarto render cc-behave.qmd`.
+
+### Open items / next steps
+
+- **Aaron Sparks' affiliation is still a placeholder** ("Affiliation pending"
+  in the PDF/DOCX footnote text; no `affiliations:` entry under the HTML
+  author block). Once known, it needs updating in three places: the HTML
+  `format.html.author` affiliations, and the footnote text in both
+  `format.pdf.author` and `format.docx.author`.
+- This session's changes are **uncommitted**; commit when at a stable
+  checkpoint.
+
+---
+
 ## 2026-07-08 — Single combined behavior outcome, note-embedding overhaul, two rendering-bug fixes
 
 **Goal:** Drop the serial-chain-only figure from the main text (keep only the
