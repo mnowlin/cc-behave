@@ -6,6 +6,157 @@ Decisions → Verification → Open items**.
 
 ---
 
+## 2026-07-16 — Two rounds of coauthor track-changes merged, supplemental-materials reference removed, journal-template submission copy
+
+**Goal:** Incorporate the coauthor's (Aaron Sparks) two rounds of Word
+track-changes edits into `cc-behave.qmd`, remove a stale reference to
+supplemental materials from a main-text figure caption, and produce a
+submission-ready DOCX using the target journal's own template without
+changing the manuscript's working DOCX template.
+
+### What we did
+
+1. **First coauthor review** (`Nowlin_Sparks_AS.docx`, 22 tracked
+   insertions/deletions plus 5 comments). Extracted with
+   `pandoc --track-changes=all`, then cross-checked against a raw
+   `document.xml` parse — two of the edits ("illustrates ou**r**",
+   "Re**g**arding") turned out to be embedded inside Word `HYPERLINK` field
+   `<w:instrText>` runs next to `@fig-`/`@tbl-` cross-references, which
+   pandoc's markdown conversion silently drops with no warning. Applied all
+   22 accepted changes by hand via targeted edits. Left the 5 comments for
+   the author — two are approving asides, three ("explicitly add comparison
+   to NEP in same sample?", a pre-registration transparency note, and its
+   approving reply) are editorial judgment calls, not track-changes to
+   mechanically accept.
+2. **Second coauthor review** (`Behaving Sustainably.docx`, 232
+   insertions/226 deletions across 47 paragraphs — a full copyedit pass, not
+   isolated fixes). A first automated pass (word-level context matching +
+   direct string replace) partially corrupted several paragraphs, because
+   some sub-edits within a paragraph succeeded while sibling edits in the
+   same paragraph failed, leaving inconsistent merged text (e.g. a
+   duplicated "of an individual" phrase). Caught in review before rendering
+   or committing. Rebuilt from a clean baseline (git `HEAD` + a precise
+   replay of the 12 first-round edits + the author's own concurrent YAML
+   edits — title fix, Aaron Sparks' affiliation — confirmed via diff to be
+   untouched by the docx parsing), then reprocessed with a proper three-way
+   merge: align qmd paragraphs to the docx's pre-edit paragraph text
+   (word-level `SequenceMatcher`, citation/cross-ref-stripped normalization
+   for the alignment step), then transplant only the actual pre→post edit
+   operations onto the corresponding qmd word ranges. This keeps
+   `@citekey` citations, `@fig-`/`@tbl-` cross-references, footnote markers,
+   and inline `` `r ...` `` code untouched while the coauthor's prose edits
+   land correctly. 41 of 47 paragraphs merged automatically; the remaining 6
+   (edits straddling a citation/cross-ref boundary) were finished by hand.
+   Verified citation-token and footnote-marker counts identical before and
+   after, reviewed the full paragraph-level diff, then rendered all three
+   formats.
+3. **Removed a stale reference to supplemental materials** from
+   `note_fig_structural` in `scripts/analysis-prep.R` — the caption note for
+   the main-text structural SEM figure said "The full path diagram including
+   the measurement model...are in the supplemental materials," left over
+   from when a fuller diagram lived in the supplement. Confirmed via grep
+   this was the only figure/table caption/note anywhere in the pipeline
+   referencing supplemental material (other hits were code comments, never
+   rendered).
+4. **Added the two coauthor review copies and the submission-prep folder to
+   `.gitignore`**: `Nowlin_Sparks_AS.docx`, `Behaving Sustainably.docx`, and
+   `/submission-files/` (holds the cover letter and journal-formatted
+   manuscript copy).
+5. **Produced a submission-ready DOCX using the journal's own template**
+   (`sustainability-template.dot`) without changing the manuscript's working
+   `reference-doc` (`custom-reference-doc.docx` stays the default). First
+   attempt used a `quarto render -M reference-doc=...` CLI override, which
+   silently didn't take — Quarto's format-specific YAML
+   (`format.docx.reference-doc`) takes precedence over a generic `-M`
+   metadata flag, so the DOCX writer kept using the old template's styles
+   with no error or warning. Caught by diffing the font names embedded in
+   each candidate file's `word/styles.xml` (`Consolas`, the old template's
+   font, turned up in the "overridden" output instead of the journal
+   template's Calibri/Palatino Linotype/Times New Roman). Fixed by
+   temporarily editing the qmd's `reference-doc` line, rendering, and
+   reverting the edit immediately after — re-confirmed the font-name check
+   passed before reverting. Saved as
+   `submission-files/behaving-sustainably-ver1.docx`.
+
+### Files created / changed
+
+- `cc-behave.qmd` *(changed)* — both rounds of coauthor edits merged (69
+  tracked changes total across the two files); `format.docx.reference-doc`
+  was temporarily edited and reverted for step 5, so its committed state is
+  unaffected by that step.
+- `scripts/analysis-prep.R` *(changed)* — `note_fig_structural` trimmed to
+  remove the supplemental-materials sentence.
+- `.gitignore` *(changed)* — added `/Nowlin_Sparks_AS.docx`,
+  `/Behaving Sustainably.docx`, `/submission-files/`.
+- `_output/cc-behave.{html,pdf,docx}` *(regenerated)* — multiple times
+  through the session, after each substantive change.
+- `submission-files/behaving-sustainably-ver1.docx` *(new, untracked per the
+  new `.gitignore` rule)* — journal-template render for submission.
+
+### Decisions
+
+- **Coauthor review comments are surfaced to the author, not resolved by the
+  assistant** — they're editorial judgment calls (e.g., "explicitly add
+  comparison to NEP in same sample?"), not track-changes to mechanically
+  accept.
+- **Three-way alignment (qmd ↔ pre-edit docx text ↔ post-edit docx text) is
+  the required approach for merging coauthor copyedits into a qmd with
+  citation keys/cross-refs** — direct text-replace against resolved docx
+  text is not safe at paragraph-copyedit scale. This was only discovered
+  after a partial corruption on the first attempt at the second review;
+  treat any future large coauthor-copyedit pass the same way from the
+  start.
+- **Journal-template renders are one-off outputs, not a qmd state change** —
+  `reference-doc` reverted immediately after rendering so the working
+  default stays the author's own template.
+
+### Verification
+
+- Round 1: `pandoc --track-changes=all` extraction cross-checked against raw
+  `document.xml` `<w:ins>`/`<w:del>` parsing to catch edits hidden in Word
+  field-code `<w:instrText>` runs that pandoc's markdown output silently
+  drops.
+- Round 2: citation-token count and footnote-marker count confirmed
+  identical between pre- and post-merge qmd (diffed programmatically); all
+  47 changed paragraphs individually reviewed in the final diff before
+  writing to the file.
+- All three formats (HTML/PDF/DOCX) rendered without errors after every
+  substantive change this session.
+- Supplemental-materials removal: confirmed the phrase no longer appears
+  anywhere in the rendered HTML output.
+- Journal-template render: confirmed correct by diffing embedded font names
+  in `word/styles.xml` against both candidate reference docs before handing
+  off the file.
+
+### Notable findings / flags
+
+- **Word can store real paragraph prose inside a `<w:instrText>` run**
+  (normally reserved for field-code instructions like `HYPERLINK`) when a
+  cross-reference field isn't cleanly closed — pandoc's plain and
+  `--track-changes=all` markdown conversion both skip this content
+  silently, with no warning. Any future docx track-changes review from this
+  coauthor (or this Word/OOXML producer) should be spot-checked against the
+  raw XML, not just the pandoc markdown extraction, especially near
+  sentences containing `@fig-`/`@tbl-` cross-references.
+- **Quarto's `-M key=value` CLI flag does not override format-specific YAML
+  keys already set under `format.<fmt>:`** (confirmed for `reference-doc`
+  under `docx`) — it silently renders with the YAML's value instead of
+  erroring or warning. Any future ad hoc render override needs a
+  before/after content check (e.g. diffing an embedded, format-distinctive
+  property), not just "did it run without error."
+
+### Open items / next steps
+
+- Two coauthor review comments still await author judgment: (1) "explicitly
+  add comparison to NEP in same sample?" on the CNS 35%-variance sentence;
+  (2) a pre-registration transparency note, to which the coauthor's own
+  follow-up comment reads as approving the current wording — likely no
+  action needed, but not resolved by the assistant.
+- This session's changes are **uncommitted**; commit when at a stable
+  checkpoint.
+
+---
+
 ## 2026-07-12 — Table 1/2 layout fix: left-aligned/vertically-centered text, numbers on one line
 
 **Goal:** Tables 1 (`tbl-behaviors`) and 2 (`tbl-measurement`) were rendered

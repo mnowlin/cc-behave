@@ -25,5 +25,10 @@
 /data/
 /archive/
 /lit-review/
+/submission-files/
+
+# --- Coauthor track-changes review copies ---
+/Nowlin_Sparks_AS.docx
+/Behaving Sustainably.docx
 
 **/*.quarto_ipynb

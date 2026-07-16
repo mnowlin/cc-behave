@@ -759,8 +759,7 @@ note_fig_structural <- paste(
   "behaviors combined), with direct paths.",
   "Controlling for age, gender, race, education, and household income (paths not shown).",
   "The measurement (indicator) portion is omitted for clarity; standardized coefficients shown;",
-  "* p<0.05, ** p<0.01, *** p<0.001. The full path diagram including the measurement model, and",
-  "the equivalent model with the four separate worldview measures, are in the supplemental materials.")
+  "* p<0.05, ** p<0.01, *** p<0.001.")
 note_tbl_serial_fit <- paste(
   "Both models control for age, gender, race, education, and household income.", lrt_text_hiec)
 note_tbl_fit_full <- paste(
